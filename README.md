@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# muse-website
+Muse Knoxville is a discovery-based children’s museum in Knoxville, TN. See their [existing website](https://www.themuseknoxville.org/) for more information.
 
-## Getting Started
+## Tech Stack
+**Frontend**: React
 
-First, run the development server:
+**Backend**: TypeScript
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+**Next.js**: Server-side rendering, API routes, file-based routing
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Content Management System(CMS)**: Contentful/Square
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+**Database**: MongoDB
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Base Dependencies
+node v10+ (recommend getting nvm to manage versions)
 
-## Learn More
+yarn (package manager - similar to npm)
 
-To learn more about Next.js, take a look at the following resources:
+## Run the Site
+1. Clone the repository.
+2. Run `yarn` or `yarn install` to update dependencies.
+3. Run `yarn dev` for development mode with hot-code reloading, error reporting, and more.
+4. Open [http://localhost:3000](http://localhost:3000) with your web browser to see the result.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Note: Running `yarn build` then `yarn start` will start the application in production mode.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Tools Used
+* Jira for issue tracking
+* Figma for mockups
+* Confluence for formal documents
+* Square/Contentful for CMS access
 
-## Deploy on Vercel
+## Code/PR Workflow
+* Create a new branch in the format `[GITHUB_USERNAME]/MUSE-[JIRA ISSUE NUMBER]-[SHORT_DESCRIPTION]` by running `git checkout -b [BRANCH NAME]`
+  * This way the issues are closed on Jira when we merge the PR with that branch name
+### Example Branch
+    rluberto/MUSE-12-init-project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Be sure to lint, format, and type-check your code occasionally to catch errors by running `yarn lint`.
+* Commit changes.
+* Then push your branch by running `git push -u origin [BRANCH NAME]`. This pushes your branch to remote.
+* Create a pull request (PR) on GitHub to merge your branch into `develop`. `main` will serve as production.
+* In your PR, briefly describe the changes, then tag Trevor (trevormangrum) and Ray (rluberto) to the PR. Others are welcome to comment and give feedback as well.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Project Structure
+* `components/`: Contains most of our front-end code. This is where we put our React components.
+* `pages/`: Contains files that are associated with a route based on its file name. For more information, see Next.js' [docs](https://nextjs.org/docs/basic-features/pages).
+* `public/`: Stores static files like images, see Next.js' [docs](https://nextjs.org/docs/basic-features/static-file-serving).
+* `requests/`: Contains several files, one for each entity/model in our application. We define for fetching data on the client-side here.
+* `server/`: Contains almost all of our backend code. This is where we put our Mongoose models and business logic. 
+* `utils/`: For code used across root directories.
