@@ -14,7 +14,7 @@ Muse Knoxville is a discovery-based children’s museum in Knoxville, TN. See th
 
 
 ## Base Dependencies
-node v10+ (recommend getting nvm to manage versions)
+node v14+ (recommend getting nvm to manage versions)
 
 yarn (package manager - similar to npm)
 
