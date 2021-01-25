@@ -48,6 +48,6 @@ Note: Running `yarn build` then `yarn start` will start the application in produ
 * `components/`: Contains most of our front-end code. This is where we put our React components.
 * `pages/`: Contains files that are associated with a route based on its file name. For more information, see Next.js' [docs](https://nextjs.org/docs/basic-features/pages).
 * `public/`: Stores static files like images, see Next.js' [docs](https://nextjs.org/docs/basic-features/static-file-serving).
-* `requests/`: Contains several files, one for each entity/model in our application. We define for fetching data on the client-side here.
-* `server/`: Contains almost all of our backend code. This is where we put our Mongoose models and business logic. 
+* `requests/`: Contains files for fetching data on the client-side here.
+* `server/`: Contains almost all of our backend code. This is where we put our business logic. 
 * `utils/`: For code used across root directories.
