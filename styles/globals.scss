@@ -1,0 +1,9 @@
+@use 'variables' as vars;
+* {
+    box-sizing: border-box;
+}
+html, body{
+    margin:0;
+    padding:0;
+    font-family: vars.$font-primary; 
+ }
