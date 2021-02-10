@@ -1,0 +1,5 @@
+@use './styles/variables' as vars;
+
+.footer {
+  color: vars.$muse-orange;
+}
