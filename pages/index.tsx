@@ -1,10 +1,12 @@
 import { NextPage } from "next";
+import Layout from "components/Layout";
 const Home: NextPage = () => {
-  return (
-    <main>
-      <h1>This is our home page!</h1>
-    </main>
-  );
+  const options = {
+    hero: true,
+    heroSize: "sm",
+    heroText: "Test hero",
+  };
+  return <Layout options={options}>This is inside the layout</Layout>;
 };
 
 export default Home;

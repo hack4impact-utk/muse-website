@@ -1,2 +1,6 @@
-// TODO Implement this component. Refer to to the Header task on Jira for more instructions.
-export {};
+import React from "react";
+const Header: React.FC = () => {
+  return <nav>Placeholder nav</nav>;
+};
+
+export default Header;
