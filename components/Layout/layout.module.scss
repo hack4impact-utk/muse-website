@@ -1,0 +1,21 @@
+@use 'variables' as vars;
+.hero {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:white;
+    align-items:center;
+    &-sm{
+        min-height: 150px;
+        background: vars.$muse-orange;
+    }
+    &-md{
+        min-height: 300px;
+        background: vars.$muse-orange;
+    }
+    &-lg{
+        min-height: 450px;
+        background: vars.$muse-orange;
+    }
+}
