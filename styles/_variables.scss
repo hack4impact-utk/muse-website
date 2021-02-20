@@ -1,6 +1,11 @@
-//
+//Import fonts from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&display=swap');
 // Colors
-
+$muse-blue: #0E55A6;
+$muse-light-blue: #73CCD8;
+$muse-orange: #F99E26;
 // Fonts
-
+$font-primary: #{"Quicksand", sans-serif};
+$font-secondary: #{"Raleway", sans-serif};
 // Media Queries
+
