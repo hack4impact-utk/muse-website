@@ -32,7 +32,7 @@ export const GET_ALL_EXHIBITS = gql`
  * @returns An object containing information about the Exhibit.
  */
 export const GET_EXHIBIT = gql`
-  query getExhibitById($name: String!) {
+  query getExhibitByName($name: String!) {
     ourExhibitsCollection(where: { name_contains: $name }) {
       items {
         name
