@@ -28,12 +28,12 @@ export const GET_ALL_EXHIBITS = gql`
   }
 `;
 /**
- * Get an Exhibit by its Contentful ID.
+ * Get an Exhibit by its  name.
  * @returns An object containing information about the Exhibit.
  */
 export const GET_EXHIBIT = gql`
-  query getExhibitById($id: String!) {
-    ourExhibitsCollection(where: { sys: { id: $id } }) {
+  query getExhibitById($name: String!) {
+    ourExhibitsCollection(where: { name_contains: $name }) {
       items {
         name
         description
