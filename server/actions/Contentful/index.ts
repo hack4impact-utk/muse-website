@@ -1,10 +1,13 @@
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-
+import { ApolloClient, InMemoryCache, gql, HttpLink } from "@apollo/client";
+import fetch from "cross-fetch";
 //* Must be imported before any query can be run.
 export const client = new ApolloClient({
-  uri: `https://graphql.contentful.com/content/v1/spaces/${
-    process.env.CONTENTFUL_SPACE_ID as string
-  }?access_token=${process.env.CONTENTFUL_DELIVERY_KEY as string}`,
+  link: new HttpLink({
+    uri: `https://graphql.contentful.com/content/v1/spaces/${
+      process.env.CONTENTFUL_SPACE_ID as string
+    }?access_token=${process.env.CONTENTFUL_DELIVERY_KEY as string}`,
+    fetch,
+  }),
   cache: new InMemoryCache(),
 });
 
@@ -16,9 +19,6 @@ export const GET_ALL_EXHIBITS = gql`
   query getAllExhibits {
     ourExhibitsCollection {
       items {
-        sys {
-          id
-        }
         name
         picture {
           url
