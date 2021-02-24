@@ -13,3 +13,10 @@ export interface ItemVariation {
   id: string;
   price: string;
 }
+
+export interface Exhibit {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+}
