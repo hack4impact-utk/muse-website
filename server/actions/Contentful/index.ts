@@ -44,3 +44,39 @@ export const GET_EXHIBIT = gql`
     }
   }
 `;
+
+/**
+ * Gets information of all partners
+ *
+ */
+export const GET_ALL_PARTNERS = gql`
+  query getAllPartners {
+    partnersCollection {
+      items {
+        name
+        image {
+          url
+        }
+        url
+      }
+    }
+  }
+`;
+
+/**
+ * Gets information for specified partner
+ *
+ */
+export const GET_PARTNER = gql`
+  query getPartnerByName($name: String!) {
+    partnersCollection(where: { name_contains: $name }) {
+      items {
+        name
+        image {
+          url
+        }
+        url
+      }
+    }
+  }
+`;
