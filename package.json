@@ -38,6 +38,7 @@
     "prettier": "^2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-icons": "^4.2.0",
     "sass": "^1.32.6",
     "square": "^8.0.1",
     "ts-node": "^9.1.1",
