@@ -38,50 +38,50 @@ const Footer: React.FC = () => {
       <div className={styles.row}>
         <div className={`${styles.column} ${styles.links}`}>
           <h2>Visit</h2>
-          <a href="#">Plan Your Visit</a>
-          <a href="#">Reopening Info</a>
-          <a href="#">Memberships</a>
-          <a href="#">Visitor FAQs</a>
-          <a href="#">Field Trips</a>
-          <a href="#">Free Family Night</a>
-          <a href="#">Link</a>
+          <a href="plan-visit">Plan Your Visit</a>
+          <a href="reopening-info">Reopening Info</a>
+          <a href="memberships">Memberships</a>
+          <a href="faqs">Visitor FAQs</a>
+          <a href="field-trips">Field Trips</a>
+          <a href="free-family-night">Free Family Night</a>
+          <a href="link">Link</a>
         </div>
         <div className={`${styles.column} ${styles.links}`}>
           <h2>Event Bookings</h2>
-          <a href="#">Birthdays</a>
-          <a href="#">Museum Rentals</a>
+          <a href="birthdays">Birthdays</a>
+          <a href="rentals">Museum Rentals</a>
         </div>
         <div className={`${styles.column} ${styles.links}`}>
           <h2>Educators</h2>
-          <a href="#">Field Trips</a>
-          <a href="#">Outreach (In-School)</a>
-          <a href="#">Preschool</a>
-          <a href="#">Homeschool</a>
-          <a href="#">Family STEAM Events</a>
-          <a href="#">Community Events</a>
-          <a href="#">Mobile Planetarium</a>
+          <a href="field-trips">Field Trips</a>
+          <a href="outreach">Outreach (In-School)</a>
+          <a href="preschool">Preschool</a>
+          <a href="homeschool">Homeschool</a>
+          <a href="family-events">Family STEAM Events</a>
+          <a href="community-events">Community Events</a>
+          <a href="mobile-planetarium">Mobile Planetarium</a>
         </div>
         <div className={`${styles.column} ${styles.links}`}>
           <h2>Experiences</h2>
-          <a href="#">Exhibits and Play Spaces</a>
-          <a href="#">Muse at Home</a>
-          <a href="#">Amusement Kits</a>
-          <a href="#">On-Site Programs</a>
-          <a href="#"><span>Learning Pods</span></a>
+          <a href="exhibits-and-play-spaces">Exhibits and Play Spaces</a>
+          <a href="muse-at-home">Muse at Home</a>
+          <a href="amusement-kits">Amusement Kits</a>
+          <a href="on-site-programs">On-Site Programs</a>
+          <a href="learning-pods"><span>Learning Pods</span></a>
         </div>
         <div className={`${styles.column} ${styles.links}`}>
           <h2>About Us</h2>
-          <a href="#">Mission & History</a>
-          <a href="#">Leadership</a>
-          <a href="#">Muse eNewsletter</a>
-          <a href="#">Press</a>
-          <a href="#">Contact Us</a>
+          <a href="mission-and-history">Mission & History</a>
+          <a href="leadership">Leadership</a>
+          <a href="enewsletter">Muse eNewsletter</a>
+          <a href="press">Press</a>
+          <a href="contact-us">Contact Us</a>
         </div>
         <div className={`${styles.column} ${styles.links}`}>
           <h2>Join+Support</h2>
-          <a href="#">Donate Now</a>
-          <a href="#">Volunteer</a>
-          <a href="#">Muse for All Scholarships</a>
+          <a href="donate-now">Donate Now</a>
+          <a href="volunteer">Volunteer</a>
+          <a href="scholarships">Muse for All Scholarships</a>
         </div>
       </div>
     </footer>
