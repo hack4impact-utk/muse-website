@@ -1,4 +1,4 @@
-import { string } from "square/dist/schema";
+// Implements relevant types
 
 export interface Item {
   name: string;
