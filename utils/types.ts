@@ -26,6 +26,6 @@ export interface Exhibit {
 export interface Partner {
   id: string;
   name: string;
-  imageUrl: string;
   image: string;
+  url: string;
 }
