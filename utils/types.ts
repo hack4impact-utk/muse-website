@@ -1,3 +1,5 @@
+import { string } from "square/dist/schema";
+
 export interface Item {
   name: string;
   id: string;
@@ -18,5 +20,12 @@ export interface Exhibit {
   id: string;
   name: string;
   description: string;
+  image: string;
+}
+
+export interface Partner {
+  id: string;
+  name: string;
+  imageUrl: string;
   image: string;
 }
