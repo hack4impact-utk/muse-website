@@ -1,3 +1,5 @@
+// Implements relevant types
+
 export interface Item {
   name: string;
   id: string;
@@ -19,4 +21,11 @@ export interface Exhibit {
   name: string;
   description: string;
   image: string;
+}
+
+export interface Partner {
+  id: string;
+  name: string;
+  image: string;
+  url: string;
 }
