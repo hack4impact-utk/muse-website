@@ -1,5 +1,11 @@
 $breakpoint: 1100px;
 
+// Prevents page content from being underneath fixed header.
+.spacer {
+    // Todo: This hard-coded value of the header height should be changed to get the height dynamically.
+    padding-top: 158px;
+}
+
 .headerParent{
     width: auto;
     height: auto;
