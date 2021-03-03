@@ -44,3 +44,30 @@ export const GET_EXHIBIT = gql`
     }
   }
 `;
+/**
+ * Retrieves business hours from Contentful.
+ *
+ */
+export const GET_WEEKDAY_BUSINESS_HOURS = gql`
+  query getBusinessHours {
+    businessHoursCollection(where: { type_contains: "weekday" }) {
+      items {
+        hours
+        daysOpen
+        daysClosed
+      }
+    }
+  }
+`;
+
+export const GET_WEEKEND_BUSINESS_HOURS = gql`
+  query getBusinessHours {
+    businessHoursCollection(where: { type_contains: "weekend" }) {
+      items {
+        hours
+        daysOpen
+        daysClosed
+      }
+    }
+  }
+`;

@@ -20,3 +20,9 @@ export interface Exhibit {
   description: string;
   image: string;
 }
+
+export interface BusinessHours {
+  daysOpen: string[];
+  daysClosed: string[];
+  hours: string[];
+}
