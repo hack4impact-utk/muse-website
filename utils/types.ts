@@ -1,3 +1,5 @@
+// Implements relevant types
+
 export interface Item {
   name: string;
   id: string;
@@ -25,4 +27,11 @@ export interface BusinessHours {
   daysOpen: string[];
   daysClosed: string[];
   hours: string[];
+}
+
+export interface Partner {
+  id: string;
+  name: string;
+  image: string;
+  url: string;
 }

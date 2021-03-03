@@ -60,6 +60,24 @@ export const GET_WEEKDAY_BUSINESS_HOURS = gql`
   }
 `;
 
+/**
+ * Gets information of all partners
+ *
+ */
+export const GET_ALL_PARTNERS = gql`
+  query getAllPartners {
+    partnersCollection {
+      items {
+        name
+        image {
+          url
+        }
+        url
+      }
+    }
+  }
+`;
+
 export const GET_WEEKEND_BUSINESS_HOURS = gql`
   query getBusinessHours {
     businessHoursCollection(where: { type_contains: "weekend" }) {
@@ -67,6 +85,23 @@ export const GET_WEEKEND_BUSINESS_HOURS = gql`
         hours
         daysOpen
         daysClosed
+      }
+    }
+  }
+`;
+/**
+ * Gets information for specified partner
+ *
+ */
+export const GET_PARTNER = gql`
+  query getPartnerByName($name: String!) {
+    partnersCollection(where: { name_contains: $name }) {
+      items {
+        name
+        image {
+          url
+        }
+        url
       }
     }
   }
