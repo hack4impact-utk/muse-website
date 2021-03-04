@@ -1,5 +1,4 @@
 import { Client, Environment } from "square";
-import { preProcessFile } from "typescript";
 
 // Use our refresh token to get the current access token
 export async function getAccessToken(): Promise<string> {
