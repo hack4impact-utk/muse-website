@@ -11,16 +11,16 @@ export const isOpen = (businessHours: BusinessHours): boolean => {
   const todayHours = today.getHours() + tzOffsetHours - 5;
   let o = false;
   const days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
-  if (businessHours.daysOpen.includes(days[today.getDate()])) {
-    businessHours.hours.forEach(hourSet => {
+  if (businessHours.daysOpen?.includes(days[today.getDate()])) {
+    businessHours.hours?.forEach(hourSet => {
       const [open, close] = parseHours(hourSet);
       if (
         todayHours >= open.hour &&
@@ -37,7 +37,11 @@ export const isOpen = (businessHours: BusinessHours): boolean => {
   }
   return o;
 };
-
+/**
+ * Parses the hours from a string of hours.
+ * @param hours The string of hours returned by Contentful. (Ex: 12:00PM-4:00PM)
+ * @returns an array containing the opening and closing hours as separate objects.
+ */
 export const parseHours = (
   hours: string
 ): [
@@ -71,4 +75,78 @@ export const parseHours = (
   };
 
   return [opening, closing];
+};
+
+/**
+ *  Compresses the days open.
+ * @param daysOpen The business days that the Muse is open.
+ * @returns A string expressing the days that the Muse is open.
+ */
+export const compressDays = (daysOpen: string[]): string => {
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  enum Days {
+    Sunday = 0,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday, //6
+  }
+  ("");
+  //Sort the days similar to how they are sorted above.
+  let sorted = daysOpen.slice().sort((a: string, b: string) => {
+    return days.indexOf(a) - days.indexOf(b);
+  });
+  let dayString = `${sorted[0]}`; //String to be concatenated to.
+  //Check for gaps in days open. If the difference in day number between a day and the day after it is greater than 1, that means there's a gap.
+  for (let i = 0; i < sorted.length - 1; i++) {
+    console.log(sorted[i + 1], sorted[i]);
+    if (
+      Days[sorted[i + 1] as keyof typeof Days] -
+        Days[sorted[i] as keyof typeof Days] >
+      1
+    ) {
+      dayString = dayString.concat(`,${sorted[i + 1]}`);
+    } else {
+      if (i == sorted.length - 2 && !dayString.includes(",")) {
+        dayString = dayString.concat(`-${sorted[i + 1]}: `);
+      } else {
+        dayString = dayString.concat(`,${sorted[i + 1]}: `);
+      }
+    }
+  }
+
+  console.log(dayString);
+
+  return dayString;
+};
+
+export const isWeekend = (): boolean => {
+  //! Should Saturday be considered a weekday or weekend?
+  const today = new Date();
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const weekendDays = ["Saturday", "Sunday"];
+  console.log(days[today.getDay()]);
+
+  if (weekendDays.includes(days[today.getDate()])) {
+    return true;
+  }
+  return false;
 };

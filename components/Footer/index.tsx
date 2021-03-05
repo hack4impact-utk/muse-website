@@ -1,5 +1,7 @@
 import styles from "./footer.module.scss";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { useQuery } from "@apollo/client";
+import { GET_WEEKDAY_BUSINESS_HOURS, client } from "server/actions/Contentful";
 
 const Footer: React.FC = () => {
   const mapSrc =
@@ -33,9 +35,10 @@ const Footer: React.FC = () => {
             HOURS - <span>Admission must be booked online, in advance</span>
           </h1>
           <p>Special Programs Monday & Thursday</p>
-          <p>Friday - 10am-12pm, 1-3pm, 3:30-5:30pm</p>
+          {/*<p>Friday - 10am-12pm, 1-3pm, 3:30-5:30pm</p>
           <p>Saturday - 10am-12pm, 1-3pm, 3:30-5:30pm</p>
-          <p>Sunday - 10am-12pm, 1-3pm</p>
+          <p>Sunday - 10am-12pm, 1-3pm</p> */}
+
           <div className={styles.smContainer}>
             <a
               href="https://www.facebook.com/MuseKnoxville/"

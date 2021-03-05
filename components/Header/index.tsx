@@ -1,12 +1,50 @@
 import React, { useState } from "react";
+import { compressDays } from "utils/helpers";
+import { useEffect } from "react";
 import styles from "./header.module.scss";
-
+import {
+  client,
+  GET_WEEKDAY_BUSINESS_HOURS,
+  GET_WEEKEND_BUSINESS_HOURS,
+} from "server/actions/Contentful";
+import { isOpen, isWeekend } from "utils/helpers";
+import { useQuery } from "@apollo/client";
+import { BusinessHours } from "utils/types";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [storeOpen, setStoreOpen] = useState(false);
+  const query = isWeekend()
+    ? GET_WEEKEND_BUSINESS_HOURS
+    : GET_WEEKDAY_BUSINESS_HOURS;
+  const { loading, data, error } = useQuery(query, {
+    client: client,
+    pollInterval: 3600000, //Poll every hour to see if the day has changed.
+  });
+
+  if (data && !loading) {
+    compressDays(data.businessHoursCollection.items[0].daysOpen);
+  }
+
   return (
     <header className={styles.headerParent}>
       <div className={styles.upperHeader}>
-        <div className={styles.upperHeaderLeft}>Hours: Closed Today</div>
+        <div className={styles.upperHeaderLeft}>
+          {data && !loading && !error && (
+            <div
+              data-is-open={isOpen(
+                data && data.businessHoursCollection.items[0]
+              )}
+            ></div>
+          )}
+          {data && !loading && !error && (
+            <span>
+              {/* TODO: Refactor this so it works with state instead. */}
+              {isOpen(data.businessHoursCollection.items[0])
+                ? "We are open!"
+                : "Currently closed."}
+            </span>
+          )}
+        </div>
         <div className={styles.upperHeaderRight}>
           <a href="/">Find Us</a>
           <a href="tel:=18655941494">(865) 594-1494</a>
