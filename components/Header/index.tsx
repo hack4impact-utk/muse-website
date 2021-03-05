@@ -13,18 +13,10 @@ import { BusinessHours } from "utils/types";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [storeOpen, setStoreOpen] = useState(false);
-  const query = isWeekend()
-    ? GET_WEEKEND_BUSINESS_HOURS
-    : GET_WEEKDAY_BUSINESS_HOURS;
-  const { loading, data, error } = useQuery(query, {
+  const { loading, data, error } = useQuery(GET_WEEKDAY_BUSINESS_HOURS, {
     client: client,
     pollInterval: 3600000, //Poll every hour to see if the day has changed.
   });
-
-  if (data && !loading) {
-    compressDays(data.businessHoursCollection.items[0].daysOpen);
-  }
-
   return (
     <header className={styles.headerParent}>
       <div className={styles.upperHeader}>

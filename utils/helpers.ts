@@ -108,24 +108,28 @@ export const compressDays = (daysOpen: string[]): string => {
   });
   let dayString = `${sorted[0]}`; //String to be concatenated to.
   //Check for gaps in days open. If the difference in day number between a day and the day after it is greater than 1, that means there's a gap.
-  for (let i = 0; i < sorted.length - 1; i++) {
-    console.log(
-      Days[sorted[i + 1] as keyof typeof Days],
-      Days[sorted[i] as keyof typeof Days]
-    );
-    if (
-      Days[sorted[i + 1] as keyof typeof Days] -
-        Days[sorted[i] as keyof typeof Days] >
-      1
-    ) {
-      dayString = dayString.concat(`,${sorted[i + 1]}`);
-    } else {
-      if (i == sorted.length - 2 && !dayString.includes(",")) {
-        dayString = dayString.concat(`-${sorted[i + 1]}: `);
-      } else if (i == sorted.length - 2 && dayString.includes(",")) {
-        dayString = dayString.concat(`,${sorted[i + 1]}: `);
+  if (sorted.length > 1) {
+    for (let i = 0; i < sorted.length - 1; i++) {
+      console.log(
+        Days[sorted[i + 1] as keyof typeof Days],
+        Days[sorted[i] as keyof typeof Days]
+      );
+      if (
+        Days[sorted[i + 1] as keyof typeof Days] -
+          Days[sorted[i] as keyof typeof Days] >
+        1
+      ) {
+        dayString = dayString.concat(`,${sorted[i + 1]}`);
+      } else {
+        if (i == sorted.length - 2 && !dayString.includes(",")) {
+          dayString = dayString.concat(`-${sorted[i + 1]}: `);
+        } else if (i == sorted.length - 2 && dayString.includes(",")) {
+          dayString = dayString.concat(`,${sorted[i + 1]}: `);
+        }
       }
     }
+  } else {
+    dayString = dayString.concat(": ");
   }
 
   console.log(dayString);
