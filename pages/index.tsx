@@ -2,7 +2,8 @@ import { NextPage } from "next";
 import Footer from "components/Footer";
 import Head from "next/head";
 import Header from "components/Header";
-        
+import InitialView from "components/Home/InitialView";
+
 const Home: NextPage = () => {
   return (
     <main>
@@ -10,8 +11,7 @@ const Home: NextPage = () => {
         <title>Muse Knoxville</title>
       </Head>
       <Header />
-      <h1>This is our home page!</h1>
-
+      <InitialView />
       <Footer />
       <style jsx global>{`
         body {
