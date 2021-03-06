@@ -1,3 +1,4 @@
+import { parse } from "graphql";
 import { BusinessHours } from "utils/types";
 /**
  * Checks to see if the Muse is open based on the Business hours
@@ -130,7 +131,30 @@ export const compressDays = (daysOpen: string[]): string => {
 
   return dayString;
 };
+/**
+ *
+ * @param hours The array of open/closing hours that the BusinessHours object has.
+ * @returns true if within an hour of closing, false if otherwise.
+ */
+export const closeToClosing = (hours: string[]): boolean => {
+  const today = new Date();
+  const tzOffsetHours = today.getTimezoneOffset() / 60; //Need to convert local time to UTC then to EST.
+  //EST is 5 hours behind UTC, so subtracting 5 from the converted UTC time gets you EST.
+  const todayHours = today.getHours() + tzOffsetHours - 5;
+  let o = false;
+  hours.forEach(hourSet => {
+    const [open, close] = parseHours(hourSet);
+    if (close.hour - todayHours <= 1) {
+      o = true;
+    }
+  });
+  return o;
+};
 
+/**
+ *  Determines if it is the weekend or not so the correct business hours query can be used.
+ * @returns True if it is the weekend, false if not.
+ */
 export const isWeekend = (): boolean => {
   //! Should Saturday be considered a weekday or weekend?
   const today = new Date();

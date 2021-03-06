@@ -53,8 +53,15 @@ $breakpoint: 1100px;
       display: block;
     }
   }
-  & > div[data-is-open="true"] {
+  & > div[data-is-open="true"][data-closing-soon="false"] {
     background: vars.$muse-green;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  & > div[data-is-open="true"][data-closing-soon="true"] {
+    background: vars.$muse-orange;
     width: 10px;
     height: 10px;
     margin-right: 10px;

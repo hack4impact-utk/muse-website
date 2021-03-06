@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { compressDays, isOpen, isWeekend } from "utils/helpers";
+import { closeToClosing, compressDays, isOpen, isWeekend } from "utils/helpers";
 
 import styles from "./header.module.scss";
 import {
@@ -12,7 +12,10 @@ import { useQuery } from "@apollo/client";
 import { BusinessHoursResponse } from "utils/types";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  //storeOpen, closingSoon, and storeStatus could probably all be refactored into one state.
   const [storeOpen, setStoreOpen] = useState(false);
+  const [closingSoon, setClosingSoon] = useState(false);
+  const [storeStatus, setStoreStatus] = useState("");
   const [bhOpen, setBHOpen] = useState(false);
   const query = isWeekend()
     ? GET_WEEKEND_BUSINESS_HOURS
@@ -42,19 +45,42 @@ const Header: React.FC = () => {
     if (isOpenData) {
       if (isOpen(isOpenData.businessHoursCollection.items[0])) {
         setStoreOpen(true);
+        if (closeToClosing(isOpenData.businessHoursCollection.items[0].hours)) {
+          setClosingSoon(true);
+        }
       } else {
         setStoreOpen(false);
+      }
+      if (storeOpen && closingSoon) {
+        setStoreStatus("Closing soon.");
+      } else if (storeOpen && !closingSoon) {
+        setStoreStatus("We are open!");
+      } else {
+        setStoreStatus("We are closed.");
       }
     }
     const interval = setInterval(() => {
       if (isOpenData) {
         if (isOpen(isOpenData.businessHoursCollection.items[0])) {
           setStoreOpen(true);
+          if (
+            closeToClosing(isOpenData.businessHoursCollection.items[0].hours)
+          ) {
+            setClosingSoon(true);
+          }
         } else {
           setStoreOpen(false);
         }
+
+        if (storeOpen && closingSoon) {
+          setStoreStatus("Closing soon.");
+        } else if (storeOpen && !closingSoon) {
+          setStoreStatus("We are open!");
+        } else {
+          setStoreStatus("We are closed.");
+        }
       }
-    }, 10000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, [isOpenData]);
@@ -65,7 +91,10 @@ const Header: React.FC = () => {
         <div className={styles.upperHeaderLeft}>
           {isOpenData && !isOpenError && !isOpenLoading && (
             <div className={styles.hours}>
-              <div data-is-open={storeOpen}></div>
+              <div
+                data-is-open={storeOpen}
+                data-closing-soon={closingSoon}
+              ></div>
               <span
                 role="button"
                 tabIndex={0}
@@ -80,7 +109,7 @@ const Header: React.FC = () => {
                   }
                 }}
               >
-                {storeOpen ? "We are open!" : "Currently closed."}
+                {storeStatus}
               </span>
               <div
                 className={`${styles.businessHoursSub} ${
