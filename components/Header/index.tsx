@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import { compressDays } from "utils/helpers";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { compressDays, isOpen, isWeekend } from "utils/helpers";
+
 import styles from "./header.module.scss";
 import {
   client,
   GET_WEEKDAY_BUSINESS_HOURS,
   GET_WEEKEND_BUSINESS_HOURS,
 } from "server/actions/Contentful";
-import { isOpen, isWeekend } from "utils/helpers";
+
 import { useQuery } from "@apollo/client";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [storeOpen, setStoreOpen] = useState(false);
+  const [bhOpen, setBHOpen] = useState(false);
   const query = isWeekend()
     ? GET_WEEKEND_BUSINESS_HOURS
     : GET_WEEKDAY_BUSINESS_HOURS;
@@ -37,6 +38,13 @@ const Header: React.FC = () => {
   });
 
   useEffect(() => {
+    if (isOpenData) {
+      if (isOpen(isOpenData.businessHoursCollection.items[0])) {
+        setStoreOpen(true);
+      } else {
+        setStoreOpen(false);
+      }
+    }
     const interval = setInterval(() => {
       if (isOpenData) {
         if (isOpen(isOpenData.businessHoursCollection.items[0])) {
@@ -45,7 +53,7 @@ const Header: React.FC = () => {
           setStoreOpen(false);
         }
       }
-    }, 60000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [isOpenData]);
@@ -57,8 +65,20 @@ const Header: React.FC = () => {
           {isOpenData && !isOpenError && !isOpenLoading && (
             <div className={styles.hours}>
               <div data-is-open={storeOpen}></div>
-              <span>{storeOpen ? "We are open!" : "Currently closed."}</span>
-              <div className={styles.businessHoursSub}>
+              <span
+                onClick={() =>
+                  window.innerWidth < 1100
+                    ? setBHOpen(!bhOpen)
+                    : setBHOpen(!bhOpen)
+                }
+              >
+                {storeOpen ? "We are open!" : "Currently closed."}
+              </span>
+              <div
+                className={`${styles.businessHoursSub} ${
+                  bhOpen ? styles.businessHoursSubActive : ""
+                }`}
+              >
                 <div className={styles.navButtonSubTriangle}></div>
                 {otherData && !otherLoading && !otherError && (
                   <p>

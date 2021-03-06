@@ -103,7 +103,7 @@ export const compressDays = (daysOpen: string[]): string => {
   }
   ("");
   //Sort the days similar to how they are sorted above.
-  let sorted = daysOpen.slice().sort((a: string, b: string) => {
+  const sorted = daysOpen.slice().sort((a: string, b: string) => {
     return days.indexOf(a) - days.indexOf(b);
   });
   let dayString = `${sorted[0]}`; //String to be concatenated to.
@@ -143,7 +143,7 @@ export const isWeekend = (): boolean => {
     "Friday",
     "Saturday",
   ];
-  const weekendDays = ["Saturday", "Sunday"];
+  const weekendDays = ["Sunday"];
 
   if (weekendDays.includes(days[today.getDate()])) {
     return true;

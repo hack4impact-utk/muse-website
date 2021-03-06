@@ -47,9 +47,11 @@ $breakpoint: 1100px;
   & > span:hover {
     cursor: pointer;
   }
-  & > span:hover ~ .businessHoursSub,
-  & .businessHoursSub:hover {
-    display: block;
+  @media screen and (min-width: $breakpoint) {
+    & > span:hover ~ .businessHoursSub,
+    & .businessHoursSub:hover {
+      display: block;
+    }
   }
   & > div[data-is-open="true"] {
     background: vars.$muse-green;
@@ -69,11 +71,30 @@ $breakpoint: 1100px;
 .businessHoursSub {
   top: 15px;
   left: 15px;
+  width: 350px;
+  position: absolute;
+  color: white;
+  display: none;
+  z-index: 2002;
+  padding-top: 15px;
   & > p {
-    width: max-content;
-    overflow-wrap: break-word;
-    margin: 0;
+    //Links that are inside the subnav
     word-wrap: break-word;
+    display: block;
+    position: relative;
+    padding: 10px 15px;
+    background-color: #f99e26;
+    color: white;
+    transition: 0.5s ease;
+    margin: 0;
+    z-index: 2003;
+  }
+  &.businessHoursSubActive {
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: $breakpoint) {
+      top: 12px;
+    }
   }
 }
 .upperHeaderRight {
@@ -343,8 +364,7 @@ $breakpoint: 1100px;
     text-align: center;
   }
 }
-.navBtn .navBtnSub,
-.businessHoursSub {
+.navBtn .navBtnSub {
   //Container for the subnav
   @media screen and (min-width: $breakpoint) {
     width: auto;
@@ -366,8 +386,7 @@ $breakpoint: 1100px;
 .navBtn:hover .navBtnSub {
   display: block;
 }
-.navBtnSub a,
-.businessHoursSub p {
+.navBtnSub a {
   //Links that are inside the subnav
   width: auto;
   white-space: nowrap;
