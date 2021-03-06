@@ -24,9 +24,9 @@ export interface Exhibit {
 }
 
 export interface BusinessHours {
-  daysOpen?: string[];
-  daysClosed?: string[];
-  hours?: string[];
+  daysOpen: string[];
+  daysClosed: string[];
+  hours: string[];
 }
 
 export interface Partner {
@@ -34,4 +34,11 @@ export interface Partner {
   name: string;
   image: string;
   url: string;
+}
+
+export interface BusinessHoursResponse {
+  businessHoursCollection: {
+    _typename: string;
+    items: BusinessHours[];
+  };
 }

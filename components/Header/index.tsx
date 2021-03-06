@@ -9,6 +9,7 @@ import {
 } from "server/actions/Contentful";
 
 import { useQuery } from "@apollo/client";
+import { BusinessHoursResponse } from "utils/types";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [storeOpen, setStoreOpen] = useState(false);
@@ -24,7 +25,7 @@ const Header: React.FC = () => {
     loading: isOpenLoading,
     data: isOpenData,
     error: isOpenError,
-  } = useQuery(query, {
+  } = useQuery<BusinessHoursResponse>(query, {
     client: client,
     pollInterval: 3600000,
   });
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
     loading: otherLoading,
     data: otherData,
     error: otherError,
-  } = useQuery(otherQuery, {
+  } = useQuery<BusinessHoursResponse>(otherQuery, {
     client: client,
     pollInterval: 3600000, //Poll every hour
   });
@@ -66,11 +67,18 @@ const Header: React.FC = () => {
             <div className={styles.hours}>
               <div data-is-open={storeOpen}></div>
               <span
+                role="button"
+                tabIndex={0}
                 onClick={() =>
                   window.innerWidth < 1100
                     ? setBHOpen(!bhOpen)
                     : setBHOpen(!bhOpen)
                 }
+                onKeyDown={(e: React.KeyboardEvent) => {
+                  if (e.key == "enter") {
+                    setBHOpen(!bhOpen);
+                  }
+                }}
               >
                 {storeOpen ? "We are open!" : "Currently closed."}
               </span>
