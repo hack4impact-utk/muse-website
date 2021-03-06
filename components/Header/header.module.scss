@@ -1,3 +1,4 @@
+@use '../../styles/variables' as vars;
 $breakpoint: 1100px;
 
 .headerParent {
@@ -37,18 +38,42 @@ $breakpoint: 1100px;
   align-items: center;
   text-align: left;
   flex: 0;
+}
+.hours {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  & > span:hover {
+    cursor: pointer;
+  }
+  & > span:hover ~ .businessHoursSub,
+  & .businessHoursSub:hover {
+    display: block;
+  }
   & > div[data-is-open="true"] {
-    background: green;
+    background: vars.$muse-green;
     width: 10px;
     height: 10px;
+    margin-right: 10px;
     border-radius: 50%;
   }
   & > div[data-is-open="false"] {
     background: red;
     width: 10px;
     height: 10px;
-    margin-right: 10px;
     border-radius: 50%;
+    margin-right: 10px;
+  }
+}
+.businessHoursSub {
+  top: 15px;
+  left: 15px;
+  & > p {
+    width: max-content;
+    overflow-wrap: break-word;
+    margin: 0;
+    word-wrap: break-word;
   }
 }
 .upperHeaderRight {
@@ -318,7 +343,8 @@ $breakpoint: 1100px;
     text-align: center;
   }
 }
-.navBtn .navBtnSub {
+.navBtn .navBtnSub,
+.businessHoursSub {
   //Container for the subnav
   @media screen and (min-width: $breakpoint) {
     width: auto;
@@ -340,7 +366,8 @@ $breakpoint: 1100px;
 .navBtn:hover .navBtnSub {
   display: block;
 }
-.navBtnSub a {
+.navBtnSub a,
+.businessHoursSub p {
   //Links that are inside the subnav
   width: auto;
   white-space: nowrap;

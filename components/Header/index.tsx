@@ -9,32 +9,75 @@ import {
 } from "server/actions/Contentful";
 import { isOpen, isWeekend } from "utils/helpers";
 import { useQuery } from "@apollo/client";
-import { BusinessHours } from "utils/types";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [storeOpen, setStoreOpen] = useState(false);
-  const { loading, data, error } = useQuery(GET_WEEKDAY_BUSINESS_HOURS, {
+  const query = isWeekend()
+    ? GET_WEEKEND_BUSINESS_HOURS
+    : GET_WEEKDAY_BUSINESS_HOURS;
+  const otherQuery = isWeekend()
+    ? GET_WEEKDAY_BUSINESS_HOURS
+    : GET_WEEKEND_BUSINESS_HOURS; // Get the remaining query
+
+  const {
+    loading: isOpenLoading,
+    data: isOpenData,
+    error: isOpenError,
+  } = useQuery(query, {
     client: client,
-    pollInterval: 3600000, //Poll every hour to see if the day has changed.
+    pollInterval: 3600000,
   });
+  const {
+    loading: otherLoading,
+    data: otherData,
+    error: otherError,
+  } = useQuery(otherQuery, {
+    client: client,
+    pollInterval: 3600000, //Poll every hour
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isOpenData) {
+        if (isOpen(isOpenData.businessHoursCollection.items[0])) {
+          setStoreOpen(true);
+        } else {
+          setStoreOpen(false);
+        }
+      }
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [isOpenData]);
+
   return (
     <header className={styles.headerParent}>
       <div className={styles.upperHeader}>
         <div className={styles.upperHeaderLeft}>
-          {data && !loading && !error && (
-            <div
-              data-is-open={isOpen(
-                data && data.businessHoursCollection.items[0]
-              )}
-            ></div>
-          )}
-          {data && !loading && !error && (
-            <span>
-              {/* TODO: Refactor this so it works with state instead. */}
-              {isOpen(data.businessHoursCollection.items[0])
-                ? "We are open!"
-                : "Currently closed."}
-            </span>
+          {isOpenData && !isOpenError && !isOpenLoading && (
+            <div className={styles.hours}>
+              <div data-is-open={storeOpen}></div>
+              <span>{storeOpen ? "We are open!" : "Currently closed."}</span>
+              <div className={styles.businessHoursSub}>
+                <div className={styles.navButtonSubTriangle}></div>
+                {otherData && !otherLoading && !otherError && (
+                  <p>
+                    {compressDays(
+                      otherData.businessHoursCollection.items[0].daysOpen
+                    )}
+                    {otherData.businessHoursCollection.items[0].hours.join(
+                      ", "
+                    )}
+                  </p>
+                )}
+                <p>
+                  {compressDays(
+                    isOpenData.businessHoursCollection.items[0].daysOpen
+                  )}
+                  {isOpenData.businessHoursCollection.items[0].hours.join(", ")}
+                </p>
+              </div>
+            </div>
           )}
         </div>
         <div className={styles.upperHeaderRight}>
