@@ -9,7 +9,7 @@ const SuggestedItems: React.FC = () => {
         <div className={styles.items}>
           <div>
             <div className={styles.images}>
-              <img src={"/item.png"} alt="Suggested item 2"></img>
+              <img src={"/item.png"} alt="Suggested item 1"></img>
             </div>
             <div className={styles.item}>
               Full Day Pass <br></br>
@@ -33,7 +33,7 @@ const SuggestedItems: React.FC = () => {
         <div className={styles.items}>
           <div>
             <div className={styles.images}>
-              <img src={"/item.png"} alt="Suggested item 2"></img>
+              <img src={"/item.png"} alt="Suggested item 3"></img>
             </div>
             <div className={styles.item}>
               Full Day Pass <br></br>
@@ -45,7 +45,7 @@ const SuggestedItems: React.FC = () => {
         <div className={styles.items}>
           <div>
             <div className={styles.images}>
-              <img src={"/item.png"} alt="Suggested item 2"></img>
+              <img src={"/item.png"} alt="Suggested item 4"></img>
             </div>
             <div className={styles.item}>
               Full Day Pass <br></br>
