@@ -1,25 +1,33 @@
-import { NextPage } from "next";
-import Head from "next/head";
-<<<<<<< HEAD
-import Layout from "components/Layout";
-const Home: NextPage = () => {
-  return (
-    <Layout>
-      <Head>
-        <title>Muse Knoxville</title>
-      </Head>
-      <h1>This is our home page!</h1>
-    </Layout>
-  );
-=======
-import Header from "components/Header";
-import OurMission from "../components/OurMission/index";
-import Partners from "../components/Partners/index";
-import IndividualItem from "../components/IndividualItem/index";
+import React from "react";
+import styles from "./individualItem.module.scss";
 
-const Home: NextPage = () => {
-  return <IndividualItem />;
->>>>>>> 3151971... Created individual item component
+const IndividualItem: React.FC = () => {
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.image}>
+        <img src={"/item.png"} alt="Core value 1"></img>
+      </div>
+
+      <div className={styles.body}>
+        <div className={styles.title}>
+          <h1>Full Day Pass for Muse Knoxville Week 9-12</h1>
+        </div>
+        <div className={styles.content}>
+          <h1>$30.00</h1>
+          <div className={styles.quantity}>
+            QTY
+            <input type="number"></input>
+          </div>
+          <div className={styles.description}>
+            Description of item in detail if it is needed here. At the moment it
+            is filler text but this is the place customers can see what comes
+            included with the tickets or learning kits they are purchasing.
+          </div>
+          <button className={styles.button}>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Home;
+export default IndividualItem;

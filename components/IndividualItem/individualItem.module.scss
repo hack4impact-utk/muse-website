@@ -1,47 +1,84 @@
 .wrapper {
-    width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 5%;
+    width: 80%;
+    align-self:center;
+    display: flex;
+    flex-direction:row;
+    @media(max-width: 860px) {
+        flex-direction:column;
+    }
 }
 
 .image {
-    width: 45%;
-    float: left;
-    img {
-        width: 100%;
-        height: 100%;
-        align-self: center;
+    display: flex;
+    flex-direction:column;
+    & > img {
+        margin-top: 20px;
+        width: 800px;
+        height: 600px;
+        @media(max-width: 860px) {
+            width: 100%;
+            height: 350px;
+        }
     }
+    flex: 2;
 }
 .body {
-    padding-left: 5%;
-    width: 35%;
-    float: left;
+    flex: 1;
+    display: flex;
+    flex-direction:column;
+}
+.content{
+    display: flex;
+    flex-direction:column;
+    & > h1 {
+        //Price
+        margin: 10px 0px;
+    }
+    @media(max-width: 860px) {
+        width:100%;
+    }
+}
+.title {
+    display: flex;
 }
 
+
 .description {
+    display: flex;
     font-weight: bold;
-    padding-bottom: 20%;
+    margin-bottom: 10px;
+    @media (min-width: 860px){   
+        height: auto;
+    }
 }
 
 .button {
     border: none;
+    margin: 20px 0px;
+    text-align:center;
     font-size: 28px;
     font-family: 'Quicksand', 'sans-serif';
     color: white;
     padding-top: 2%;
     padding-bottom: 2%;
     width: 75%;
-    background-color: rgb(56, 240, 56);
+    align-self:center;
+    background-color: #9CC03C;
+    @media (max-width: 860px) {
+        width:100%;
+    }
 }
 
 .quantity {
+    display: flex;
     font-size: 30px;
     font-weight: bold;
     padding-right: 10%;
+    margin: 20px 0px;
     input {
-        width: 10%;
+        width: 20%;
+        margin-left: 10%;
+
     }
 }
 

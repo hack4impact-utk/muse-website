@@ -9,16 +9,21 @@ const IndividualItem: React.FC = () => {
       </div>
 
       <div className={styles.body}>
-        <h1>Full Day Pass for Muse Knoxville Week 9-12</h1>
-        <div className={styles.description}>
-          Description of item in detail if it is needed here. At the moment it
-          is filler text but this is the place customers can see what comes
-          included with the tickets or learning kits they are purchasing.
+        <div className={styles.title}>
+          <h1>Full Day Pass for Muse Knoxville Week 9-12</h1>
         </div>
-        <button className={styles.button}>Add to Cart</button>
-        <h1>$30.00</h1>
-        <div className={styles.quantity}>
-          QTY <input type="text"></input>
+        <div className={styles.content}>
+          <h1>$30.00</h1>
+          <div className={styles.quantity}>
+            QTY
+            <input type="number"></input>
+          </div>
+          <div className={styles.description}>
+            Description of item in detail if it is needed here. At the moment it
+            is filler text but this is the place customers can see what comes
+            included with the tickets or learning kits they are purchasing.
+          </div>
+          <button className={styles.button}>Add to Cart</button>
         </div>
       </div>
     </div>
