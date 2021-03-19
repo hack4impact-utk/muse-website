@@ -1,9 +1,15 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Layout from "components/Layout";
-import SuggestedItems from "../components/SuggestedItems/index";
 const Home: NextPage = () => {
-  return <SuggestedItems />;
+  return (
+    <Layout>
+      <Head>
+        <title>Muse Knoxville</title>
+      </Head>
+      <h1>This is our home page!</h1>
+    </Layout>
+  );
 };
 
 export default Home;
