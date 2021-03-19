@@ -1,5 +1,3 @@
-// Implements relevant types
-
 export interface Item {
   name: string;
   id: string;
@@ -21,24 +19,4 @@ export interface Exhibit {
   name: string;
   description: string;
   image: string;
-}
-
-export interface BusinessHours {
-  daysOpen: string[];
-  daysClosed: string[];
-  hours: string[];
-}
-
-export interface Partner {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-}
-
-export interface BusinessHoursResponse {
-  businessHoursCollection: {
-    _typename: string;
-    items: BusinessHours[];
-  };
 }
