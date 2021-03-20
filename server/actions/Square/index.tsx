@@ -27,12 +27,3 @@ export async function getAccessToken(): Promise<string> {
 const client = new Client({
   environment: Environment.Sandbox,
 });
-
-// Example of using .withconfiguration to create a new instance of the client
-// with current access token
-export async function getItemsByCategory(category: string): Promise<void> {
-  const token = await getAccessToken();
-  const newClient = client.withConfiguration({
-    accessToken: token,
-  });
-}
