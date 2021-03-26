@@ -1,0 +1,109 @@
+.parent{
+    width: auto;
+    height: 570px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    background-color: #F3B35E;
+}
+
+.gearGreen{
+    height: auto;
+    position: absolute;
+    animation: greenRotate 50s infinite linear;
+    @media screen and (min-width: 980px){
+        width: 400px;
+        top: 50px;
+        right: -100px;
+        bottom: 250px;
+    }
+    @media screen and (max-width: 980px){
+        width: 250px;
+        top: 250px;
+        right: -100px;
+        bottom: 250px;
+    }
+}
+
+.gearYellow{
+    height: auto;
+    position: absolute;
+    display: inline-block;
+    animation: yellowRotate 40s infinite linear;
+    @media screen and (min-width: 980px){
+        width: 300px;
+        right: 250px;
+        bottom: -50px;
+    }
+    @media screen and (max-width: 980px){
+        width: 170px;
+        right: 100px;
+        bottom: -50px;
+    }
+}
+
+@keyframes greenRotate{
+    from{
+        transform: rotate(359deg);
+    }
+    to{
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes yellowRotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(359deg);
+    }
+}
+
+.textParent{
+    position: absolute;
+    display: inline-block;
+    height: auto;
+    width: auto;
+    @media screen and (min-width: 540px){
+        padding-left: 100px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @media screen and (max-width: 540px){
+        padding-left: 30px;
+        top: 10%;
+    }
+}
+
+.textParent h1{
+    position: relative;
+    display: block;
+    color: white;
+    @media screen and (min-width: 540px){
+        font-size: 50px;
+    }
+    @media screen and (max-width: 540px){
+        font-size: 38px;
+    }
+}
+
+.ctaButtonWrapper{
+    position: relative;
+    display: block;
+}
+
+.ctaButton{
+    padding: 10px 20px;
+    background-color: #9DC13B;
+    border: 1px solid white;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: 0.5s ease;
+}
+
+.ctaButton:hover{
+    background-color: #809e2f;
+    cursor: pointer;
+}
