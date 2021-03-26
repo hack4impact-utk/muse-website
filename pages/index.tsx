@@ -1,12 +1,13 @@
 import { NextPage } from "next";
-import Footer from "components/Footer";
 import Head from "next/head";
+
 import Header from "components/Header";
 import InitialView from "components/Home/InitialView";
-
+import Layout from "components/Layout";
+        
 const Home: NextPage = () => {
   return (
-    <main>
+    <Layout>
       <Head>
         <title>Muse Knoxville</title>
       </Head>
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
           font-family: Arial;
         }
       `}</style>
-    </main>
+    </Layout>
   );
 };
 
