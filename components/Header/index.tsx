@@ -86,77 +86,65 @@ const Header: React.FC = () => {
   }, [isOpenData]);
 
   return (
-    <header className={styles.headerParent}>
-      <div className={styles.upperHeader}>
-        <div className={styles.upperHeaderLeft}>
-          {isOpenData && !isOpenError && !isOpenLoading && (
-            <div className={styles.hours}>
-              <div
-                data-is-open={storeOpen}
-                data-closing-soon={closingSoon}
-              ></div>
-              <span
-                role="button"
-                tabIndex={0}
-                onClick={() =>
-                  window.innerWidth < 1100
-                    ? setBHOpen(!bhOpen)
-                    : setBHOpen(!bhOpen)
-                }
-                onKeyDown={(e: React.KeyboardEvent) => {
-                  if (e.key == "enter") {
-                    setBHOpen(!bhOpen);
+    <div>
+      <header className={styles.headerParent}>
+        <div className={styles.upperHeader}>
+          <div className={styles.upperHeaderLeft}>
+            {isOpenData && !isOpenError && !isOpenLoading && (
+              <div className={styles.hours}>
+                <div
+                  data-is-open={storeOpen}
+                  data-closing-soon={closingSoon}
+                ></div>
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onClick={() =>
+                    window.innerWidth < 1100
+                      ? setBHOpen(!bhOpen)
+                      : setBHOpen(!bhOpen)
                   }
-                }}
-              >
-                {storeStatus}
-              </span>
-              <div
-                className={`${styles.businessHoursSub} ${
-                  bhOpen ? styles.businessHoursSubActive : ""
-                }`}
-              >
-                <div className={styles.navButtonSubTriangle}></div>
-                {otherData && !otherLoading && !otherError && (
+                  onKeyDown={(e: React.KeyboardEvent) => {
+                    if (e.key == "enter") {
+                      setBHOpen(!bhOpen);
+                    }
+                  }}
+                >
+                  {storeStatus}
+                </span>
+                <div
+                  className={`${styles.businessHoursSub} ${
+                    bhOpen ? styles.businessHoursSubActive : ""
+                  }`}
+                >
+                  <div className={styles.navButtonSubTriangle}></div>
+                  {otherData && !otherLoading && !otherError && (
+                    <p>
+                      {compressDays(
+                        otherData.businessHoursCollection.items[0].daysOpen
+                      )}
+                      {otherData.businessHoursCollection.items[0].hours.join(
+                        ", "
+                      )}
+                    </p>
+                  )}
                   <p>
                     {compressDays(
-                      otherData.businessHoursCollection.items[0].daysOpen
+                      isOpenData.businessHoursCollection.items[0].daysOpen
                     )}
-                    {otherData.businessHoursCollection.items[0].hours.join(
+                    {isOpenData.businessHoursCollection.items[0].hours.join(
                       ", "
                     )}
                   </p>
-                )}
-                <p>
-                  {compressDays(
-                    isOpenData.businessHoursCollection.items[0].daysOpen
-                  )}
-                  {isOpenData.businessHoursCollection.items[0].hours.join(", ")}
-                </p>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-        <div className={styles.upperHeaderRight}>
-          <a href="/">Find Us</a>
-          <a href="tel:=18655941494">(865) 594-1494</a>
-          <a href="cart">Cart (0)</a>
-        </div>
-      </div>
-      <div className={styles.mainHeader}>
-        <button
-          className={
-            mobileOpen
-              ? styles.mobileHeaderOverlayOpen
-              : styles.mobileHeaderOverlay
-          }
-          onClick={() => setMobileOpen(!mobileOpen)}
-          onKeyDown={() => setMobileOpen(!mobileOpen)}
-        ></button>
-        <div className={styles.headerLogo}>
-          <a href="/">
-            <img src="/logo.png" alt="Muse Knoxville Logo" />
-          </a>
+            )}
+          </div>
+          <div className={styles.upperHeaderRight}>
+            <a href="/">Find Us</a>
+            <a href="tel:=18655941494">(865) 594-1494</a>
+            <a href="cart">Cart (0)</a>
+          </div>
         </div>
         <div className={styles.mainHeader}>
           <button
