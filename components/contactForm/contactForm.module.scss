@@ -1,4 +1,5 @@
 @use './styles/variables' as vars;
+@import './styles/variables';
 
 .container {
     display: flex;
@@ -12,5 +13,20 @@
         display: flex;
         flex-direction: column;
         text-align: left;
+        width: 50vh;
+
+        margin: 25px;
+
+        color: $muse-green;
+        font-weight: 700;
+        font-size: 150%;
+
+    }
+
+    input {
+        border-color: $muse-blue;
+    }
+    input:focus {
+        border: 3px solid;
     }
 }
