@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import style from "./initialview.module.scss";
 
 const InitialView: React.FC = () => {
