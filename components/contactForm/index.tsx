@@ -3,9 +3,32 @@ import styles from "./contactForm.module.scss";
 
 const ContactForm: React.FC = () => {
   return (
-    <div>
-      <p>Name:</p>
-    </div>
+    <form className={styles.container}>
+      <label>
+        Name
+        <input></input>
+      </label>
+
+      <label>
+        Email
+        <input></input>
+      </label>
+
+      <label>
+        Phone
+        <input></input>
+      </label>
+
+      <label>
+        Subject
+        <input></input>
+      </label>
+
+      <label>
+        Message
+        <input></input>
+      </label>
+    </form>
   );
 };
 
