@@ -1,5 +1,7 @@
 // Implements relevant types
 
+import { string } from "@apimatic/schema";
+
 export interface Item {
   name: string;
   id: string;
@@ -20,7 +22,13 @@ export interface Exhibit {
   id: string;
   name: string;
   description: string;
-  image: string;
+  picture: string;
+}
+
+export interface ExhibitResponse {
+  ourExhibitsCollection: {
+    items: Exhibit[];
+  };
 }
 
 export interface BusinessHours {
