@@ -13,7 +13,7 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ options, children }) => {
   return (
-    <main>
+    <main className={styles['main']}>
       <Header />
       {options?.hero && options?.heroSize == "sm" && (
         <div className={`${styles["hero"]} ${styles["hero-sm"]}`}>
@@ -30,7 +30,9 @@ const Layout: React.FC<Props> = ({ options, children }) => {
           <h1>{options?.heroText}</h1>
         </div>
       )}
-      {children}
+      <section className={styles['wrapper']}>
+        {children}
+      </section>
       <Footer />
     </main>
   );
