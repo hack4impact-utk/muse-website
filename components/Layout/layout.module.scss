@@ -1,4 +1,8 @@
 @use 'variables' as vars;
+.main {
+    display: flex;
+    flex-direction: column;
+}
 .hero {
     width:100%;
     display:flex;
@@ -18,4 +22,8 @@
         min-height: 450px;
         background: vars.$muse-orange;
     }
+}
+.wrapper {
+    width: 80%;
+    align-self:center;
 }
