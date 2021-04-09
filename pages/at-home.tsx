@@ -1,7 +1,7 @@
 import Layout from "components/Layout";
 import Head from "next/head";
 import React from "react";
-const AtHome = () => {
+const AtHome: React.FC = () => {
   const options = {
     hero: true,
     heroSize: "md",

@@ -1,7 +1,5 @@
 import { NextPage } from "next";
 import Head from "next/head";
-
-import Header from "components/Header";
 import InitialView from "components/Home/InitialView";
 import Layout from "components/Layout";
 
