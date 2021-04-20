@@ -1,6 +1,8 @@
 import Layout from "components/Layout";
+import Mission from "components/OurMission";
 import Head from "next/head";
 import React from "react";
+
 const SignIn: React.FC = () => {
   const options = {
     hero: true,
