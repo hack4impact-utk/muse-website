@@ -11,8 +11,10 @@ import Layout from "components/Layout";
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY as string);
 const USE_CODEGEN = false;
 interface Props {
-  builderPage: BuilderContent;
-}
+    builderPage: BuilderContent;
+};
+
+
 
 const MyComponent: React.FC<Props> = ({ builderPage }) => {
   const heroText = builderPage ? `${(builderPage.data.pageTitle || builderPage.data.title)}` : "Muse Knoxville";
