@@ -1,7 +1,6 @@
 .wrapper {
-    width: 80%;
-    align-self:center;
     display: flex;
+    margin:40px 0px;
     flex-direction:row;
     @media(max-width: 860px) {
         flex-direction:column;
