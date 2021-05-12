@@ -56,6 +56,26 @@ export const getItemByID = async (id: string): Promise<Item> => {
     return {} as Item;
   }
 };
+/**
+ * Batch retrieves an array of items by ID.
+ * @param ids - The array of item IDs to be batch retrieved.
+ * @returns An array of formatted items that were retrieved from Square.
+ *
+ */
+
+export const batchGetItemsByID = async (ids: string[]): Promise<Item[]> => {
+  const token = await getAccessToken();
+  const newClient = client.withConfiguration({
+    accessToken: token,
+  });
+  const response = await newClient.catalogApi.batchRetrieveCatalogObjects({
+    objectIds: ids,
+  });
+
+  return Promise.all(
+    (response.result.objects as CatalogObject[]).map(item => formatItem(item))
+  );
+};
 
 /**
  * Takes in the name of a category and retrieves its ID.
@@ -151,8 +171,8 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
               name:
                 variation.itemVariationData?.name || "No variation name found",
               price: (
-                (variation.itemVariationData?.priceMoney?.amount as number) /
-                100
+                ((variation.itemVariationData?.priceMoney
+                  ?.amount as unknown) as number) / 100
               ).toFixed(2),
             };
             return formattedVariation;
