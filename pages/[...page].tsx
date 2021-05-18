@@ -6,6 +6,7 @@ import {
 } from "@builder.io/react";
 import { GetStaticPropsContext } from "next";
 import Layout from "components/Layout";
+import "components/Builder/Button";
 //All of this code below comes from the Builder.io GitHub
 //https://github.com/BuilderIO/builder/blob/master/examples/next-js-builder-site/src/pages/%5B...page%5D.tsx
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY as string);
@@ -15,9 +16,11 @@ interface Props {
 }
 
 const MyComponent: React.FC<Props> = ({ builderPage }) => {
-  const heroText = builderPage ? `${(builderPage.data.pageTitle || builderPage.data.title)}` : "Muse Knoxville";
+  const heroText = builderPage
+    ? `${builderPage.data.pageTitle || builderPage.data.title}`
+    : "Muse Knoxville";
   return (
-    <Layout options={{hero: true, heroSize: "md", heroText: heroText} }>
+    <Layout options={{ hero: true, heroSize: "md", heroText: heroText }}>
       {builderPage || Builder.isEditing || Builder.isPreviewing ? (
         <BuilderComponent
           content={builderPage}

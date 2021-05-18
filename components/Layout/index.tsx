@@ -2,10 +2,12 @@ import React from "react";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import styles from "./layout.module.scss";
+import InitialView from "components/Home/InitialView";
 interface Options {
   hero?: boolean;
   heroSize?: string;
   heroText?: string;
+  initialView?: boolean;
 }
 interface Props {
   options?: Options;
@@ -30,9 +32,18 @@ const Layout: React.FC<Props> = ({ options, children }) => {
           <h1>{options?.heroText}</h1>
         </div>
       )}
+      {options?.initialView && (
+      <section>
+        <InitialView/>
+          {children}
+      </section>
+
+      )}
+      {!(options?.initialView) && (
       <section className={styles['wrapper']}>
         {children}
       </section>
+      )}
       <Footer />
     </main>
   );
