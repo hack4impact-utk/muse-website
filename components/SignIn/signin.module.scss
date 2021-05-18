@@ -1,0 +1,104 @@
+@use 'variables' as vars;
+
+.bkg {
+    max-height: 100%;
+    background: vars.$muse-light-blue;
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 150px;
+    background: vars.$muse-light-blue;
+}
+.loginWrapper {
+    border-radius: 10px 10px 10px 10px;
+    background: #ECECEC;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    //max-width: 568px;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.3);
+    text-align: center;
+}
+.textFields {
+    position: relative;
+    justify-content: left;
+    text-align: left;
+    font-size: 35px;
+    font-family: vars.$font-primary;
+    padding-top: 0px;
+    padding-bottom: 25px;
+}
+.logo {
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0;
+    padding-bottom: 50px;
+}
+.logo img {
+    max-height: 30%;
+    width: 150px;
+}
+.lButton {
+    padding-top: 80px;
+    justify-content: center;
+    align-items: center;
+}
+
+// Text Fields
+input[type=text], input[type=password] {
+    &.login {
+        width: 100%;
+        height: 54px;
+        background-color: #C4C4C4;
+        border: none;
+        color: #000000;
+        padding: 15px 32px;
+        display: inline-block;
+        border: 2px solid #f6f6f6;
+        border-radius: 5px 5px 5px 5px;
+
+        &:focus {
+            background-color: #fff;
+            border-bottom: 2px solid #5fbae9;
+        }
+
+        &::placeholder {
+            color: #cccccc;
+        }
+    }
+}
+
+button[type=submit]  {
+    &.login {
+        width: 100%;
+        height: 55px;
+        background-color: vars.$muse-green;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-family: vars.$font-primary;
+        font-size: 35px;
+        border-radius: 5px 5px 5px 5px;
+        margin-bottom: 50px;
+
+        &:hover {
+            background-color: #bfd38d;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}

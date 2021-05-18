@@ -1,21 +1,23 @@
 import Layout from "components/Layout";
-import Mission from "components/OurMission";
+import SignIn from "components/SignIn";
 import Head from "next/head";
 import React from "react";
 
-const SignIn: React.FC = () => {
+const SignInPage: React.FC = () => {
   const options = {
     hero: true,
     heroSize: "md",
     heroText: "Tickets Sign In",
   };
+
   return (
     <Layout options={options}>
       <Head>
         <title>Sign In | Muse Knoxville</title>
       </Head>
+      <SignIn />
     </Layout>
   );
 };
 
-export default SignIn;
+export default SignInPage;
