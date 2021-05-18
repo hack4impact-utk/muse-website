@@ -1,11 +1,12 @@
-.wrapper {
+@use 'variables' as vars;
+.wrapper { 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 900px;
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
-  }
+    font-family: vars.$font-primary;
+}
 
 .leftValue {
     display: flex;

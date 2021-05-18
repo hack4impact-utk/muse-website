@@ -23,9 +23,36 @@ export interface Exhibit {
   image: string;
 }
 
+export interface BusinessHours {
+  daysOpen: string[];
+  daysClosed: string[];
+  hours: string[];
+}
+
 export interface Partner {
   id: string;
   name: string;
   image: string;
   url: string;
+}
+
+export interface BusinessHoursResponse {
+  businessHoursCollection: {
+    _typename: string;
+    items: BusinessHours[];
+  };
+}
+
+export interface Cart {
+  items: CartItem[];
+  //Parts of the cookie
+  iat: number;
+  exp: number;
+}
+
+export interface CartItem {
+  id: string;
+  quantity: number;
+  //Might be needed later for something like shirt size or color, not sure yet.
+  variation?: undefined;
 }

@@ -1,431 +1,505 @@
+@use '../../styles/variables' as vars;
 $breakpoint: 1100px;
 
-// Prevents page content from being underneath fixed header.
-.spacer {
-    // Todo: This hard-coded value of the header height should be changed to get the height dynamically.
-    padding-top: 158px;
+.headerParent {
+  width: auto;
+  height: auto;
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
-.headerParent{
-    width: auto;
-    height: auto;
-    position: fixed;
+.headerContentSpacer{
+    width: 100%;
+    height: 158px;
+    position: relative;
     display: block;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
 }
 
 //Upper blue header
-.upperHeader{
-    height: auto;
-    width: auto;
-    position: relative;
-    display: flex;
-    background-color: #78B6D0;
-    color: white;
-    font-size: 16px;
-    @media screen and (min-width: $breakpoint) {
-        padding: 10px 40px;
-    }
-    @media screen and (max-width: $breakpoint) {
-        padding: 10px 20px;
-    }
+.upperHeader {
+  height: auto;
+  width: auto;
+  position: relative;
+  display: flex;
+  background-color: #78b6d0;
+  color: white;
+  font-size: 16px;
+  @media screen and (min-width: $breakpoint) {
+    padding: 10px 40px;
+  }
+  @media screen and (max-width: $breakpoint) {
+    padding: 10px 20px;
+  }
 }
-.upperHeaderLeft{
-    width: auto;
-    height: auto;
-    min-width: 200px;
-    position: relative;
-    display: inline-block;
-    text-align: left;
-    flex: 0;
+.upperHeaderLeft {
+  width: auto;
+  height: auto;
+  min-width: 200px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  flex: 0;
 }
-.upperHeaderRight{
-    width: auto;
-    height: auto;
-    position: relative;
-    display: inline-block;
-    text-align: right;
-    flex: 1;
-}
-.upperHeaderRight a{
-    color: white;
-    text-decoration: none;
-    margin-left: 16px;
-    text-align: right;
-}
-.upperHeaderRight a:nth-child(1){
-    @media screen and (max-width: 560px){
-        display: none;
-    }
-}
-.upperHeaderRight a:nth-child(2){
-    @media screen and (max-width: 445px){
-        display: none;
-    }
-}
-
-//Lower white header
-.mainHeader{
-    height: 120px;
-    width: auto;
-    position: relative;
-    display: flex;
-    background-color: white;
-    border-bottom: 3px solid #73CDD8;
-    font-size: 16px;
-    @media screen and (min-width: $breakpoint) {
-        padding: 0px 40px;
-    }
-    @media screen and (max-width: $breakpoint) {
-        padding: 0px 20px;
-    }
-}
-//Main header logo container
-.headerLogo{
-    width: auto;
-    height: auto;
-    max-width: 180px;
-    position: relative;
-    display: inline-block;
-    padding: 10px 0px 10px 0px;
-    flex: 0;
-}
-.headerLogo img{
-    max-height: 100%;
-    width: auto;
-    position: relative;
-    display: block;
-}
-//Main header navigation container
-.headerNav{
-    @media screen and (min-width: $breakpoint){
-        width: auto;
-        height: auto;
-        position: relative;
-        display: flex;
-        flex: 1;
-    }
-    @media screen and (max-width: $breakpoint) {
-        width: 0px;
-        height: 100%;
-        display: block;
-        position: fixed;
-        background-color: white;
-        border-left: 5px solid #F99E26;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        margin: -5px;
-        transition: width 0.1s ease;
-        z-index: 2000;
-    }
-}
-.headerNavOpen{
-    @media screen and (min-width: $breakpoint){
-        width: auto;
-        height: auto;
-        position: relative;
-        display: flex;
-        flex: 1;
-    }
-    @media screen and (max-width: $breakpoint) {
-        width: 75vw;
-        height: 100%;
-        display: block;
-        position: fixed;
-        background-color: white;
-        border-left: 5px solid #F99E26;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        transition: width 0.5s ease;
-        z-index: 2000;
-        overflow: auto;
-    }
-}
-.hamburgerButtonParent{
-    @media screen and (min-width: $breakpoint) {
-        display: none;
-    }
-    @media screen and (max-width: $breakpoint) {
-        width: auto;
-        height: auto;
-        position: relative;
-        display: flex;
-        flex: 1; 
-    } 
-}
-.hamburgerButton{
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    outline: none;
-    background: none;
-    z-index: 2001;
-}
-.hamburgerButtonOpen{
-    position: absolute;
-    right: 0px;
-    transform: translateY(-25px);
-    border: none;
-    outline: none;
-    background: none;
-    z-index: 2001;
-}
-.hamburgerButton:hover, .hamburgerButtonOpen:hover{
+.hours {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  & > span:hover {
     cursor: pointer;
-}
-.hamburgerLine{
-    width: 50px;
-    height: 5px;
-    border-radius: 5px;
-    position: relative;
-    display: block;
-    margin: 7px 0px;
-    background-color: #F99E26;
-    transition: 0.5s ease;
-}
-.hamburgerButton:hover .hamburgerLine:nth-child(1){
-    transform: translateY(-3px);
-}
-.hamburgerButton:hover .hamburgerLine:nth-child(3){
-    transform: translateY(3px);
-}
-.hamburgerLineOpen{
-    width: 50px;
-    height: 5px;
-    border-radius: 5px;
-    position: relative;
-    display: block;
-    margin: 7px 0px;
-    background-color: #F99E26;
-    transition: 0.5s ease;
-}
-.hamburgerButtonOpen .hamburgerLineOpen:nth-child(1){
-    height: 8px;
-    width: 40px;
-    transform: rotate(-45deg) translateY(18px);
-}
-.hamburgerButtonOpen .hamburgerLineOpen:nth-child(2){
-    transition: 0s ease;
-    opacity: 0;
-}
-.hamburgerButtonOpen .hamburgerLineOpen:nth-child(3){
-    height: 8px;
-    width: 40px;
-    transform: rotate(45deg) translateY(-18px);
-}
-.mobileHeaderOverlay{
-    border: none;
-    padding: 0;
-    margin: 0;
-    background: none;
-    transition: opacity 0.5s ease;
-    opacity: 0;
-}
-.mobileHeaderOverlayOpen{
-    @media screen and (max-width: $breakpoint) {
-        width: 100%;
-        height: 100%;
-        display: block;
-        position: fixed;
-        background-color: rgba(0, 0, 0, 0.8);
-        opacity: 1;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        transition: opacity 1s ease;
-        z-index: 1900;
-        border: none;
-        outline: none;
+  }
+  @media screen and (min-width: $breakpoint) {
+    & > span:hover ~ .businessHoursSub,
+    & .businessHoursSub:hover {
+      display: block;
     }
+  }
+  & > div[data-is-open="true"][data-closing-soon="false"] {
+    background: vars.$muse-green;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  & > div[data-is-open="true"][data-closing-soon="true"] {
+    background: vars.$muse-orange;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  & > div[data-is-open="false"] {
+    background: red;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
 }
-//Navigation container that contains the main navigation links
-.navMain{
-    @media screen and (min-width: $breakpoint){
-        width: auto;
-        height: auto;
-        position: relative;
-        display: flex;
-        text-align: left;
-        flex: 1;
-    }
-    @media screen and (max-width: $breakpoint){
-        height: auto;
-        position: absolute;
-        display: block;
-        top: 220px;
-        right: 0;
-        left: 0;
-    }
-}
-.navMainBtnWrapper{
-    position: relative;
-    display: inline-block;
-    @media screen and (max-width: $breakpoint){
-        width: 100%;
-    }
-}
-.navBtn{ //Parent container for navigation buttons
-    @media screen and (min-width: $breakpoint){
-        position: relative;
-        display: inline-block;
-        padding: 8px 8px;
-        font-size: 18px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    @media screen and (max-width: $breakpoint){
-        position: relative;
-        display: block;
-    }
-}
-.navBtn a{ //Buttons that are in the navbar
-    @media screen and (min-width: $breakpoint){
-        color: black;
-        text-decoration: none;
-    }
-    @media screen and (max-width: $breakpoint){
-        max-width: 65%;
-        color: white;
-        text-decoration: none;
-        position: relative;
-        display: block;
-        padding: 10px 20px;
-        font-size: 18px;
-        background-color: #78B6D0;
-        margin-bottom: 10px;
-        border-top-right-radius: 8px;
-        border-bottom-right-radius: 8px;
-        text-align: center;
-    }
-}
-.navBtn .navBtnSub{ //Container for the subnav
-    @media screen and (min-width: $breakpoint){
-        width: auto;
-        position: absolute;
-        color: white;
-        display: none;
-        z-index: 2001;
-        padding-top: 15px;
-    }
-    @media screen and (max-width: $breakpoint){
-        width: auto;
-        position: relative;
-        color: white;
-        display: block;
-        z-index: 2001;
-        padding-bottom: 15px;
-    }
-}
-.navBtn:hover .navBtnSub{
-    display: block;
-}
-.navBtnSub a{ //Links that are inside the subnav
-    width: auto;
-    white-space: nowrap;
+.businessHoursSub {
+  top: 15px;
+  left: 15px;
+  width: 350px;
+  position: absolute;
+  color: white;
+  display: none;
+  z-index: 2002;
+  padding-top: 15px;
+  & > p {
+    //Links that are inside the subnav
+    word-wrap: break-word;
     display: block;
     position: relative;
     padding: 10px 15px;
-    background-color: #F99E26;
+    background-color: #f99e26;
     color: white;
     transition: 0.5s ease;
-    margin-top: -1px;
-    z-index: 2002;
-    @media screen and (max-width: $breakpoint){
-        max-width: 60%;
+    margin: 0;
+    z-index: 2003;
+  }
+  &.businessHoursSubActive {
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: $breakpoint) {
+      top: 12px;
     }
+  }
 }
-.navBtnSub a:hover{
-    background-color: #FFE090;
-    color: black;
-    cursor: pointer;
+.upperHeaderRight {
+  width: auto;
+  height: auto;
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  flex: 1;
 }
-.navButtonSubTriangle{
+.upperHeaderRight a {
+  color: white;
+  text-decoration: none;
+  margin-left: 16px;
+  text-align: right;
+}
+.upperHeaderRight a:nth-child(1) {
+  @media screen and (max-width: 560px) {
+    display: none;
+  }
+}
+.upperHeaderRight a:nth-child(2) {
+  @media screen and (max-width: 445px) {
+    display: none;
+  }
+}
+
+//Lower white header
+.mainHeader {
+  height: 120px;
+  width: auto;
+  position: relative;
+  display: flex;
+  background-color: white;
+  border-bottom: 3px solid #73cdd8;
+  font-size: 16px;
+  @media screen and (min-width: $breakpoint) {
+    padding: 0px 40px;
+  }
+  @media screen and (max-width: $breakpoint) {
+    padding: 0px 20px;
+  }
+}
+//Main header logo container
+.headerLogo {
+  width: auto;
+  height: auto;
+  max-width: 180px;
+  position: relative;
+  display: inline-block;
+  padding: 10px 0px 10px 0px;
+  flex: 0;
+}
+.headerLogo img {
+  max-height: 100%;
+  width: auto;
+  position: relative;
+  display: block;
+}
+//Main header navigation container
+.headerNav {
+  @media screen and (min-width: $breakpoint) {
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex: 1;
+  }
+  @media screen and (max-width: $breakpoint) {
     width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 15px solid #F99E26;
-    top: 0px;
-    left: 0px;
+    height: 100%;
+    display: block;
+    position: fixed;
+    background-color: white;
+    border-left: 5px solid #f99e26;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: -5px;
+    transition: width 0.1s ease;
     z-index: 2000;
-    @media screen and (max-width: $breakpoint){
-        display: none;   
-    }
+  }
+}
+.headerNavOpen {
+  @media screen and (min-width: $breakpoint) {
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex: 1;
+  }
+  @media screen and (max-width: $breakpoint) {
+    width: 75vw;
+    height: 100%;
+    display: block;
+    position: fixed;
+    background-color: white;
+    border-left: 5px solid #f99e26;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transition: width 0.5s ease;
+    z-index: 2000;
+    overflow: auto;
+  }
+}
+.hamburgerButtonParent {
+  @media screen and (min-width: $breakpoint) {
+    display: none;
+  }
+  @media screen and (max-width: $breakpoint) {
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex: 1;
+  }
+}
+.hamburgerButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  outline: none;
+  background: none;
+  z-index: 2001;
+}
+.hamburgerButtonOpen {
+  position: absolute;
+  right: 0px;
+  transform: translateY(-25px);
+  border: none;
+  outline: none;
+  background: none;
+  z-index: 2001;
+}
+.hamburgerButton:hover,
+.hamburgerButtonOpen:hover {
+  cursor: pointer;
+}
+.hamburgerLine {
+  width: 50px;
+  height: 5px;
+  border-radius: 5px;
+  position: relative;
+  display: block;
+  margin: 7px 0px;
+  background-color: #f99e26;
+  transition: 0.5s ease;
+}
+.hamburgerButton:hover .hamburgerLine:nth-child(1) {
+  transform: translateY(-3px);
+}
+.hamburgerButton:hover .hamburgerLine:nth-child(3) {
+  transform: translateY(3px);
+}
+.hamburgerLineOpen {
+  width: 50px;
+  height: 5px;
+  border-radius: 5px;
+  position: relative;
+  display: block;
+  margin: 7px 0px;
+  background-color: #f99e26;
+  transition: 0.5s ease;
+}
+.hamburgerButtonOpen .hamburgerLineOpen:nth-child(1) {
+  height: 8px;
+  width: 40px;
+  transform: rotate(-45deg) translateY(18px);
+}
+.hamburgerButtonOpen .hamburgerLineOpen:nth-child(2) {
+  transition: 0s ease;
+  opacity: 0;
+}
+.hamburgerButtonOpen .hamburgerLineOpen:nth-child(3) {
+  height: 8px;
+  width: 40px;
+  transform: rotate(45deg) translateY(-18px);
+}
+.mobileHeaderOverlay {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+.mobileHeaderOverlayOpen {
+  @media screen and (max-width: $breakpoint) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transition: opacity 1s ease;
+    z-index: 1900;
+    border: none;
+    outline: none;
+  }
+}
+//Navigation container that contains the main navigation links
+.navMain {
+  @media screen and (min-width: $breakpoint) {
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    text-align: left;
+    flex: 1;
+  }
+  @media screen and (max-width: $breakpoint) {
+    height: auto;
+    position: absolute;
+    display: block;
+    top: 220px;
+    right: 0;
+    left: 0;
+  }
+}
+.navMainBtnWrapper {
+  position: relative;
+  display: inline-block;
+  @media screen and (max-width: $breakpoint) {
+    width: 100%;
+  }
+}
+.navBtn {
+  //Parent container for navigation buttons
+  @media screen and (min-width: $breakpoint) {
+    position: relative;
+    display: inline-block;
+    padding: 8px 8px;
+    font-size: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @media screen and (max-width: $breakpoint) {
+    position: relative;
+    display: block;
+  }
+}
+.navBtn a {
+  //Buttons that are in the navbar
+  @media screen and (min-width: $breakpoint) {
+    color: black;
+    text-decoration: none;
+  }
+  @media screen and (max-width: $breakpoint) {
+    max-width: 65%;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #78b6d0;
+    margin-bottom: 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+  }
+}
+.navBtn .navBtnSub {
+  //Container for the subnav
+  @media screen and (min-width: $breakpoint) {
+    width: auto;
+    position: absolute;
+    color: white;
+    display: none;
+    z-index: 2001;
+    padding-top: 15px;
+  }
+  @media screen and (max-width: $breakpoint) {
+    width: auto;
+    position: relative;
+    color: white;
+    display: block;
+    z-index: 2001;
+    padding-bottom: 15px;
+  }
+}
+.navBtn:hover .navBtnSub {
+  display: block;
+}
+.navBtnSub a {
+  //Links that are inside the subnav
+  width: auto;
+  white-space: nowrap;
+  display: block;
+  position: relative;
+  padding: 10px 15px;
+  background-color: #f99e26;
+  color: white;
+  transition: 0.5s ease;
+  margin-top: -1px;
+  z-index: 2002;
+  @media screen and (max-width: $breakpoint) {
+    max-width: 60%;
+  }
+}
+.navBtnSub a:hover {
+  background-color: #ffe090;
+  color: black;
+  cursor: pointer;
+}
+.navButtonSubTriangle {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #f99e26;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  @media screen and (max-width: $breakpoint) {
+    display: none;
+  }
 }
 
 //Memberships and Tickets button
-.navCta{
-    @media screen and (min-width: $breakpoint){
-        width: auto;
-        height: auto;
-        position: relative;
-        display: flex;
-        padding-left: 20px;
-        text-align: right;
-        justify-content: right;
-        flex: 0;
-    }
-    @media screen and (max-width: $breakpoint){
-        width: 100%;
-        height: auto;
-        position: absolute;
-        display: block;
-        text-align: right;
-        justify-content: right;
-        top: 140px;
-    }
-}
-.navCtaBtnWrapper{
-    height: auto;
+.navCta {
+  @media screen and (min-width: $breakpoint) {
     width: auto;
+    height: auto;
     position: relative;
+    display: flex;
+    padding-left: 20px;
+    text-align: right;
+    justify-content: right;
+    flex: 0;
+  }
+  @media screen and (max-width: $breakpoint) {
+    width: 100%;
+    height: auto;
+    position: absolute;
     display: block;
     text-align: right;
-    top: 50%;
-    transform: translateY(-50%);
+    justify-content: right;
+    top: 140px;
+  }
 }
-.navCta a{
-    @media screen and (min-width: $breakpoint){
-        position: relative;
-        display: inline;
-        padding: 8px 10px;
-        margin-left: 10px;
-        color: black;
-        text-decoration: none;
-        font-size: 18px;
-        color: white;
-    }
-    @media screen and (max-width: $breakpoint){
-        width: 65%;
-        color: white;
-        text-decoration: none;
-        position: relative;
-        display: block;
-        padding: 10px 20px;
-        font-size: 18px;
-        margin-bottom: 10px;
-        border-top-right-radius: 8px;
-        border-bottom-right-radius: 8px;
-        text-align: center;
-        background-color: #9DC13B;
-    }
+.navCtaBtnWrapper {
+  height: auto;
+  width: auto;
+  position: relative;
+  display: block;
+  text-align: right;
+  top: 50%;
+  transform: translateY(-50%);
 }
-.navCta a:nth-child(1){
-    @media screen and (min-width: $breakpoint){
-        background-color: #9DC13B;
-    }
+.navCta a {
+  @media screen and (min-width: $breakpoint) {
+    position: relative;
+    display: inline;
+    padding: 8px 10px;
+    margin-left: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+  }
+  @media screen and (max-width: $breakpoint) {
+    width: 65%;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+    background-color: #9dc13b;
+  }
 }
-.navCta a:nth-child(2){
-    @media screen and (min-width: $breakpoint){
-        background-color: #F99E26;
-    }
+.navCta a:nth-child(1) {
+  @media screen and (min-width: $breakpoint) {
+    background-color: #9dc13b;
+  }
+}
+.navCta a:nth-child(2) {
+  @media screen and (min-width: $breakpoint) {
+    background-color: #f99e26;
+  }
 }

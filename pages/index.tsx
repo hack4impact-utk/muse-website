@@ -1,18 +1,16 @@
 import { NextPage } from "next";
-import Footer from "components/Footer";
 import Head from "next/head";
-import Header from "components/Header";
-        
+import InitialView from "components/Home/InitialView";
+import OurMission from "components/OurMission";
+import Layout from "components/Layout";
+
 const Home: NextPage = () => {
   return (
-    <main>
+    <Layout options={{initialView: true}}>
       <Head>
         <title>Muse Knoxville</title>
       </Head>
-      <Header />
-      <h1>This is our home page!</h1>
-
-      <Footer />
+      <OurMission/>
       <style jsx global>{`
         body {
           margin: 0;
@@ -20,7 +18,7 @@ const Home: NextPage = () => {
           font-family: Arial;
         }
       `}</style>
-    </main>
+    </Layout>
   );
 };
 

@@ -27,7 +27,7 @@ div.row {
   &:nth-of-type(2) {
     grid-template-columns: repeat(auto-fit, min(200px));
     justify-content: center;
-    border-top: 1px solid #FFFFFF;
+    border-top: 1px solid #ffffff;
     padding: 0 0 15px 0;
   }
 }
@@ -58,13 +58,15 @@ div.map {
 // Contact Information Container
 div.information {
   padding: 0 40px;
-  color: #FFFFFF;
+  color: #ffffff;
+  width: auto;
   @media only screen and (max-width: $breakpoint) {
     order: 0;
     padding: 0 10px;
     text-align: center;
   }
-  h1, p {
+  h1,
+  p {
     margin: 0;
     padding: 0;
     line-height: 1.5em;
@@ -92,6 +94,9 @@ div.information {
       text-decoration: none;
     }
   }
+  .hours {
+    max-width: 300px;
+  }
   .headerText {
     padding-top: 12.5px;
   }
@@ -104,7 +109,7 @@ div.smContainer {
   padding: 20px 0 7.5px 0;
   position: absolute;
   top: 15%;
-  right: 35px;
+  right: 45px;
   background-color: vars.$muse-light-blue;
   @media only screen and (max-width: $breakpoint) {
     width: 265px;
@@ -126,13 +131,13 @@ div.smContainer {
     transition: 0.25s box-shadow;
     background-color: vars.$muse-orange;
     font-size: 1.5em;
-    color: #FFFFFF;
+    color: #ffffff;
     &:hover {
       cursor: pointer;
-      box-shadow: 0 0 7.5px 3px #FFFFFF;
+      box-shadow: 0 0 7.5px 3px #ffffff;
     }
     &:focus {
-      outline: 1px solid #FFFFFF;
+      outline: 1px solid #ffffff;
     }
     @media only screen and (max-width: $breakpoint) {
       margin: 0 5px 12.5px 5px;
@@ -150,7 +155,7 @@ div.links {
     font-size: 1.15em;
     font-weight: 900px;
     margin: 15px 0 10px 0;
-    color: #FFFFFF;
+    color: #ffffff;
   }
   a {
     color: vars.$muse-link;
@@ -161,7 +166,7 @@ div.links {
     }
     // Special styling for links that should stick out.
     span {
-      color: #EF4523;
+      color: #ef4523;
       font-weight: 700;
     }
   }
