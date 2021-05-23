@@ -1,0 +1,32 @@
+div.items {
+  @media only screen and (max-width: 1100px) {
+    max-width: 470px;
+    margin: 30px auto 0 auto;
+  }
+  @media only screen and (max-width: 470px) {
+    max-width: 320px;
+  }
+}
+
+// Group of Items
+div.category {
+  padding: 10px;
+  &:not(:nth-of-type(1)) {
+    // Create margin between item groups.
+    margin-top: 40px;
+  }
+  @media only screen and (max-width: 1100px) {
+    text-align: center;
+  }
+  
+  // Title of Group/Category
+  h1.header {
+    font-size: 2.25em;
+    padding-left: 10px;
+    text-align: left;
+    @media only screen and (max-width: 1100px) {
+      font-size: 1.75em;
+      padding: 0 0 10px 0;
+    }
+  }
+}
