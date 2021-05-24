@@ -42,3 +42,11 @@ export interface BusinessHoursResponse {
     items: BusinessHours[];
   };
 }
+
+export interface EmailMessage {
+  userName?: string;
+  message?: string;
+  email?: string;
+  subject?: string;
+  phoneNumber?: string;
+}
