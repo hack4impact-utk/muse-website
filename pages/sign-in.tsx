@@ -8,6 +8,7 @@ const SignInPage: React.FC = () => {
     hero: true,
     heroSize: "md",
     heroText: "Tickets Sign In",
+    wrapperDisabled: true,
   };
 
   return (
