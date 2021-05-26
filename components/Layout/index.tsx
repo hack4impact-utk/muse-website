@@ -7,6 +7,7 @@ interface Options {
   hero?: boolean;
   heroSize?: string;
   heroText?: string;
+  wrapperDisabled?: boolean;
   initialView?: boolean;
 }
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ options, children }) => {
   return (
-    <main className={styles['main']}>
+    <main className={styles["main"]}>
       <Header />
       {options?.hero && options?.heroSize == "sm" && (
         <div className={`${styles["hero"]} ${styles["hero-sm"]}`}>
@@ -31,6 +32,10 @@ const Layout: React.FC<Props> = ({ options, children }) => {
         <div className={`${styles["hero"]} ${styles["hero-lg"]}`}>
           <h1>{options?.heroText}</h1>
         </div>
+      )}
+      {options?.wrapperDisabled && <section>{children}</section>}
+      {!options?.wrapperDisabled && (
+        <section className={styles["wrapper"]}>{children}</section>
       )}
       {options?.initialView && (
       <section>
