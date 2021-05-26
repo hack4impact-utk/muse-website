@@ -1,34 +1,9 @@
 .wrapper {
-    margin-left: 5%;
-    margin-right: 5%;
+    display: flex;
+    flex-direction:column;
 }
 
 .wrap {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.items {
-    margin-right: 2%;
-    margin-left: 2%;
-    margin-bottom: 2%;
-}
-
-.images {
-    line-height: 0;
-    img {
-        width: 250px;
-        height: 250px;
-    }
-}
-.item {
-    padding-top: 10px;
-    width: 250px;
-    height: 150px;
-    font-weight: bold;
-    font-size: 32px;
-    text-align: center;
-    border-style: solid;
-    border-color: #F99E26;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
