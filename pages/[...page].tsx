@@ -20,7 +20,7 @@ const MyComponent: React.FC<Props> = ({ builderPage }) => {
     ? `${builderPage.data.pageTitle || builderPage.data.title}`
     : "Muse Knoxville";
   return (
-    <Layout options={{ hero: true, heroSize: "md", heroText: heroText }}>
+    <Layout options={{ hero: true, heroSize: "md", heroText: heroText, initialView: false, wrapperDisabled: false }}>
       {builderPage || Builder.isEditing || Builder.isPreviewing ? (
         <BuilderComponent
           content={builderPage}
