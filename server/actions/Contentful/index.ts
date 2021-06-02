@@ -19,6 +19,9 @@ export const GET_ALL_EXHIBITS = gql`
   query getAllExhibits {
     ourExhibitsCollection {
       items {
+        sys {
+          id
+        }
         name
         description
         picture {

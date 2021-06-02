@@ -19,10 +19,14 @@ export interface ItemVariation {
 }
 
 export interface Exhibit {
-  id: string;
+  sys: {
+    id: string;
+  };
   name: string;
   description: string;
-  picture: string;
+  picture: {
+    url: string;
+  };
 }
 
 export interface ExhibitResponse {

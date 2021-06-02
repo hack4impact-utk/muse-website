@@ -2,8 +2,9 @@ import { NextPage } from "next";
 import Head from "next/head";
 
 import Header from "components/Header";
-import InitialView from "components/Home/InitialView";
 import Layout from "components/Layout";
+import InitialView from "components/Home/InitialView";
+import Exhibits from "components/Home/Exhibits";
 
 const Home: NextPage = () => {
   return (
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
         <title>Muse Knoxville</title>
       </Head>
       <InitialView />
+      <Exhibits />
       <style jsx global>{`
         body {
           margin: 0;
