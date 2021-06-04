@@ -1,4 +1,3 @@
-import { parse } from "graphql";
 import { BusinessHours } from "utils/types";
 /**
  * Checks to see if the Muse is open based on the Business hours
@@ -143,7 +142,8 @@ export const closeToClosing = (hours: string[]): boolean => {
   const todayHours = today.getHours() + tzOffsetHours - 5;
   let o = false;
   hours.forEach(hourSet => {
-    const [open, close] = parseHours(hourSet);
+    const [, close] = parseHours(hourSet);
+
     if (close.hour - todayHours <= 1) {
       o = true;
     }

@@ -49,4 +49,17 @@ export interface EmailMessage {
   email?: string;
   subject?: string;
   phoneNumber?: string;
+
+export interface Cart {
+  items: CartItem[];
+  //Parts of the cookie
+  iat: number;
+  exp: number;
+}
+
+export interface CartItem {
+  id: string;
+  quantity: number;
+  //Might be needed later for something like shirt size or color, not sure yet.
+  variation?: undefined;
 }
