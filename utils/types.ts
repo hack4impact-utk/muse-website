@@ -45,12 +45,21 @@ export interface BusinessHoursResponse {
   };
 }
 
+export interface EmailMessage {
+  userName?: string;
+  message?: string;
+  email?: string;
+  subject?: string;
+  phoneNumber?: string;
+}
+
 export interface PartnersResponse {
   partnersCollection: {
     _typename: string;
     items: Partner[];
   };
 }
+
 
 export interface Cart {
   items: CartItem[];

@@ -1,0 +1,60 @@
+@use './styles/variables' as vars;
+@import './styles/variables';
+// "Contacr Us" at top black 
+.container {
+    max-width: 500px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 200px;
+    margin-bottom: 50px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        min-width: 250px;
+
+        margin: 20px;
+        margin-left: 0;
+        margin-bottom: 10px;
+
+        color: $muse-orange;
+        font-weight: 700;
+        font-size: 150%;
+    }
+
+    input {
+        border: 2px solid $muse-light-blue;
+        outline: none;
+        padding: 5px;
+    }
+
+    textarea {
+        resize: vertical;
+        border: 2px solid $muse-light-blue;
+        outline: none;
+        padding: 5px;
+
+        height: 20px;
+    }
+
+    button {
+        margin: 0 auto;
+        margin-top: 20px;
+        cursor: pointer;
+        font-size: large;
+
+        border: none;
+        border-radius: 4px;
+        background-color: $muse-green;
+        padding: 10px 20px;
+
+        width: 100px
+    }
+
+} 
