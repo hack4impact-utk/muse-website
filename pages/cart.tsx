@@ -8,6 +8,8 @@ const Cart: React.FC = () => {
     hero: true,
     heroSize: "md",
     heroText: "Reserve Your Play",
+    wrapperDisabled: true,
+    initialView: false,
   };
   return (
     <Layout options={options}>

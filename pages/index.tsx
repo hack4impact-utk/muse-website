@@ -1,16 +1,17 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import InitialView from "components/Home/InitialView";
+import Partners from "components/Partners";
 import OurMission from "components/OurMission";
 import Layout from "components/Layout";
 
 const Home: NextPage = () => {
   return (
-    <Layout options={{initialView: true}}>
+    <Layout options={{ initialView: true, wrapperDisabled: false }}>
       <Head>
         <title>Muse Knoxville</title>
       </Head>
-      <OurMission/>
+      <OurMission />
+      <Partners />
       <style jsx global>{`
         body {
           margin: 0;

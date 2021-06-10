@@ -32,7 +32,9 @@ export interface BusinessHours {
 export interface Partner {
   id: string;
   name: string;
-  image: string;
+  image: {
+    url: string;
+  };
   url: string;
 }
 
@@ -49,6 +51,15 @@ export interface EmailMessage {
   email?: string;
   subject?: string;
   phoneNumber?: string;
+}
+
+export interface PartnersResponse {
+  partnersCollection: {
+    _typename: string;
+    items: Partner[];
+  };
+}
+
 
 export interface Cart {
   items: CartItem[];

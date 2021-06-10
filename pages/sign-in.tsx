@@ -5,10 +5,11 @@ import React from "react";
 
 const SignInPage: React.FC = () => {
   const options = {
-    hero: true,
-    heroSize: "md",
-    heroText: "Tickets Sign In",
+    /* hero: true, */
+    /* heroSize: "md", */
+    /* heroText: "Tickets Sign In", */
     wrapperDisabled: true,
+    initialView: false,
   };
 
   return (

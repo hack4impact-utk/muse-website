@@ -21,6 +21,7 @@
     "@types/nodemailer": "^6.4.1",
     "@types/nodemailer-direct-transport": "^1.0.31",
     "@types/nodemailer-smtp-transport": "^2.7.4",
+    "@types/node-fetch": "^2.5.10",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
