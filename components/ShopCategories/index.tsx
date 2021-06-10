@@ -3,7 +3,6 @@ import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
 
 const ShopCategories: React.FC = () => {
-
   // Controls if categories should be collapsed or retracted.
   const [isCollapsed, setCollapse] = useState(false);
 

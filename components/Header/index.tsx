@@ -83,7 +83,7 @@ const Header: React.FC = () => {
     }, 60000);
 
     return () => clearInterval(interval);
-  }, [isOpenData]);
+  }, [isOpenData, storeOpen, closingSoon]);
 
   return (
     <div>
