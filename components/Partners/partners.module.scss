@@ -1,0 +1,50 @@
+@use 'variables' as vars;
+
+.wrapper {
+    font-family: vars.$font-primary;
+    align-self:center;
+    display:flex;
+    flex-direction:column;
+    & > h2 {
+        text-align:center;
+        font-size: 40px;
+    }
+}
+.partnerGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+    height: 600px;
+    @media only screen and (max-width: 1050px) {
+        flex-direction: column;
+    }
+}
+
+.partnerLink {
+    margin: 0px 40px;
+    text-decoration:none;
+    & > img {
+        height: 300px;
+        width: 300px;
+    @media only screen and (max-width: 1050px) {
+        height: 150px;
+        width: 150px;
+    }
+    }
+}
+
+.show {
+    display:flex;
+    animation: showPartnerGroup 0.75s ease-out forwards;
+}
+.hide {
+    display:none;
+}
+
+@keyframes showPartnerGroup {
+    from { opacity: 0.0; }
+    to {
+      opacity: 1.0;
+    }
+  }
