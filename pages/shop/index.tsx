@@ -1,11 +1,16 @@
-import { NextPage } from "next";
+import { NextPage, GetStaticPropsContext } from "next";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import ShopCategories from "components/ShopCategories";
 import ShopItems from "components/ShopItems";
 import { FaShoppingCart } from "react-icons/fa";
+import { getItemsByCategory } from "server/actions/Square/Catalog";
+import { Item } from "utils/types";
 
-const Shop: NextPage = () => {
+interface Props {
+  items: Item[];
+}
+const Shop: NextPage<Props> = ({ items }) => {
   return (
     <main>
       <Header />
@@ -22,6 +27,7 @@ const Shop: NextPage = () => {
       </div>
 
       <div className="shopContainer">
+        {items && items.length > 0 && console.log(items)}
         <ShopCategories />
         <ShopItems />
       </div>
@@ -99,3 +105,39 @@ const Shop: NextPage = () => {
 };
 
 export default Shop;
+
+export async function getStaticProps(
+  context: GetStaticPropsContext
+): Promise<{ props: { items: Item[] }; revalidate?: number | boolean }> {
+  const items = await getItemsByCategory([
+    "Apparel",
+    "Amusement Kits",
+    "Learning Kits",
+    "Toys",
+  ]);
+
+  console.log(items);
+  return {
+    props: {
+      items: items,
+    },
+    revalidate: 3600,
+  };
+}
+
+export async function getStaticPaths(): Promise<{
+  paths: { params: { id: string } }[];
+  fallback: boolean;
+}> {
+  const items = await getItemsByCategory([
+    "Apparel",
+    "Amusement Kits",
+    "Learning Kits",
+    "Toys",
+  ]);
+  const paths = items.map(item => ({
+    params: { id: item.id },
+  }));
+
+  return { paths, fallback: true };
+}
