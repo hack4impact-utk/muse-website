@@ -6,6 +6,8 @@ const AtHome: React.FC = () => {
     hero: true,
     heroSize: "md",
     heroText: "We Bring the Museum to You",
+    initialView: false,
+    wrapperDisabled: false,
   };
   return (
     <Layout options={options}>

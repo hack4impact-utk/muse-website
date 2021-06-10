@@ -1,5 +1,4 @@
-import { builder } from "@builder.io/react";
-import { Builder } from "@builder.io/react";
+import { builder, Builder } from "@builder.io/react";
 import styles from "../builder.module.scss";
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY as string);
 

@@ -47,7 +47,7 @@ const Layout: React.FC<Props> = ({ options, children }) => {
       )}
       {/* If the initial view is needed and the wrapper is needed as well. */}
       {options && options.initialView && !options.wrapperDisabled && (
-        <section className={styles['flex-col']}>
+        <section className={styles["flex-col"]}>
           <InitialView />
           <div className={styles["wrapper"]}>{children}</div>
         </section>
