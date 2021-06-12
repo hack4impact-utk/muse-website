@@ -5,12 +5,23 @@ import ShopCategories from "components/ShopCategories";
 import ShopItems from "components/ShopItems";
 import { FaShoppingCart } from "react-icons/fa";
 import { getItemsByCategory } from "server/actions/Square/Catalog";
-import { Item } from "utils/types";
+import { Item, CartItem } from "utils/types";
+import useSWR from "swr";
+import urls from "utils/urls";
 
 interface Props {
   items: Item[];
 }
 const Shop: NextPage<Props> = ({ items }) => {
+  const fetcher = (url: string): Promise<unknown> =>
+    fetch(url).then(r => r.json());
+  const { data, error } = useSWR(
+    `${urls.baseUrl}${urls.api.cart}`,
+    fetcher
+  ) as {
+    data: { success: boolean; payload: CartItem[] };
+    error: string;
+  };
   return (
     <main>
       <Header />
@@ -22,7 +33,18 @@ const Shop: NextPage<Props> = ({ items }) => {
       <div className="cartContainer">
         <button>
           <FaShoppingCart />
-          <span>cart (0)</span>
+          <span>
+            Cart ({" "}
+            {data &&
+              !error &&
+              (data as { success: boolean; payload: Item[] }).payload.reduce(
+                (numItems, item) => {
+                  return numItems + item.quantity;
+                },
+                0
+              )}
+            )
+          </span>
         </button>
       </div>
 

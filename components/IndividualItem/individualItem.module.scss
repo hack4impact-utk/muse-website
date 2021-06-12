@@ -29,6 +29,7 @@
 .content{
     display: flex;
     flex-direction:column;
+    height: 100%;
     & > h1 {
         //Price
         margin: 10px 0px;
@@ -64,6 +65,7 @@
     align-self:center;
     background-color: #9CC03C;
     cursor:pointer;
+    margin-top: auto;
     @media (max-width: 860px) {
         width:100%;
     }
@@ -71,13 +73,14 @@
 
 .quantity {
     display: flex;
+    flex-direction:column;
     font-size: 30px;
     font-weight: bold;
     padding-right: 10%;
     margin: 20px 0px;
     input {
         width: 20%;
-        margin-left: 10%;
+        margin: 20px 0;
 
     }
 }
