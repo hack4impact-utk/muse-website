@@ -4,8 +4,24 @@ import Footer from "components/Footer";
 import ShopCategories from "components/ShopCategories";
 import ShopItems from "components/ShopItems";
 import { FaShoppingCart } from "react-icons/fa";
+import { getItemsByCategory } from "server/actions/Square/Catalog";
+import { Item, CartItem } from "utils/types";
+import useSWR from "swr";
+import urls from "utils/urls";
 
-const Shop: NextPage = () => {
+interface Props {
+  items: Item[];
+}
+const Shop: NextPage<Props> = ({ items }) => {
+  const fetcher = (url: string): Promise<unknown> =>
+    fetch(url).then(r => r.json());
+  const { data, error } = useSWR(
+    `${urls.baseUrl}${urls.api.cart}`,
+    fetcher
+  ) as {
+    data: { success: boolean; payload: CartItem[] };
+    error: string;
+  };
   return (
     <main>
       <Header />
@@ -17,13 +33,25 @@ const Shop: NextPage = () => {
       <div className="cartContainer">
         <button>
           <FaShoppingCart />
-          <span>cart (0)</span>
+          <span>
+            Cart ({" "}
+            {data &&
+              !error &&
+              (data as { success: boolean; payload: Item[] }).payload.reduce(
+                (numItems, item) => {
+                  return numItems + item.quantity;
+                },
+                0
+              )}
+            )
+          </span>
         </button>
       </div>
 
       <div className="shopContainer">
+        {items && items.length > 0 && console.log(items)}
         <ShopCategories />
-        <ShopItems />
+        <ShopItems items={items} />
       </div>
 
       <Footer />
@@ -99,3 +127,39 @@ const Shop: NextPage = () => {
 };
 
 export default Shop;
+
+export async function getStaticProps(): Promise<{
+  props: { items: Item[] };
+  revalidate?: number | boolean;
+}> {
+  const items = await getItemsByCategory([
+    "Apparel",
+    "Amusement Kits",
+    "Learning Kits",
+    "Toys",
+  ]);
+
+  return {
+    props: {
+      items: items,
+    },
+    revalidate: 3600,
+  };
+}
+
+export async function getStaticPaths(): Promise<{
+  paths: { params: { id: string } }[];
+  fallback: boolean;
+}> {
+  const items = await getItemsByCategory([
+    "Apparel",
+    "Amusement Kits",
+    "Learning Kits",
+    "Toys",
+  ]);
+  const paths = items.map(item => ({
+    params: { id: item.id },
+  }));
+
+  return { paths, fallback: true };
+}

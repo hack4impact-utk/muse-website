@@ -9,7 +9,9 @@ import {
 } from "server/actions/Contentful";
 
 import { useQuery } from "@apollo/client";
-import { BusinessHoursResponse } from "utils/types";
+import { BusinessHoursResponse, CartItem, Item } from "utils/types";
+import useSWR from "swr";
+import urls from "utils/urls";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   //storeOpen, closingSoon, and storeStatus could probably all be refactored into one state.
@@ -85,6 +87,15 @@ const Header: React.FC = () => {
     return () => clearInterval(interval);
   }, [isOpenData, storeOpen, closingSoon]);
 
+  const fetcher = (url: string): Promise<unknown> =>
+    fetch(url).then(r => r.json());
+  const { data, error } = useSWR(
+    `${urls.baseUrl}${urls.api.cart}`,
+    fetcher
+  ) as {
+    data: { success: boolean; payload: CartItem[] };
+    error: string;
+  };
   return (
     <div>
       <header className={styles.headerParent}>
@@ -143,7 +154,20 @@ const Header: React.FC = () => {
           <div className={styles.upperHeaderRight}>
             <a href="/">Find Us</a>
             <a href="tel:=18655941494">(865) 594-1494</a>
-            <a href="cart">Cart (0)</a>
+            <a href="cart">
+              <span>
+                Cart(
+                {data &&
+                  !error &&
+                  (data as {
+                    success: boolean;
+                    payload: Item[];
+                  }).payload.reduce((numItems, item) => {
+                    return numItems + item.quantity;
+                  }, 0)}
+                )
+              </span>
+            </a>
           </div>
         </div>
         <div className={styles.mainHeader}>

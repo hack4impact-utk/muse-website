@@ -13,4 +13,14 @@ const Item: NextPage = () => {
   );
 };
 
+<<<<<<< HEAD
+    return (
+        <Layout>
+            <IndividualItem/>
+            <SuggestedItems/>
+        </Layout>
+    )
+}
+=======
 export default Item;
+>>>>>>> dcfb0f5e9352a39a1b458eed1c119f7197b107dd

@@ -3,6 +3,7 @@ import { getAccessToken } from ".";
 import { Item, ItemVariation } from "utils/types";
 const client = new Client({
   environment: Environment.Sandbox,
+  accessToken: process.env.SQUARE_ACCESS_TOKEN as string,
 });
 
 /**
@@ -171,8 +172,9 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
               name:
                 variation.itemVariationData?.name || "No variation name found",
               price: (
-                ((variation.itemVariationData?.priceMoney
-                  ?.amount as unknown) as number) / 100
+                Number(
+                  variation.itemVariationData?.priceMoney?.amount as bigint
+                ) / 100
               ).toFixed(2),
             };
             return formattedVariation;
