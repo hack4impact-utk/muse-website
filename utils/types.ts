@@ -60,7 +60,6 @@ export interface PartnersResponse {
   };
 }
 
-
 export interface Cart {
   items: CartItem[];
   //Parts of the cookie
@@ -73,4 +72,9 @@ export interface CartItem {
   quantity: number;
   //Might be needed later for something like shirt size or color, not sure yet.
   variation?: undefined;
+}
+
+export interface CartAPIResponse {
+  success: boolean;
+  payload: Item[];
 }
