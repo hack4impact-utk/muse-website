@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { closeToClosing, compressDays, isOpen, isWeekend } from "utils/helpers";
+import {
+  closeToClosing,
+  compressDays,
+  isOpen,
+  isWeekend,
+} from "utils/helpers/hours";
 
 import styles from "./header.module.scss";
 import {
@@ -12,6 +17,7 @@ import { useQuery } from "@apollo/client";
 import { BusinessHoursResponse, CartItem, Item } from "utils/types";
 import useSWR from "swr";
 import urls from "utils/urls";
+import DropdownLinks from "components/DropdownLinks";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   //storeOpen, closingSoon, and storeStatus could probably all be refactored into one state.
@@ -98,6 +104,7 @@ const Header: React.FC = () => {
   };
   return (
     <div>
+      <DropdownLinks category="trevor" />
       <header className={styles.headerParent}>
         <div className={styles.upperHeader}>
           <div className={styles.upperHeaderLeft}>

@@ -35,8 +35,6 @@ const Partners: NextPage = () => {
   //Comes from https://github.com/hack4impact-utk/mindversity-website/blob/develop/components/OfficerCarousel/index.tsx
   React.useEffect(() => {
     //Update the displayedGroupIndex to change what group is displayed.
-    console.log(displayedGroupIndex);
-    console.log("groupedItems length: ", groupedItems.length);
     if (groupedItems.length > 1) {
       const interval = setInterval(() => {
         setDisplayedGroupIndex(displayedGroupIndex + 1);
