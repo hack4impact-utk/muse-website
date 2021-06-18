@@ -8,5 +8,6 @@ export default {
     cart: "/api/cart",
     contact: "/api/contact",
     orders: "/api/orders",
+    dropdowns: "/api/dropdowns",
   },
 };
