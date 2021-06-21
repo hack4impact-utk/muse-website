@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { Client, Environment } from "square";
-import { Item, ItemVariation, OLItem } from "utils/types";
+import { Item, OLItem } from "utils/types";
 import { getAccessToken } from ".";
 const client = new Client({
   environment:
@@ -13,10 +13,7 @@ const client = new Client({
  * Create a checkout link to redirect the user to for payment.
  * @param items the items to be placed in the order.
  */
-export const createCheckout = async (
-  items: Item[],
-  subtotal: string
-): Promise<string> => {
+export const createCheckout = async (items: Item[]): Promise<string> => {
   const token = await getAccessToken();
   const newClient = client.withConfiguration({
     accessToken: token,
@@ -24,7 +21,7 @@ export const createCheckout = async (
   const idempotency = uuidv4();
   const orderItems = createOrderLineObjects(items);
   const response = await newClient.checkoutApi.createCheckout(
-    process.env.NEXT_PUBLIC_LOCATION_ID as string,
+    process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID as string,
     {
       idempotencyKey: idempotency,
       order: {
