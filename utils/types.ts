@@ -78,3 +78,14 @@ export interface CartAPIResponse {
   success: boolean;
   payload: Item[];
 }
+
+//Order Line Item
+export interface OLItem {
+  id: string;
+  name: string;
+  quantity: string;
+  basePriceMoney: {
+    amount: bigint;
+    currency: string;
+  };
+}

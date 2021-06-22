@@ -8,8 +8,8 @@ export default async function handler(
   // Example using Bookeo client to check api keys
   const bookeo = new Bookeo_Client();
 
-  const check = await bookeo.check_keys();
-  if (check == "")
+  const check = await bookeo.getProducts();
+  if (!check)
     res.status(400).json({ message: "Error checking keys", body: check });
   else res.status(200).json(check);
 }

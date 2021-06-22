@@ -1,10 +1,21 @@
 import Layout from "components/Layout";
-import { Item, ItemVariation, CartAPIResponse } from "utils/types";
+import { Item, CartAPIResponse } from "utils/types";
 import useSWR from "swr";
 import CartItem from "components/Cart/CartItem";
+import React from "react";
+import { useRouter } from "next/router";
 const CartPage: React.FC = () => {
   const fetcher = (url: string) => fetch(url).then(r => r.json());
   const { data, error } = useSWR<CartAPIResponse, string>("/api/cart", fetcher);
+  const router = useRouter();
+  const proceedToCheckout = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const response = await fetch("/api/orders", { method: "PUT" });
+    const d = (await response.json()) as { success: boolean; payload: string };
+    if (d.success) {
+      void router.push(d.payload);
+    }
+  };
   return (
     <Layout
       options={{
@@ -37,9 +48,9 @@ const CartPage: React.FC = () => {
         })}
 
       {data && !error && data.payload.length >= 1 && (
-        <a href="/" className="checkoutBtn">
+        <button className="checkoutBtn" onClick={proceedToCheckout}>
           Proceed to checkout
-        </a>
+        </button>
       )}
       <style jsx>{`
         .subtotal {
