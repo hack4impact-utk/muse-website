@@ -6,7 +6,7 @@ import {
   GET_WEEKEND_BUSINESS_HOURS,
   client,
 } from "server/actions/Contentful";
-import { compressDays } from "utils/helpers";
+import { compressDays } from "utils/helpers/hours";
 import { BusinessHoursResponse } from "utils/types";
 
 const Footer: React.FC = () => {
