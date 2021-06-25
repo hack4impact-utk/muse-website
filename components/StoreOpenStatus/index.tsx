@@ -112,7 +112,7 @@ const StoreOpenStatus: React.FC = () => {
               bhOpen ? styles.businessHoursSubActive : ""
             }`}
           >
-            <div className={styles.navButtonSubTriangle}></div>
+            <div className={styles.hoursTriangle}></div>
             {otherData && !otherLoading && !otherError && (
               <p>
                 {compressDays(

@@ -29,7 +29,7 @@ $breakpoint: 1100px;
   color: white;
   font-size: 16px;
   @media screen and (min-width: $breakpoint) {
-    padding: 10px 40px;
+    padding: 10px 5%;
   }
   @media screen and (max-width: $breakpoint) {
     padding: 10px 20px;
@@ -146,7 +146,7 @@ $breakpoint: 1100px;
   border-bottom: 3px solid #73cdd8;
   font-size: 16px;
   @media screen and (min-width: $breakpoint) {
-    padding: 0px 40px;
+    padding: 0px 5%;
   }
   @media screen and (max-width: $breakpoint) {
     padding: 0px 20px;
@@ -324,6 +324,7 @@ $breakpoint: 1100px;
     position: relative;
     display: flex;
     text-align: left;
+    padding-left: 40px;
     flex: 1;
   }
   @media screen and (max-width: $breakpoint) {
@@ -407,7 +408,7 @@ $breakpoint: 1100px;
   display: block;
   position: relative;
   padding: 10px 15px;
-  background-color: #f99e26;
+  background-color: vars.$muse-blue;
   color: white;
   transition: 0.5s ease;
   margin-top: -1px;
@@ -417,8 +418,7 @@ $breakpoint: 1100px;
   }
 }
 .navBtnSub a:hover {
-  background-color: #ffe090;
-  color: black;
+  background-color: vars.$muse-light-blue;
   cursor: pointer;
 }
 .navButtonSubTriangle {
@@ -427,7 +427,7 @@ $breakpoint: 1100px;
   position: absolute;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 15px solid #f99e26;
+  border-bottom: 15px solid vars.$muse-blue;
   top: 0px;
   left: 0px;
   z-index: 2000;
@@ -435,7 +435,20 @@ $breakpoint: 1100px;
     display: none;
   }
 }
-
+.hoursTriangle {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid vars.$muse-orange;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  @media screen and (max-width: $breakpoint) {
+    display: none;
+  }
+}
 //Memberships and Tickets button
 .navCta {
   @media screen and (min-width: $breakpoint) {
