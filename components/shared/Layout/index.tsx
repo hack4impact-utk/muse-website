@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import Header from "components/shared/Header";
+import Footer from "components/shared/Footer";
 import styles from "./layout.module.scss";
-import InitialView from "components/Home/InitialView";
+import InitialView from "components/home/InitialView";
 interface Options {
   hero?: boolean;
   heroSize?: string;

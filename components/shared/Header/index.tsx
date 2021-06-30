@@ -3,8 +3,8 @@ import styles from "./header.module.scss";
 import { CartItem, Item } from "utils/types";
 import useSWR from "swr";
 import urls from "utils/urls";
-import StoreOpenStatus from "components/StoreOpenStatus";
-import DropdownLinks from "components/DropdownLinks";
+import StoreOpenStatus from "components/shared/StoreOpenStatus";
+import DropdownLinks from "components/shared/DropdownLinks";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   //storeOpen, closingSoon, and storeStatus could probably all be refactored into one state.

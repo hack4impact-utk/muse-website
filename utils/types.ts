@@ -89,3 +89,12 @@ export interface OLItem {
     currency: string;
   };
 }
+export interface BookeoProductAPIResponse {
+  data: BookeoProduct[];
+}
+export interface BookeoProduct {
+  name: string;
+  description: string;
+  productCode: string;
+  productId: string;
+}

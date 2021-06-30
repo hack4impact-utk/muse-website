@@ -1,7 +1,7 @@
-import Layout from "components/Layout";
+import Layout from "components/shared/Layout";
 import { Item, CartAPIResponse } from "utils/types";
 import useSWR from "swr";
-import CartItem from "components/Cart/CartItem";
+import CartItem from "components/ecommerce/Cart/CartItem";
 import React from "react";
 import { useRouter } from "next/router";
 const CartPage: React.FC = () => {

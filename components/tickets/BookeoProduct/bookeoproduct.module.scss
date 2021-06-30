@@ -1,0 +1,22 @@
+@use 'variables' as vars;
+
+.bookeo-product {
+    min-height: 120px;
+    margin: 20px 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 3px #e3e3e3;
+}
+.product-info-wrapper {
+    width: 90%;
+    align-self:center;
+}
+.product-button {
+    border:none;
+    outline:none;
+    background: vars.$muse-green;
+    color: white;
+    padding: 1rem;
+    margin: 20px 0;
+}

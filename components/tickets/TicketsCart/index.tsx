@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./cartComponent.module.scss";
+import styles from "./ticketscart.module.scss";
 
-const CartComponent: React.FC = () => {
+const TicketsCart: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <h1>Cart</h1>
@@ -17,4 +17,4 @@ const CartComponent: React.FC = () => {
   );
 };
 
-export default CartComponent;
+export default TicketsCart;

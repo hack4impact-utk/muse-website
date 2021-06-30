@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import Header from "components/Header";
-import Footer from "components/Footer";
-import ShopCategories from "components/ShopCategories";
-import ShopItems from "components/ShopItems";
+import Header from "components/shared/Header";
+import Footer from "components/shared/Footer";
+import ShopCategories from "components/ecommerce/ShopCategories";
+import ShopItems from "components/ecommerce/ShopItems";
 import { FaShoppingCart } from "react-icons/fa";
 import { getItemsByCategory } from "server/actions/Square/Catalog";
 import { Item, CartItem } from "utils/types";

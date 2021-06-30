@@ -5,8 +5,8 @@ import {
   Builder,
 } from "@builder.io/react";
 import { GetStaticPropsContext } from "next";
-import Layout from "components/Layout";
-import "components/Builder/Button";
+import Layout from "components/shared/Layout";
+import "components/builder/Button";
 //All of this code below comes from the Builder.io GitHub
 //https://github.com/BuilderIO/builder/blob/master/examples/next-js-builder-site/src/pages/%5B...page%5D.tsx
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY as string);

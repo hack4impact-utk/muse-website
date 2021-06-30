@@ -1,6 +1,6 @@
-import Layout from "components/Layout";
+import Layout from "components/shared/Layout";
 import { NextPage } from "next";
-import ContactForm from "components/ContactForm";
+import ContactForm from "components/contact/ContactForm";
 const contact: NextPage = () => {
   return (
     <Layout
