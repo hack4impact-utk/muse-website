@@ -49,7 +49,7 @@ const Layout: React.FC<Props> = ({ options, children }) => {
       {options && options.initialView && !options.wrapperDisabled && (
         <section className={styles["flex-col"]}>
           <InitialView />
-          <div className={styles["wrapper"]}>{children}</div>
+          <div className={styles["homeWrapper"]}>{children}</div>
         </section>
       )}
       <Footer />

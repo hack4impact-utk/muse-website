@@ -28,7 +28,7 @@ const Header: React.FC = () => {
           <div className={styles.upperHeaderRight}>
             <a href="/">Find Us</a>
             <a href="tel:=18655941494">(865) 594-1494</a>
-            <a href="cart">
+            <a href="/cart">
               <span>
                 Cart(
                 {data &&

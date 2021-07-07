@@ -24,6 +24,11 @@
     width: 80%;
     margin-left: 10%;
 }
+
+.coreValues{
+    padding-top: 40px;
+}
+
 .leftValue {
     display: flex;
     flex-direction: column;
@@ -40,8 +45,8 @@
     img{
         align-self: center;
         @media (min-width: 860px){    
-            width: 350px;
-            height: 350px;
+            width: 250px;
+            height: 250px;
         }
         @media (max-width: 860px){    
             width: 250px;
@@ -67,8 +72,8 @@
         align-self: center;
         align-self: center;
         @media (min-width: 860px){    
-            width: 350px;
-            height: 350px;
+            width: 250px;
+            height: 250px;
         }
         @media (max-width: 860px){    
             width: 250px;
@@ -140,9 +145,8 @@
     animation: planetRotate 30s linear infinite;
     @media screen and (min-width: 980px){
         width: 275px;
-        top: 900px;
         left: -75px;
-        bottom: 250px;
+        bottom: 50px;
     }
     @media screen and (max-width: 980px){
         width: 175px;
