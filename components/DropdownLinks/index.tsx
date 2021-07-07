@@ -77,7 +77,7 @@ const DropdownLinks: React.FC = () => {
         </div>
       </div>
       <div className={styles.navBtn}>
-        <a href="shop" className={styles.navBtnMain}>
+        <a href="/shop" className={styles.navBtnMain}>
           Shop
         </a>
         <div className={styles.navBtnSub}>

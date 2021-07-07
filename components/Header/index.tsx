@@ -68,8 +68,8 @@ const Header: React.FC = () => {
             <div className={styles.navCta}>
               <div>
                 <div className={styles.navCtaBtnWrapper}>
-                  <a href="memberships">Memberships</a>
-                  <a href="tickets">Tickets</a>
+                  <a href="/memberships">Memberships</a>
+                  <a href="/tickets">Tickets</a>
                 </div>
               </div>
             </div>
