@@ -6,7 +6,7 @@ interface Props {
 }
 const ItemCard: React.FC<Props> = ({ item }) => {
   return (
-    <div className={styles.item}>
+    <a href={`/shop/${item.id}`} className={styles.item}>
       <div className={styles.image}>
         <img
           src={item.imageUrl ? item.imageUrl : "/item.png"}
@@ -14,11 +14,11 @@ const ItemCard: React.FC<Props> = ({ item }) => {
         />
       </div>
       <div className={styles.info}>
+        <div className={styles.priceChip}>${item.variations[0].price}</div>
         <h1>{item.name}</h1>
-        <h2>${item.variations[0].price}</h2>
         <a href={`/shop/${item.id}`}>View</a>
       </div>
-    </div>
+    </a>
   );
 };
 

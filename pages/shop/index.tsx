@@ -34,10 +34,10 @@ const Shop: NextPage<Props> = ({ items }) => {
         <button>
           <FaShoppingCart />
           <span>
-            Cart ({" "}
-            {data &&
-              !error &&
-              (data as { success: boolean; payload: Item[] }).payload.reduce(
+            Cart (
+              {data &&
+                !error &&
+                (data as { success: boolean; payload: Item[] }).payload.reduce(
                 (numItems, item) => {
                   return numItems + item.quantity;
                 },
@@ -50,7 +50,6 @@ const Shop: NextPage<Props> = ({ items }) => {
 
       <div className="shopContainer">
         {items && items.length > 0 && console.log(items)}
-        <ShopCategories />
         <ShopItems items={items} />
       </div>
 

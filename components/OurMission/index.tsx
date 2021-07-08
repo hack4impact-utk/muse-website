@@ -5,20 +5,11 @@ const OurMission: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrap}>
-        <h1> Our Mission </h1>
+        <h1>Welcome to Muse Knoxville</h1>
 
         <div className={styles.missionText}>
           {" "}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis
-          sagittis diam. Nam consequat nisi vel risus pretium, eu euismod mauris
-          volutpat. Aliquam varius convallis diam nec iaculis. Phasellus eros
-          justo, rutrum in odio a, convallis pharetra lacus. Aenean accumsan
-          risus mauris, quis pharetra ipsum rhoncus id. Nam gravida orci in
-          libero dictum fringilla. Vestibulum ante ipsum primis in faucibus orci
-          luctus et ultrices posuere cubilia curae; Phasellus semper accumsan
-          iaculis. Donec sit amet porttitor sem, at vulputate lacus. Mauris
-          varius tortor at mollis placerat. Vivamus ut lectus eu dui rutrum
-          malesuada nec in odio.
+          Muse Knoxville is a children’s Science, Technology, Engineering, Arts, & Math (STEAM) museum located in Chilhowee Park. Our programs in the museum, in schools across East Tennessee, & throughout Knoxville bring STEM, the arts, health & wellness, & emergent literacy to life in the minds of children. We inspire & empower ALL children through transformative learning experiences through a variety of hands-on and inquiry-based, exhibits and Outreach programs for children aged 6 months to 10 years old.
         </div>
 
         <div className={styles.coreValues}>

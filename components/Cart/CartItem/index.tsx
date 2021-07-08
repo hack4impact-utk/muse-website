@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Item, CartAPIResponse } from "utils/types";
 import styles from "./cartitem.module.scss";
 import { mutate } from "swr";
+import Spinner from "components/Loading/Spinner";
+
 interface Props {
   item: Item;
 }
 const CartItem: React.FC<Props> = ({ item }) => {
+
+  const[loading, setLoading] = useState(false); //Controls the spinner next to the remove button
+
   const [quantity, setQuantity] = React.useState(
     item.quantity ? item.quantity : 1
   );
@@ -30,6 +35,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
 
   //Remove an item from the cart, then update the cart page to display the new list of cart items.
   const removeFromCart = async (e: React.SyntheticEvent) => {
+    setLoading(true);
     e.preventDefault();
     const response = await fetch("/api/cart", {
       method: "DELETE",
@@ -58,6 +64,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
             <button type="button" onClick={removeFromCart}>
               Remove
             </button>
+            {loading ? <div className={styles.spinner}><Spinner/></div> : <></>}
           </div>
           <h3>${item.variations[0].price}</h3>
           <h4>Quantity</h4>
