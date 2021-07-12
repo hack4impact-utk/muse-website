@@ -8,6 +8,7 @@ import DropdownLinks from "components/DropdownLinks";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   //storeOpen, closingSoon, and storeStatus could probably all be refactored into one state.
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   const fetcher = (url: string): Promise<unknown> =>
     fetch(url).then(r => r.json());
@@ -28,15 +29,15 @@ const Header: React.FC = () => {
           <div className={styles.upperHeaderRight}>
             <a href="/">Find Us</a>
             <a href="tel:=18655941494">(865) 594-1494</a>
-            <a href="cart">
+            <a href="/cart">
               <span>
                 Cart(
-                {data &&
+                  {data &&
                   !error &&
-                  (data as {
+                    (data as {
                     success: boolean;
                     payload: Item[];
-                  }).payload.reduce((numItems, item) => {
+                    }).payload.reduce((numItems, item) => {
                     return numItems + item.quantity;
                   }, 0)}
                 )
@@ -68,8 +69,8 @@ const Header: React.FC = () => {
             <div className={styles.navCta}>
               <div>
                 <div className={styles.navCtaBtnWrapper}>
-                  <a href="memberships">Memberships</a>
-                  <a href="tickets">Tickets</a>
+                  <a href="/memberships">Memberships</a>
+                  <a href="https://www-1577g.bookeo.com/bookeo/b_playmuseknox_start.html?ctlsrc2=BLfxvSB%2B12ItO84SvJC5DHm%2B3gzJKkEmOIn6GcDrAyQ%3D&src=02i">Tickets</a>
                 </div>
               </div>
             </div>

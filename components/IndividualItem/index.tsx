@@ -73,7 +73,6 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
       </div>
 
       <div className={styles.body}>
-        {success && <p>Item successfully added to cart.</p>}
         <div className={styles.title}>
           {/*TODO: Add success message for adding to cart.*/}
           <h1>{item && item.name}</h1>
@@ -89,6 +88,12 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
             />
           </div>
           <div className={styles.description}>{item && item.description}</div>
+          {success && 
+            <div className={styles.cartSuccess}>
+              <div className={styles.cartSuccessText}>Item successfully added to cart.</div>
+              <a href="/cart" className={styles.cartButton}>View Cart</a>
+            </div>
+          }
           <button className={styles.button} onClick={addToCart}>
             Add to Cart
           </button>
