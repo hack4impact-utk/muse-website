@@ -11,6 +11,7 @@ const FourOhFour: NextPage = () => {
         <img src={"/astronaut.png"} alt="Astronaut" />
         <img src={"/planet.png"} alt="Planet" />
         <div className="wrapper">
+          <h1>404 Page Not Found</h1>
           <h1>
             We could astro-
             <span>NAUT </span>
