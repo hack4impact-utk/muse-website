@@ -19,7 +19,7 @@ export const isOpen = (businessHours: BusinessHours): boolean => {
     "Friday",
     "Saturday",
   ];
-  if (businessHours.daysOpen?.includes(days[today.getDate()])) {
+  if (businessHours.daysOpen?.includes(days[today.getDay()])) {
     businessHours.hours?.forEach(hourSet => {
       const [open, close] = parseHours(hourSet);
       if (
@@ -34,6 +34,8 @@ export const isOpen = (businessHours: BusinessHours): boolean => {
         }
       }
     });
+  } else {
+    o = false;
   }
   return o;
 };
