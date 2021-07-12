@@ -9,7 +9,7 @@ const InitialView: React.FC = () => {
           We Inspire &<br></br>Empower
         </h1>
         <div className={style.ctaButtonWrapper}>
-          <a href="membership" className={style.ctaButton}>
+          <a href="/memberships" className={style.ctaButton}>
             Memberships
           </a>
         </div>

@@ -69,7 +69,7 @@ const Header: React.FC = () => {
               <div>
                 <div className={styles.navCtaBtnWrapper}>
                   <a href="memberships">Memberships</a>
-                  <a href="tickets">Tickets</a>
+                  <a href="https://www-1577g.bookeo.com/bookeo/b_playmuseknox_start.html?ctlsrc2=VL3A%2Be59j6Ijj16lv5nsGZqQ01iiizFGy6T90xi1Z3k%3D&src=02m">Tickets</a>
                 </div>
               </div>
             </div>
