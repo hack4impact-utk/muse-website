@@ -1,0 +1,43 @@
+@use './styles/variables' as vars;
+
+.loadingParent{
+    height: auto;
+    width: auto;
+    position: absolute;
+    display: block;
+    padding: 40px 0px;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5000;
+    background-color: #F57E20;
+}
+
+.rocket{
+    width: 150px;
+    height: auto;
+    animation: shake 0.5s infinite;
+    margin-top: 100px;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(45deg); }
+    10% { transform: translate(-1px, -2px) rotate(44deg); }
+    20% { transform: translate(-3px, 0px) rotate(46deg); }
+    30% { transform: translate(3px, 2px) rotate(45deg); }
+    40% { transform: translate(1px, -1px) rotate(46deg); }
+    50% { transform: translate(-1px, 2px) rotate(44deg); }
+    60% { transform: translate(-3px, 1px) rotate(45deg); }
+    70% { transform: translate(3px, 1px) rotate(44deg); }
+    80% { transform: translate(-1px, -1px) rotate(46deg); }
+    90% { transform: translate(1px, 2px) rotate(45deg); }
+    100% { transform: translate(1px, -2px) rotate(44deg); }
+}
+
+.loadingText{
+    margin-top: 50px;
+    font-size: 40px;
+    color: white;
+}

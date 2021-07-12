@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
             </a>
           </p>
           <h1 className={styles.headerText}>
-            HOURS - <span>Admission must be booked online, in advance</span>
+            HOURS
           </h1>
           <p>Special Programs Monday & Thursday</p>
           {wd && !wdl && !wde && (

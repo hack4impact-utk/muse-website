@@ -1,3 +1,5 @@
+@use 'variables' as vars;
+
 .wrapper {
     display: flex;
     margin:40px 0px;
@@ -56,12 +58,12 @@
     border: none;
     margin: 20px 0px;
     text-align:center;
-    font-size: 28px;
+    font-size: 24px;
     font-family: 'Quicksand', 'sans-serif';
     color: white;
     padding-top: 2%;
     padding-bottom: 2%;
-    width: 75%;
+    width: 100%;
     align-self:center;
     background-color: #9CC03C;
     cursor:pointer;
@@ -85,4 +87,33 @@
     }
 }
 
-  
+.cartSuccess{
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    background-color: vars.$muse-light-blue;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.cartSuccessText{
+    position: relative;
+    display: inline-block;
+    padding: 15px 20px;
+    flex: 1;
+}
+
+.cartButton{
+    width: auto;
+    height: auto;
+    min-width: 100px;
+    position: relative;
+    display: inline-block;
+    padding: 15px 10px;
+    background-color: vars.$muse-blue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    flex: 0;
+}
