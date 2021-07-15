@@ -1,5 +1,4 @@
 // Implements relevant types
-
 export interface Item {
   name: string;
   id: string;
@@ -8,14 +7,26 @@ export interface Item {
   category: string;
   variations: ItemVariation[];
   quantity: number;
+  options: unknown;
 }
 
 export interface ItemVariation {
   name: string;
   id: string;
   price: string;
+  stockStatus: string | Promise<string>;
 }
 
+export interface ItemOption {
+  id: string;
+  name?: string;
+  values?: ItemValues[];
+}
+
+export interface ItemValues {
+  name?: string;
+  ordinal: number;
+}
 export interface Exhibit {
   id: string;
   name: string;

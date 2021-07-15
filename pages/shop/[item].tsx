@@ -10,6 +10,7 @@ interface Props {
 }
 
 const IndividualItemPage: NextPage<Props> = ({ item }) => {
+  console.log(item);
   return (
     <Layout options={{ initialView: false, wrapperDisabled: false }}>
       <IndividualItem item={item} />
