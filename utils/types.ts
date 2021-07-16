@@ -1,3 +1,5 @@
+import { CatalogItemOptionValueForItemVariation } from "square";
+
 // Implements relevant types
 export interface Item {
   name: string;
@@ -15,6 +17,7 @@ export interface ItemVariation {
   id: string;
   price: string;
   stockStatus: string | Promise<string>;
+  itemOptionValues: CatalogItemOptionValueForItemVariation[];
 }
 
 export interface ItemOption {
@@ -24,6 +27,7 @@ export interface ItemOption {
 }
 
 export interface ItemValues {
+  id?: string;
   name?: string;
   ordinal: number;
 }

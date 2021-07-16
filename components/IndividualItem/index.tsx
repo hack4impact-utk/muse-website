@@ -1,33 +1,23 @@
 import React from "react";
 import styles from "./individualItem.module.scss";
-import { Item } from "utils/types";
+import { Item, ItemOption } from "utils/types";
 import urls from "utils/urls";
 import { mutate } from "swr";
+import {
+  ValuesOfCorrectTypeRule,
+  VariablesInAllowedPositionRule,
+} from "graphql";
+import { target } from "@builder.io/react/dist/types/lib/on-change";
 interface Props {
   item: Item;
 }
 const IndividualItem: React.FC<Props> = ({ item }) => {
   const [quantity, setQuantity] = React.useState(1);
   const [success, setSuccess] = React.useState(false);
-
-  /* const incrementQuantity = (e: React.SyntheticEvent) => { */
-  /*   e.preventDefault(); */
-  /*   if (quantity <= 0) { */
-  /*     setQuantity(1); */
-  /*     return; */
-  /*   } */
-  /*   setQuantity((quantity += 1)); */
-  /* }; */
-
-  /* const decrementQuantity = (e: React.SyntheticEvent) => { */
-  /*   e.preventDefault(); */
-  /*   if (quantity <= 0 || quantity - 1 === 0) { */
-  /*     setQuantity(1); */
-  /*     return; */
-  /*   } */
-  /*   setQuantity((quantity -= 1)); */
-  /* }; */
-
+  const [selectedVariationIndex, getSelectedVariationIndex] = React.useState(0); //An item will have at least 1 variation stored in index 0.
+  const [selectValues, setSelectValues] = React.useState({});
+  console.log(item.variations[selectedVariationIndex]);
+  //Handles the quantity state.
   const handleChange = (e: React.SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
     if (isNaN(parseInt(input.value))) {
@@ -48,6 +38,7 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
   const addToCart = async (e: React.SyntheticEvent): Promise<void> => {
     e.preventDefault();
     const body = { quantity: quantity, id: item.id };
+
     const response = await fetch("/api/cart", {
       method: "PUT",
       body: JSON.stringify(body),
@@ -63,6 +54,30 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
     }
     void mutate(`${urls.baseUrl}${urls.api.cart}`, null, true);
   };
+
+  const handleOptionInfo = (e: React.SyntheticEvent) => {
+    e.persist();
+    const target = e.target as HTMLInputElement;
+    setSelectValues(selectValues => ({
+      ...selectValues,
+      [target.name]: target.value !== "" ? JSON.parse(target.value) : "",
+    }));
+    //After the values are set, we need to check and make sure that all the values have been selected before getting the variation.
+    console.log("Select values: ", selectValues);
+    //TODO: use getVariationInfo to update the selectedItemIndex
+  };
+  const getVariationInfo = () => {
+    //Need to filter the item's variation array by item option id and item option value id.
+    if (item.variations.length > 1) {
+      const optionNames = (item.options as ItemOption[]).map(option => {
+        return option.name;
+      });
+      console.log(optionNames);
+      optionNames.forEach(name => {});
+    }
+    //Get the option names.
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.image}>
@@ -74,26 +89,61 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
 
       <div className={styles.body}>
         <div className={styles.title}>
-          {/*TODO: Add success message for adding to cart.*/}
           <h1>{item && item.name}</h1>
         </div>
         <div className={styles.content}>
-          <h2>${item && item.variations[0].price}</h2>
+          <h2>${item && item.variations[selectedVariationIndex].price}</h2>
           <div className={styles.quantity}>
-            Quantity
+            <h4>Quantity</h4>
             <input
               type="number"
               value={quantity || 1}
               onChange={handleChange}
             />
           </div>
+          {item.variations.length > 1 &&
+            (item.options as ItemOption[]) &&
+            (item.options as ItemOption[]).map((option: ItemOption) => {
+              const defaultValue = item.variations[
+                selectedVariationIndex
+              ].itemOptionValues.filter(
+                value => value.itemOptionId === option.id
+              )[0].itemOptionValueId;
+              return (
+                <>
+                  <h3>{option.name}</h3>
+                  <select name={option.name} onChange={handleOptionInfo}>
+                    {option.values?.map(value => {
+                      //This is the default value of the selected variation index.
+
+                      return (
+                        <option
+                          key={value.id}
+                          value={JSON.stringify({
+                            optionId: option.id,
+                            valueId: value.id,
+                          })}
+                          selected={defaultValue === value.id}
+                        >
+                          {value.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </>
+              );
+            })}
           <div className={styles.description}>{item && item.description}</div>
-          {success && 
+          {success && (
             <div className={styles.cartSuccess}>
-              <div className={styles.cartSuccessText}>Item successfully added to cart.</div>
-              <a href="/cart" className={styles.cartButton}>View Cart</a>
+              <div className={styles.cartSuccessText}>
+                Item successfully added to cart.
+              </div>
+              <a href="/cart" className={styles.cartButton}>
+                View Cart
+              </a>
             </div>
-          }
+          )}
           <button className={styles.button} onClick={addToCart}>
             Add to Cart
           </button>

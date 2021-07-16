@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { Item } from "utils/types";
 import { GetStaticPropsContext, NextPage } from "next";
 import { getItemByID, getItemsByCategory } from "server/actions/Square/Catalog";
@@ -13,6 +14,9 @@ const IndividualItemPage: NextPage<Props> = ({ item }) => {
   console.log(item);
   return (
     <Layout options={{ initialView: false, wrapperDisabled: false }}>
+      <Head>
+        <title>{item.name} | Muse Knoxville</title>
+      </Head>
       <IndividualItem item={item} />
     </Layout>
   );

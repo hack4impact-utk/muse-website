@@ -168,6 +168,7 @@ export const getItemOptions = async (item: CatalogObject): Promise<unknown> => {
         name: option.itemOptionData?.displayName, //This is like "Color, Size, etc."
         values: option.itemOptionData?.values?.map(optionValue => {
           return {
+            id: optionValue.id,
             name: optionValue.itemOptionValueData?.name, //This is like "Green, Blue, Red, etc."
             ordinal: optionValue.itemOptionValueData?.ordinal, //What position that value appears in a list.
           };
@@ -213,6 +214,10 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
                 ).toFixed(2),
                 stockStatus: await getStockStatus(variation.id),
               };
+              if (variation.itemVariationData?.itemOptionValues != undefined) {
+                formattedVariation.itemOptionValues =
+                  variation.itemVariationData?.itemOptionValues;
+              }
               return formattedVariation;
             })
           )
