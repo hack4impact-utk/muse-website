@@ -3,18 +3,13 @@ import styles from "./individualItem.module.scss";
 import { Item, ItemOption } from "utils/types";
 import urls from "utils/urls";
 import { mutate } from "swr";
-import {
-  ValuesOfCorrectTypeRule,
-  VariablesInAllowedPositionRule,
-} from "graphql";
-import { target } from "@builder.io/react/dist/types/lib/on-change";
 interface Props {
   item: Item;
 }
 const IndividualItem: React.FC<Props> = ({ item }) => {
   const [quantity, setQuantity] = React.useState(1);
   const [success, setSuccess] = React.useState(false);
-  const [selectedVariationIndex, getSelectedVariationIndex] = React.useState(0); //An item will have at least 1 variation stored in index 0.
+  const [selectedVariationIndex, setSelectedVariationIndex] = React.useState(0); //An item will have at least 1 variation stored in index 0.
   const [selectValues, setSelectValues] = React.useState({});
   console.log(item.variations[selectedVariationIndex]);
   //Handles the quantity state.
@@ -34,7 +29,6 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
     }
     setQuantity(parseInt(input.value));
   };
-
   const addToCart = async (e: React.SyntheticEvent): Promise<void> => {
     e.preventDefault();
     const body = { quantity: quantity, id: item.id };
@@ -54,7 +48,7 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
     }
     void mutate(`${urls.baseUrl}${urls.api.cart}`, null, true);
   };
-
+  //Updates the state that contains the values from the select field(s).
   const handleOptionInfo = (e: React.SyntheticEvent) => {
     e.persist();
     const target = e.target as HTMLInputElement;
@@ -63,19 +57,25 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
       [target.name]: target.value !== "" ? JSON.parse(target.value) : "",
     }));
     //After the values are set, we need to check and make sure that all the values have been selected before getting the variation.
-    console.log("Select values: ", selectValues);
-    //TODO: use getVariationInfo to update the selectedItemIndex
+    getVariationInfo();
   };
+  //Makes sure that the correct variation is displayed.
   const getVariationInfo = () => {
-    //Need to filter the item's variation array by item option id and item option value id.
-    if (item.variations.length > 1) {
-      const optionNames = (item.options as ItemOption[]).map(option => {
-        return option.name;
+    //Need to filter the item's variation array by item option id and item option value id
+    let key: any;
+    for (key in selectValues) {
+      //Check each variation's itemOptionValues for the selected values from the frontend. If they match, then we need to update what variation's information is displayed.
+      item.variations.forEach((variation, variationIndex) => {
+        variation.itemOptionValues.forEach(valueSet => {
+          if (
+            valueSet.itemOptionId == selectValues[key].itemOptionId &&
+            valueSet.itemOptionValueId == selectValues[key].itemOptionValueId
+          ) {
+            setSelectedVariationIndex(variationIndex);
+          }
+        });
       });
-      console.log(optionNames);
-      optionNames.forEach(name => {});
     }
-    //Get the option names.
   };
 
   return (
@@ -120,8 +120,8 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
                         <option
                           key={value.id}
                           value={JSON.stringify({
-                            optionId: option.id,
-                            valueId: value.id,
+                            itemOptionId: option.id,
+                            itemOptionValueId: value.id,
                           })}
                           selected={defaultValue === value.id}
                         >
