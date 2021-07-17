@@ -4,6 +4,7 @@ import { CatalogItemOptionValueForItemVariation } from "square";
 export interface Item {
   name: string;
   id: string;
+  selectedVariationFromCart?: ItemVariation;
   description: string;
   imageUrl: string;
   category: string;
@@ -15,9 +16,10 @@ export interface Item {
 export interface ItemVariation {
   name: string;
   id: string;
+  itemId?: string;
   price: string;
   stockStatus: string | Promise<string>;
-  itemOptionValues: CatalogItemOptionValueForItemVariation[];
+  itemOptionValues?: CatalogItemOptionValueForItemVariation[];
 }
 
 export interface ItemOption {
@@ -86,7 +88,7 @@ export interface CartItem {
   id: string;
   quantity: number;
   //Might be needed later for something like shirt size or color, not sure yet.
-  variation?: undefined;
+  variation: ItemVariation;
 }
 
 export interface CartAPIResponse {

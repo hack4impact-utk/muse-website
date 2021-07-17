@@ -71,6 +71,7 @@ export const batchGetItemsByID = async (ids: string[]): Promise<Item[]> => {
   const newClient = client.withConfiguration({
     accessToken: token,
   });
+  //If variations are passed in, then we need to format a response.
   const response = await newClient.catalogApi.batchRetrieveCatalogObjects({
     objectIds: ids,
   });
@@ -183,12 +184,21 @@ export const getItemOptions = async (item: CatalogObject): Promise<unknown> => {
   }
 };
 
+export const prepareItemsFromCart = async (itemId: string, variation: ItemVariation) => {
+    const token = await getAccessToken();
+    const newClient = client.withConfiguration({
+      accessToken: token,
+    });
+    const response = await newClient.catalogApi.retrieveCatalogObject(itemId);
+    return await formatItem(response.result.object as CatalogObject, variation); 
+}
+
 /**
  * Format an item from Square for easier use.
  * @params squareItem The raw Square API response item.
  * @returns A object of type Item that contains data from the Square API in an easier to use format.
  */
-const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
+const formatItem = async (squareItem: CatalogObject, selectedVariation?: ItemVariation): Promise<Item> => {
   try {
     const formattedItem: Item = {
       id: squareItem.id,
@@ -204,6 +214,7 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
             squareItem.itemData.variations.map(async variation => {
               const formattedVariation: ItemVariation = {
                 id: variation.id,
+                itemId: variation.itemVariationData?.itemId,
                 name:
                   variation.itemVariationData?.name ||
                   "No variation name found",
@@ -228,6 +239,9 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
           ? await getItemOptions(squareItem)
           : {},
     };
+    if(selectedVariation != undefined) {
+        formattedItem.selectedVariationFromCart = selectedVariation;
+    }
     return formattedItem;
   } catch (error: unknown) {
     if (error) {
@@ -236,3 +250,4 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
     return {} as Item;
   }
 };
+

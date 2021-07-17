@@ -1,6 +1,6 @@
 import { verify, Secret, sign } from "jsonwebtoken";
 import { Cart, CartItem, Item } from "utils/types";
-import { batchGetItemsByID } from "server/actions/Square/Catalog";
+import { prepareItemsFromCart } from "server/actions/Square/Catalog";
 const secret: Secret = process.env.JWTSECRET as string;
 
 /**
@@ -11,11 +11,12 @@ const secret: Secret = process.env.JWTSECRET as string;
 export const getItemsFromCart = async (cookie: string): Promise<Item[]> => {
   const cart = getCookieBody(cookie);
   if (cart.length > 0) {
-    const items = await batchGetItemsByID(cart.map(item => item.id));
+    const items = await Promise.all(cart.map(item => prepareItemsFromCart(item.id, item.variation)));
+
     //Map the quantity to the items.
     cart.forEach(cartItem => {
       items.forEach(item => {
-        if (cartItem.id == item.id) {
+        if (cartItem.variation.id == item.selectedVariationFromCart?.id) {
           item.quantity = cartItem.quantity;
         }
       });
@@ -38,7 +39,7 @@ export const addToCart = (cookie: string, item: CartItem): CartItem[] => {
   let duplicate = false;
   //If the item is already in the cart, increment its quantity by the quantity specified in the new item.
   cart.forEach(i => {
-    if (i.id == item.id) {
+    if (i.variation == item.variation) {
       //If the item has no quantity (shouldn't happen), then don't add anything to it.
       i.quantity += item.quantity ? item.quantity : 0;
       duplicate = true;
@@ -64,7 +65,7 @@ export const updateCartQuantity = (
   const cart = getCookieBody(cookie);
   //Find the item in the cart and change its quantity to the quantity of the item passed in.
   cart.forEach(i => {
-    if (i.id === item.id) {
+    if (i.variation === item.variation) {
       i.quantity = item.quantity;
     }
   });
@@ -80,7 +81,7 @@ export const updateCartQuantity = (
 export const removeFromCart = (cookie: string, item: CartItem): CartItem[] => {
   const cart = getCookieBody(cookie);
 
-  cart.splice(cart.indexOf(item));
+  cart.splice(cart.findIndex(cartItem => cartItem.variation.id == item.variation.id));
 
   return cart;
 };

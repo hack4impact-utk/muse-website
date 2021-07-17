@@ -11,8 +11,6 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
   const [success, setSuccess] = React.useState(false);
   const [displayedVariation, setDisplayedVariation] = React.useState(item.variations[0])
   const [optionValues, setOptionValues] = React.useState(item.variations[0].itemOptionValues);
-  const [selectValues, setSelectValues] = React.useState({});
-  console.log(displayedVariation);
   //Handles the quantity state.
   const handleChange = (e: React.SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
@@ -32,7 +30,7 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
   };
   const addToCart = async (e: React.SyntheticEvent): Promise<void> => {
     e.preventDefault();
-    const body = { quantity: quantity, id: item.id };
+    const body = { quantity: quantity, id: item.id, variation: displayedVariation };
 
     const response = await fetch("/api/cart", {
       method: "PUT",
@@ -98,6 +96,15 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
         <h3>{displayedVariation && displayedVariation.name}</h3>
         <div className={styles.content}>
           <h2>${item && displayedVariation.price}</h2>
+          {displayedVariation && displayedVariation.stockStatus === "IN_STOCK" && (
+              <h3>In Stock</h3>
+          )}
+          {displayedVariation && displayedVariation.stockStatus === "LOW_STOCK" && (
+            <h3>Low Stock</h3>
+          )}
+          {displayedVariation && displayedVariation.stockStatus === "OUT_OF_STOCK" && (
+            <h3>Out of Stock</h3>
+          )}
           <div className={styles.quantity}>
             <h4>Quantity</h4>
             <input
@@ -142,9 +149,11 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
               </a>
             </div>
           )}
+          { displayedVariation && displayedVariation.stockStatus != "OUT_OF_STOCK" && (
           <button className={styles.button} onClick={addToCart}>
             Add to Cart
           </button>
+          )}
         </div>
       </div>
     </div>
