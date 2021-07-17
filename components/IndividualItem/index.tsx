@@ -54,11 +54,15 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
     e.persist();
     //From here: https://stackoverflow.com/questions/29537299/react-how-to-update-state-item1-in-state-using-setstate
     const target = e.target as HTMLInputElement;
+    //Value from the select fields.
     const selectValue = JSON.parse(target.value);
-    console.warn("Option change detected.");
+    //To figure out what optionValue to update, we need to find the option id that matches the one from the select
     const indexToUpdate = optionValues.findIndex(option => option.itemOptionId === selectValue.itemOptionId);
+    //Make a copy of the state so we can update it.
     let optionsCopy = [...optionValues];
+    //Find the option that needs to be updated.
     let optionToUpdate = {...optionsCopy[indexToUpdate]};
+    //Set that option's itemOptionValueId to that of the item from the select.
     optionToUpdate.itemOptionValueId = selectValue.itemOptionValueId;
     optionsCopy[indexToUpdate] = optionToUpdate;
     setOptionValues(optionsCopy);
@@ -105,12 +109,12 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
           {item.variations.length > 1 &&
             (item.options as ItemOption[]) &&
             (item.options as ItemOption[]).map((option: ItemOption) => {
+              const optionValueIndex = optionValues.findIndex(os => os.itemOptionId === option.id); //Used to set the default value in the select.
               return (
                 <>
                   <h3>{option.name}</h3>
-                  <select name={option.name} onBlur={handleOptionInfo}>
+                  <select name={option.name} onChange={handleOptionInfo} defaultValue={JSON.stringify(optionValues[optionValueIndex])}>
                     {option.values?.map(value => {
-                      //This is the default value of the selected variation index.
                       return (
                         <option
                           key={value.id}
