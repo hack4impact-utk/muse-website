@@ -9,9 +9,10 @@ interface Props {
 const IndividualItem: React.FC<Props> = ({ item }) => {
   const [quantity, setQuantity] = React.useState(1);
   const [success, setSuccess] = React.useState(false);
-  const [selectedVariationIndex, setSelectedVariationIndex] = React.useState(0); //An item will have at least 1 variation stored in index 0.
+  const [displayedVariation, setDisplayedVariation] = React.useState(item.variations[0])
+  const [optionValues, setOptionValues] = React.useState(item.variations[0].itemOptionValues);
   const [selectValues, setSelectValues] = React.useState({});
-  console.log(item.variations[selectedVariationIndex]);
+  console.log(displayedVariation);
   //Handles the quantity state.
   const handleChange = (e: React.SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
@@ -51,32 +52,31 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
   //Updates the state that contains the values from the select field(s).
   const handleOptionInfo = (e: React.SyntheticEvent) => {
     e.persist();
+    //From here: https://stackoverflow.com/questions/29537299/react-how-to-update-state-item1-in-state-using-setstate
     const target = e.target as HTMLInputElement;
-    setSelectValues(selectValues => ({
-      ...selectValues,
-      [target.name]: target.value !== "" ? JSON.parse(target.value) : "",
-    }));
-    //After the values are set, we need to check and make sure that all the values have been selected before getting the variation.
-    getVariationInfo();
+    const selectValue = JSON.parse(target.value);
+    console.warn("Option change detected.");
+    const indexToUpdate = optionValues.findIndex(option => option.itemOptionId === selectValue.itemOptionId);
+    let optionsCopy = [...optionValues];
+    let optionToUpdate = {...optionsCopy[indexToUpdate]};
+    optionToUpdate.itemOptionValueId = selectValue.itemOptionValueId;
+    optionsCopy[indexToUpdate] = optionToUpdate;
+    setOptionValues(optionsCopy);
   };
   //Makes sure that the correct variation is displayed.
   const getVariationInfo = () => {
-    //Need to filter the item's variation array by item option id and item option value id
-    let key: any;
-    for (key in selectValues) {
-      //Check each variation's itemOptionValues for the selected values from the frontend. If they match, then we need to update what variation's information is displayed.
-      item.variations.forEach((variation, variationIndex) => {
-        variation.itemOptionValues.forEach(valueSet => {
-          if (
-            valueSet.itemOptionId == selectValues[key].itemOptionId &&
-            valueSet.itemOptionValueId == selectValues[key].itemOptionValueId
-          ) {
-            setSelectedVariationIndex(variationIndex);
-          }
-        });
-      });
+    //Now that we have the correct option values, we check all of the variations to find the one with matching option values.
+    const newVariationToDisplay = item.variations.filter(v => JSON.stringify(v.itemOptionValues) == JSON.stringify(optionValues))
+    //If that variation exists, then we can set it to be the new displayed variation.
+    if(newVariationToDisplay.length != 0){
+        setDisplayedVariation(newVariationToDisplay[0]);
     }
+
   };
+
+  React.useEffect(() => {
+    getVariationInfo();
+  }, [optionValues]);
 
   return (
     <div className={styles.wrapper}>
@@ -91,8 +91,9 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
         <div className={styles.title}>
           <h1>{item && item.name}</h1>
         </div>
+        <h3>{displayedVariation && displayedVariation.name}</h3>
         <div className={styles.content}>
-          <h2>${item && item.variations[selectedVariationIndex].price}</h2>
+          <h2>${item && displayedVariation.price}</h2>
           <div className={styles.quantity}>
             <h4>Quantity</h4>
             <input
@@ -104,18 +105,12 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
           {item.variations.length > 1 &&
             (item.options as ItemOption[]) &&
             (item.options as ItemOption[]).map((option: ItemOption) => {
-              const defaultValue = item.variations[
-                selectedVariationIndex
-              ].itemOptionValues.filter(
-                value => value.itemOptionId === option.id
-              )[0].itemOptionValueId;
               return (
                 <>
                   <h3>{option.name}</h3>
-                  <select name={option.name} onChange={handleOptionInfo}>
+                  <select name={option.name} onBlur={handleOptionInfo}>
                     {option.values?.map(value => {
                       //This is the default value of the selected variation index.
-
                       return (
                         <option
                           key={value.id}
@@ -123,7 +118,6 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
                             itemOptionId: option.id,
                             itemOptionValueId: value.id,
                           })}
-                          selected={defaultValue === value.id}
                         >
                           {value.name}
                         </option>
