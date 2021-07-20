@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import ShopCategories from "components/ShopCategories";
@@ -24,6 +25,9 @@ const Shop: NextPage<Props> = ({ items }) => {
   };
   return (
     <main>
+      <Head>
+        <title>Shop | Muse Knoxville</title>
+      </Head>
       <Header />
 
       <div className="banner">
@@ -35,9 +39,9 @@ const Shop: NextPage<Props> = ({ items }) => {
           <FaShoppingCart />
           <span>
             Cart (
-              {data &&
-                !error &&
-                (data as { success: boolean; payload: Item[] }).payload.reduce(
+            {data &&
+              !error &&
+              (data as { success: boolean; payload: Item[] }).payload.reduce(
                 (numItems, item) => {
                   return numItems + item.quantity;
                 },

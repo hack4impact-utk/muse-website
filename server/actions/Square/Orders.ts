@@ -49,11 +49,11 @@ const createOrderLineObjects = (items: Item[]): OLItem[] => {
   items.forEach(item => {
     const orderLineItem = {
       id: item.id,
-      name: item.name,
+      name: `${item.name} (${item.selectedVariationFromCart?.name})`,
       quantity: item.quantity?.toString(),
       //Amount has to be converted into a BigInt to be compatible with Square's default OrderLineItem type.
       basePriceMoney: {
-        amount: BigInt(parseFloat(item.variations[0]?.price) * 100), //Convert to integer
+        amount: BigInt(parseFloat(item.selectedVariationFromCart?.price as string) * 100), //Convert to integer
         currency: "USD",
       },
     } as OLItem;

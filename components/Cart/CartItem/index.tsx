@@ -66,6 +66,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
             </button>
             {loading ? <div className={styles.spinner}><Spinner/></div> : <></>}
           </div>
+            <h3>{item.selectedVariationFromCart?.name}</h3>
           <h3>${item.variations[0].price}</h3>
           <h4>Quantity</h4>
           <div className={styles.quantity}>

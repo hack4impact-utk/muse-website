@@ -1,21 +1,38 @@
-// Implements relevant types
+import { CatalogItemOptionValueForItemVariation } from "square";
 
+// Implements relevant types
 export interface Item {
   name: string;
   id: string;
+  selectedVariationFromCart?: ItemVariation;
   description: string;
   imageUrl: string;
   category: string;
   variations: ItemVariation[];
   quantity: number;
+  options: unknown;
 }
 
 export interface ItemVariation {
   name: string;
   id: string;
+  itemId?: string;
   price: string;
+  stockStatus: string | Promise<string>;
+  itemOptionValues?: CatalogItemOptionValueForItemVariation[];
 }
 
+export interface ItemOption {
+  id: string;
+  name?: string;
+  values?: ItemValues[];
+}
+
+export interface ItemValues {
+  id?: string;
+  name?: string;
+  ordinal: number;
+}
 export interface Exhibit {
   id: string;
   name: string;
@@ -71,7 +88,7 @@ export interface CartItem {
   id: string;
   quantity: number;
   //Might be needed later for something like shirt size or color, not sure yet.
-  variation?: undefined;
+  variation: ItemVariation;
 }
 
 export interface CartAPIResponse {

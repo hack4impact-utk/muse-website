@@ -1,6 +1,7 @@
 import { Client, Environment, CatalogObject } from "square";
 import { getAccessToken } from ".";
-import { Item, ItemVariation } from "utils/types";
+import { Item, ItemOption, ItemVariation } from "utils/types";
+import { getStockStatus } from "./Inventory";
 const client = new Client({
   environment: Environment.Sandbox,
   accessToken: process.env.SQUARE_ACCESS_TOKEN as string,
@@ -57,6 +58,7 @@ export const getItemByID = async (id: string): Promise<Item> => {
     return {} as Item;
   }
 };
+
 /**
  * Batch retrieves an array of items by ID.
  * @param ids - The array of item IDs to be batch retrieved.
@@ -69,6 +71,7 @@ export const batchGetItemsByID = async (ids: string[]): Promise<Item[]> => {
   const newClient = client.withConfiguration({
     accessToken: token,
   });
+  //If variations are passed in, then we need to format a response.
   const response = await newClient.catalogApi.batchRetrieveCatalogObjects({
     objectIds: ids,
   });
@@ -148,13 +151,54 @@ const getImageURL = async (imageId: string): Promise<string> => {
     return "";
   }
 };
+export const getItemOptions = async (item: CatalogObject): Promise<unknown> => {
+  try {
+    const token = await getAccessToken();
+    const newClient = client.withConfiguration({
+      accessToken: token,
+    });
+    const ids = item.itemData?.itemOptions?.map(option => {
+      return option.itemOptionId;
+    });
+    const response = await newClient.catalogApi.batchRetrieveCatalogObjects({
+      objectIds: ids as string[],
+    });
+    return response.result?.objects?.map(option => {
+      return {
+        id: option.id,
+        name: option.itemOptionData?.displayName, //This is like "Color, Size, etc."
+        values: option.itemOptionData?.values?.map(optionValue => {
+          return {
+            id: optionValue.id,
+            name: optionValue.itemOptionValueData?.name, //This is like "Green, Blue, Red, etc."
+            ordinal: optionValue.itemOptionValueData?.ordinal, //What position that value appears in a list.
+          };
+        }),
+      };
+    }) as ItemOption[];
+  } catch (error: unknown) {
+    if (error) {
+      console.log(error as Error);
+    }
+    return {} as ItemOption[];
+  }
+};
+
+export const prepareItemsFromCart = async (itemId: string, variation: ItemVariation) => {
+    const token = await getAccessToken();
+    const newClient = client.withConfiguration({
+      accessToken: token,
+    });
+    const response = await newClient.catalogApi.retrieveCatalogObject(itemId);
+    return await formatItem(response.result.object as CatalogObject, variation); 
+}
 
 /**
  * Format an item from Square for easier use.
  * @params squareItem The raw Square API response item.
  * @returns A object of type Item that contains data from the Square API in an easier to use format.
  */
-const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
+const formatItem = async (squareItem: CatalogObject, selectedVariation?: ItemVariation): Promise<Item> => {
   try {
     const formattedItem: Item = {
       id: squareItem.id,
@@ -166,21 +210,38 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
       imageUrl: squareItem.imageId ? await getImageURL(squareItem.imageId) : "",
       quantity: 0,
       variations: squareItem.itemData?.variations
-        ? squareItem.itemData.variations.map(variation => {
-            const formattedVariation: ItemVariation = {
-              id: variation.id,
-              name:
-                variation.itemVariationData?.name || "No variation name found",
-              price: (
-                Number(
-                  variation.itemVariationData?.priceMoney?.amount as bigint
-                ) / 100
-              ).toFixed(2),
-            };
-            return formattedVariation;
-          })
+        ? await Promise.all(
+            squareItem.itemData.variations.map(async variation => {
+              const formattedVariation: ItemVariation = {
+                id: variation.id,
+                itemId: variation.itemVariationData?.itemId,
+                name:
+                  variation.itemVariationData?.name ||
+                  "No variation name found",
+                price: (
+                  Number(
+                    variation.itemVariationData?.priceMoney?.amount as bigint
+                  ) / 100
+                ).toFixed(2),
+                stockStatus: await getStockStatus(variation.id),
+              };
+              if (variation.itemVariationData?.itemOptionValues != undefined) {
+                formattedVariation.itemOptionValues =
+                  variation.itemVariationData?.itemOptionValues;
+              }
+              return formattedVariation;
+            })
+          )
         : ({} as ItemVariation[]),
+      options:
+        squareItem.itemData?.itemOptions &&
+        squareItem.itemData?.itemOptions?.length > 0
+          ? await getItemOptions(squareItem)
+          : {},
     };
+    if(selectedVariation != undefined) {
+        formattedItem.selectedVariationFromCart = selectedVariation;
+    }
     return formattedItem;
   } catch (error: unknown) {
     if (error) {
@@ -189,3 +250,4 @@ const formatItem = async (squareItem: CatalogObject): Promise<Item> => {
     return {} as Item;
   }
 };
+
