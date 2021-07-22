@@ -5,7 +5,6 @@ import styles from "components/Footer/footer.module.scss";
 const FooterLinks: React.FC =  () => {
     const fetcher = (url:string): Promise<unknown> => fetch(url).then(r => r.json());
     const {data, error} = useSWR(`${urls.baseUrl}${urls.api.dropdowns}`, fetcher);
-    console.log(data);
   //https://stackoverflow.com/questions/15125920/how-to-get-distinct-values-from-an-array-of-objects-in-javascript 
     const dropdownNames = data && [...new Set(data.payload.map(item => item.data.dropdownCategory))];
     return (
