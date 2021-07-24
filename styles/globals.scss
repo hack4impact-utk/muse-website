@@ -7,3 +7,14 @@ html, body{
     padding:0;
     font-family: vars.$font-primary;
  }
+
+h1 {
+    font-family: vars.$font-header !important;
+}
+
+h2, h3,h4,h5,h6 {
+    font-family: vars.$font-subheader !important;
+}
+p, span, label, button, a, input, textarea, select {
+    font-family: vars.$font-body !important;
+}
