@@ -47,7 +47,7 @@
 
 .description {
     display: flex;
-    font-weight: bold;
+    margin-top: 20px;
     margin-bottom: 10px;
     @media (min-width: 860px){   
         height: auto;
@@ -59,7 +59,7 @@
     margin: 20px 0px;
     text-align:center;
     font-size: 24px;
-    font-family: 'Quicksand', 'sans-serif';
+    font-family: vars.$font-body;
     color: white;
     padding-top: 2%;
     padding-bottom: 2%;

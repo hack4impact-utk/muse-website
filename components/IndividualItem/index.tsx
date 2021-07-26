@@ -120,7 +120,7 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
               return (
                 <>
                   <h3>{option.name}</h3>
-                  <select name={option.name} onChange={handleOptionInfo} defaultValue={JSON.stringify(optionValues[optionValueIndex])}>
+                  <select key={option.id} name={option.name} onChange={handleOptionInfo} defaultValue={JSON.stringify(optionValues[optionValueIndex])}>
                     {option.values?.map(value => {
                       return (
                         <option
