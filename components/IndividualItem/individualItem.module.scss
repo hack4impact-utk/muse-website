@@ -14,7 +14,7 @@
     flex-direction:column;
     & > img {
         margin-top: 20px;
-        width: 800px;
+        width: 600px;
         height: 600px;
         @media(max-width: 860px) {
             width: 100%;
@@ -32,18 +32,34 @@
     display: flex;
     flex-direction:column;
     height: 100%;
-    & > h1 {
-        //Price
-        margin: 10px 0px;
-    }
     @media(max-width: 860px) {
         width:100%;
     }
 }
 .title {
     display: flex;
+    & > h1 {
+        color: vars.$muse-green;
+    }
 }
 
+.price {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.stock {
+    font-size: 20px;
+    &.inStock {
+        color: vars.$muse-green;
+    }
+    &.lowStock{
+        color: vars.$muse-orange;
+    }
+    &.noStock {
+        color: #de603a;
+    }
+}
 
 .description {
     display: flex;
@@ -65,9 +81,13 @@
     padding-bottom: 2%;
     width: 100%;
     align-self:center;
-    background-color: #9CC03C;
+    background-color: vars.$muse-orange;
     cursor:pointer;
     margin-top: auto;
+    transition: 0.4s ease;
+    &:hover {
+        background-color: vars.$muse-green;
+    }
     @media (max-width: 860px) {
         width:100%;
     }
@@ -77,16 +97,31 @@
     display: flex;
     flex-direction:column;
     font-size: 30px;
-    font-weight: bold;
     padding-right: 10%;
-    margin: 20px 0px;
+    & > h4 {
+        color: vars.$muse-green;
+    }
     input {
-        width: 20%;
-        margin: 20px 0;
-
+        width: 100px;
+        border: 1px solid #e3e3e3;
+        box-shadow: 0px 0px 3px #e3e3e3;
+        @media only screen and (max-width: 1000px) {
+            margin-bottom: 20px;
+        }
     }
 }
 
+.variation { 
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0px 0px 3px #e3e3e3;
+    @media only screen and (max-width: 1000px) {
+        margin-bottom: 20px;
+    }
+}
+.variationName { 
+    color: vars.$muse-green;
+}
 .cartSuccess{
     width: auto;
     height: auto;

@@ -7,11 +7,12 @@ import CartLoader from "components/Cart/CartLoader";
 import Spinner from "components/Loading/Spinner";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import urls from "utils/urls";
 
 const CartPage: React.FC = () => {
   const [loading, setLoading] = useState(false); //Controls the spinner next to the checkout button
   const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data, error } = useSWR<CartAPIResponse, string>("/api/cart", fetcher);
+  const { data, error } = useSWR<CartAPIResponse, string>(`${urls.baseUrl}${urls.api.cart}`, fetcher);
   const router = useRouter();
   const proceedToCheckout = async (e: React.SyntheticEvent) => {
     setLoading(true);
@@ -43,7 +44,7 @@ const CartPage: React.FC = () => {
             .reduce((currentTotal, item) => {
               return (
                 currentTotal +
-                parseFloat(item.variations[0].price) * item.quantity
+                parseFloat(item.variations && item.variations[0].price) * item.quantity
               );
             }, 0)
             .toFixed(2)}
@@ -61,7 +62,7 @@ const CartPage: React.FC = () => {
         !error &&
         data.payload.length >= 1 &&
         data.payload.map((item: Item) => {
-          return <CartItem item={item} key={item.id} />;
+          return <CartItem item={item} key={item.selectedVariationFromCart?.id} />;
         })}
 
       <div className="checkoutParent">
