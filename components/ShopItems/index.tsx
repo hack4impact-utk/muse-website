@@ -5,6 +5,7 @@ import { Item } from "utils/types";
 interface Props {
   items: Item[];
 }
+//TODO: redo this to dynamically load categories
 const ShopItems: React.FC<Props> = ({ items }) => {
   return (
     <div className={styles.items}>

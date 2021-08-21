@@ -39,7 +39,7 @@ export const addToCart = (cookie: string, item: CartItem): CartItem[] => {
   let duplicate = false;
   //If the item is already in the cart, increment its quantity by the quantity specified in the new item.
   cart.forEach(i => {
-    if (i.variation == item.variation) {
+    if (i.variation.id == item.variation.id) {
       //If the item has no quantity (shouldn't happen), then don't add anything to it.
       i.quantity += item.quantity ? item.quantity : 0;
       duplicate = true;
@@ -63,9 +63,10 @@ export const updateCartQuantity = (
   item: CartItem
 ): CartItem[] => {
   const cart = getCookieBody(cookie);
+  
   //Find the item in the cart and change its quantity to the quantity of the item passed in.
   cart.forEach(i => {
-    if (i.variation === item.variation) {
+    if (i.variation.id === item.variation.id) {
       i.quantity = item.quantity;
     }
   });
