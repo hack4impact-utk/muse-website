@@ -3,6 +3,7 @@ import styles from "./exhibits.module.scss";
 import { useQuery } from "@apollo/client";
 import { client, GET_ALL_EXHIBITS } from "server/actions/Contentful";
 import { Exhibit } from "utils/types";
+import { HiChevronRight, HiChevronLeft } from "react-icons/hi";
 
 const Exhibits: React.FC = () => {
   const { data, loading, error } = useQuery(GET_ALL_EXHIBITS, {
@@ -44,7 +45,9 @@ const Exhibits: React.FC = () => {
   return (
     <section className={styles.exhibitsContainer}>
       <div className={styles.exhibitsWrapper}>
-        <button onClick={goPrevious}>Previous</button>
+        <button onClick={goPrevious}>
+          <div><HiChevronLeft className={styles.exhibitsBuuttonIcon}/></div>
+        </button>
         {data &&
           !loading &&
           !error &&
@@ -56,14 +59,18 @@ const Exhibits: React.FC = () => {
                 {group.map((exhibit, index) => {
                   return (
                     <div className={styles.exhibit}>
-                      <h3>{exhibit.name}</h3>
+                      <div className={styles.exhibitOverlay}>
+                        <h3>{exhibit.name}</h3>
+                      </div>
                     </div>
                   );
                 })}
               </div>
             );
           })}
-        <button onClick={goNext}>Next</button>
+        <button onClick={goNext}>
+          <div><HiChevronRight className={styles.exhibitsBuuttonIcon}/></div>
+        </button>
       </div>
     </section>
   );

@@ -1,11 +1,98 @@
 @use 'variables' as vars;
 
-
 .exhibitsContainer {
     min-height: 600px;
 }
 
+.exhibitsWrapper button{
+    width: 80px;
+    height: 80px;
+    border-radius: 500px;;
+    font-size: 48px;
+    border: none;
+    box-shadow: 0px 0px 5px 4px rgb(182, 182, 182);
+    color: white;
+    background-color: vars.$muse-orange;
+    text-align: center;
+    transition: 0.5s ease;
+}
+
+.exhibitsWrapper button div{
+    position: relative;
+    display: inline-block;
+    top: 30%;
+    transform: translateY(-30%);
+}
+
+.exhibitsBuuttonIcon{
+    margin: 0;
+    padding: 0;
+}
+
+.exhibitsWrapper button:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 2px rgb(182, 182, 182);
+    scale: 1.1;
+}
+
+.show{
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    background: brown;
+    justify-content: center;
+    animation: showAnimation 1s ease;
+}
+
+@keyframes showAnimation{
+    from{
+        opacity: 0;
+        display: flex;
+    }
+    to{
+        opacity: 1;
+    }
+}
 
 .hide {
-    display: none;
+    animation: hideAnimation 1s ease forwards;
+}
+
+@keyframes hideAnimation{
+    from{
+        width: auto;
+        height: auto;
+        position: relative;
+        display: flex;
+        background: brown;
+        justify-content: center;
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        display: none\;
+    }
+}
+
+.exhibit{
+    width: auto;
+    height: 400px;
+    max-width: 300px;
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    flex: 1;
+}
+
+.exhibitOverlay{
+    width: auto;
+    height: auto;
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: vars.$muse-orange;
 }

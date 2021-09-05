@@ -4,6 +4,7 @@ import Partners from "components/Partners";
 import OurMission from "components/OurMission";
 import Layout from "components/Layout";
 import Exhibits from "components/Exhibits";
+import BottomAnimation from "components/BottomAnimation";
 const Home: NextPage = () => {
   return (
     <Layout options={{ initialView: true, wrapperDisabled: false }}>
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <OurMission />
       <Exhibits />
       <Partners />
+      <BottomAnimation />
       <style jsx global>{`
         body {
           margin: 0;
