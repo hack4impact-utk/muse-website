@@ -50,14 +50,6 @@ const CartPage: React.FC = () => {
             .toFixed(2)}
         </h3>
       )}
-      {data && !error && data.payload.length < 1 && (
-        <>
-          <p className="cartEmptyText">Your cart is empty.</p>
-          <a href="/shop" className="button">
-            Visit Store
-          </a>
-        </>
-      )}
       {data &&
         !error &&
         data.payload.length >= 1 &&
@@ -66,6 +58,14 @@ const CartPage: React.FC = () => {
         })}
 
       <div className="checkoutParent">
+        {data && !error && data.payload.length < 1 && (
+          <>
+            <p className="cartEmptyText">Your cart is empty.</p>
+            <a href="/shop" className="button">
+              Visit Store
+            </a>
+          </>
+        )}
         {data && !error && data.payload.length >= 1 && (
           <button className="checkoutBtn" onClick={proceedToCheckout}>
             Proceed to checkout
@@ -87,8 +87,10 @@ const CartPage: React.FC = () => {
         .checkoutParent {
           position: relative;
           display: flex;
+          flex-direction:column;
           justify-content: center;
           align-items: center;
+          height: 40vh;
         }
         .checkoutBtn {
           display: inline-block;
@@ -115,12 +117,11 @@ const CartPage: React.FC = () => {
         }
         .cartEmptyText {
           font-size: 34px;
-          margin: auto;
           margin-bottom: 40px;
         }
         .button {
           border: none;
-          margin: 20px 0px;
+          margin: 20px 0;
           text-align: center;
           font-size: 24px;
           font-family: "Quicksand", "sans-serif";
