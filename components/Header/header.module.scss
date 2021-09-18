@@ -360,11 +360,14 @@ $breakpoint: 1100px;
     display: block;
   }
 }
-.navBtn a {
+.navBtn p {
+  cursor:pointer;
   //Buttons that are in the navbar
   @media screen and (min-width: $breakpoint) {
     color: black;
     text-decoration: none;
+    font-weight: 400;
+    margin: 0;
   }
   @media screen and (max-width: $breakpoint) {
     max-width: 65%;
@@ -379,6 +382,7 @@ $breakpoint: 1100px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     text-align: center;
+    font-weight: 400;
   }
 }
 .navBtn .navBtnSub {
@@ -409,14 +413,20 @@ $breakpoint: 1100px;
   white-space: nowrap;
   display: block;
   position: relative;
-  padding: 10px 15px;
   background-color: vars.$muse-blue;
   color: white;
   transition: 0.5s ease;
   margin-top: -1px;
+  text-decoration:none;
   z-index: 2002;
+  padding: 10px 15px;
   @media screen and (max-width: $breakpoint) {
     max-width: 60%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
 .navBtnSub a:hover {
