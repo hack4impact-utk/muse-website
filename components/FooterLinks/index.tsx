@@ -10,7 +10,7 @@ const FooterLinks: React.FC =  () => {
     return (
     <div className={styles.row}>
     {data && dropdownNames && (
-        dropdownNames.map(name => {
+        dropdownNames.filter((name: string) => name != "Default").map((name: string) => {
             return (
                 <div className={`${styles.column} ${styles.links}`}>
                     <h2 className={styles.navButtonMain}>{name}</h2>
