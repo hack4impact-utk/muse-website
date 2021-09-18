@@ -3,8 +3,8 @@ import Head from "next/head";
 import { Item } from "utils/types";
 import { GetStaticPropsContext, NextPage } from "next";
 import { getItemByID, getItemsByCategory } from "server/actions/Square/Catalog";
-import IndividualItem from "components/IndividualItem";
-import Layout from "components/Layout";
+import IndividualItem from "components/ecommerce/IndividualItem";
+import Layout from "components/shared/Layout";
 
 interface Props {
   item: Item;

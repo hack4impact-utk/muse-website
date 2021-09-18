@@ -8,7 +8,7 @@ import {
 } from "server/actions/Contentful";
 import { compressDays } from "utils/helpers/hours";
 import { BusinessHoursResponse } from "utils/types";
-import FooterLinks from "components/FooterLinks"; 
+import FooterLinks from "components/shared/Footer/FooterLinks"; 
 
 const Footer: React.FC = () => {
   const mapSrc =

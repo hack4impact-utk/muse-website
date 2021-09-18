@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Item, CartAPIResponse } from "utils/types";
 import styles from "./cartitem.module.scss";
 import { mutate } from "swr";
-import Spinner from "components/Loading/Spinner";
+import Spinner from "components/shared/Loading/Spinner";
 import urls from "utils/urls";
 
 interface Props {

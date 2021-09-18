@@ -1,4 +1,4 @@
-import Layout from "components/Layout";
+import Layout from "components/shared/Layout";
 import Head from "next/head";
 import React from "react";
 const AtHome: React.FC = () => {

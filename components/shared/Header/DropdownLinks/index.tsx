@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import styles from "../Header/header.module.scss";
+import styles from "components/shared/Header/header.module.scss";
 import urls from "utils/urls";
 const DropdownLinks: React.FC = () => {
   const fetcher = (url: string): Promise<unknown> =>

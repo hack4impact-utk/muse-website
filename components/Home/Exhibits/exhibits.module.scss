@@ -2,14 +2,21 @@
 
 .exhibitsContainer {
   min-height: 600px;
+  margin: 40px 0;
   align-self: center;
   display: flex;
   flex-direction: column;
+  & > h2 {
+    width: 90%;
+    align-self:center;
+    text-align:center;
+    font-size: 40px;
+    }
 }
 .exhibitsWrapper {
   display: flex;
   align-self: center;
-  width: 100%;
+  width: 90%;
   justify-content: center;
   align-items: center;
   & > div.show {
@@ -89,8 +96,12 @@
 }
 
 .exhibit {
-  width: 300px;
-  height: 500px;
+  @media (min-width: 1000px) {
+    width: 300px;
+    height: 500px;
+  }
+  width: 250px;
+  height: 300px;
   position: relative;
   display: inline-block;
   margin: 10px;

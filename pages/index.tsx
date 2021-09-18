@@ -1,10 +1,10 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import Partners from "components/Partners";
-import OurMission from "components/OurMission";
-import Layout from "components/Layout";
-import Exhibits from "components/Exhibits";
-import BottomAnimation from "components/BottomAnimation";
+import Partners from "components/home/Partners";
+import OurMission from "components/home/OurMission";
+import Layout from "components/shared/Layout";
+import Exhibits from "components/home/Exhibits";
+import BottomAnimation from "components/home/BottomAnimation";
 const Home: NextPage = () => {
   return (
     <Layout options={{ initialView: true, wrapperDisabled: false }}>

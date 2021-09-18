@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./suggestedItems.module.scss";
-import ItemCard from "../ItemCard";
+import ItemCard from "../../ecommerce/ItemCard";
 
 const SuggestedItems: React.FC = () => {
   return (

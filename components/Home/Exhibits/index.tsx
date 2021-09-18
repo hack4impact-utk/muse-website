@@ -19,7 +19,7 @@ const Exhibits: React.FC = () => {
       (groups: Exhibit[][], curr) => {
         const arr = groups[groups.length - 1];
         arr.push(curr);
-        if (arr.length === (windowSize.width <= 1000 ? 1 : 3)) groups.push([]);
+        if (arr.length === 3) groups.push([]);
         return groups;
       },
       [[]]
@@ -76,6 +76,7 @@ const Exhibits: React.FC = () => {
 
   return (
     <section className={styles.exhibitsContainer}>
+      <h2>Our Exhibits</h2>
       {data && !loading && !error && groupedExhibits.length > 0 && (
         <div className={styles.exhibitsWrapper}>
           <button onClick={goPrevious}>
