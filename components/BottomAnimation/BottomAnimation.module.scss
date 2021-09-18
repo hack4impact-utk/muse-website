@@ -1,0 +1,31 @@
+.parent {
+  height: 400px;
+  width: 100%;
+  align-self: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -40px;
+}
+.wrapper {
+  width: 80%;
+  align-self: center;
+  display: flex;
+}
+
+.robot {
+  width: 400px;
+  height: auto;
+  margin-right: auto;
+  @media (max-width: 1000px) {
+    display: none;
+  }
+}
+
+.museKid {
+  width: 400px;
+  height: auto;
+  @media (max-width: 1000px) {
+    align-self: center;
+  }
+}

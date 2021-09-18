@@ -37,7 +37,9 @@ export interface Exhibit {
   id: string;
   name: string;
   description: string;
-  image: string;
+  picture: {
+      url: string;
+  };
 }
 
 export interface BusinessHours {

@@ -61,7 +61,7 @@ $breakpoint: 1100px;
     }
   }
   & > div[data-is-open="true"][data-closing-soon="false"] {
-    background: vars.$muse-green;
+    background: green;
     width: 10px;
     height: 10px;
     margin-right: 10px;
@@ -154,15 +154,17 @@ $breakpoint: 1100px;
 }
 //Main header logo container
 .headerLogo {
-  width: auto;
-  height: auto;
-  max-width: 180px;
+  width: 180px;
+  height: 100%;
+  max-height: 100%;
   position: relative;
   display: inline-block;
   padding: 10px 0px 10px 0px;
   flex: 0;
 }
 .headerLogo img {
+  height: auto;
+  width: auto;
   max-height: 100%;
   width: auto;
   position: relative;
