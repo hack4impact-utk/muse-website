@@ -17,9 +17,6 @@ export default async function handler(
         const items = await getItemsFromCart(req.cookies.cart);
         const checkoutUrl = await createCheckout(items);
         //If we've got the checkoutUrl, then we can delete the cart cookie. Might have to be changed later.
-        if (checkoutUrl) {
-          res.setHeader("Set-Cookie", "cart=; Max-Age=0; SameSite=Lax; Path=/");
-        }
         res.status(200).json({
           success: true,
           payload: checkoutUrl,

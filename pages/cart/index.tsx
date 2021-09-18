@@ -7,11 +7,12 @@ import CartLoader from "components/Cart/CartLoader";
 import Spinner from "components/Loading/Spinner";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import urls from "utils/urls";
 
 const CartPage: React.FC = () => {
   const [loading, setLoading] = useState(false); //Controls the spinner next to the checkout button
   const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data, error } = useSWR<CartAPIResponse, string>("/api/cart", fetcher);
+  const { data, error } = useSWR<CartAPIResponse, string>(`${urls.baseUrl}${urls.api.cart}`, fetcher);
   const router = useRouter();
   const proceedToCheckout = async (e: React.SyntheticEvent) => {
     setLoading(true);
@@ -43,28 +44,28 @@ const CartPage: React.FC = () => {
             .reduce((currentTotal, item) => {
               return (
                 currentTotal +
-                parseFloat(item.variations[0].price) * item.quantity
+                parseFloat(item.variations && item.variations[0].price) * item.quantity
               );
             }, 0)
             .toFixed(2)}
         </h3>
       )}
-      {data && !error && data.payload.length < 1 && (
-        <>
-          <p className="cartEmptyText">Your cart is empty.</p>
-          <a href="/shop" className="button">
-            Visit Store
-          </a>
-        </>
-      )}
       {data &&
         !error &&
         data.payload.length >= 1 &&
         data.payload.map((item: Item) => {
-          return <CartItem item={item} key={item.id} />;
+          return <CartItem item={item} key={item.selectedVariationFromCart?.id} />;
         })}
 
       <div className="checkoutParent">
+        {data && !error && data.payload.length < 1 && (
+          <>
+            <p className="cartEmptyText">Your cart is empty.</p>
+            <a href="/shop" className="button">
+              Visit Store
+            </a>
+          </>
+        )}
         {data && !error && data.payload.length >= 1 && (
           <button className="checkoutBtn" onClick={proceedToCheckout}>
             Proceed to checkout
@@ -86,8 +87,10 @@ const CartPage: React.FC = () => {
         .checkoutParent {
           position: relative;
           display: flex;
+          flex-direction:column;
           justify-content: center;
           align-items: center;
+          height: 40vh;
         }
         .checkoutBtn {
           display: inline-block;
@@ -114,12 +117,11 @@ const CartPage: React.FC = () => {
         }
         .cartEmptyText {
           font-size: 34px;
-          margin: auto;
           margin-bottom: 40px;
         }
         .button {
           border: none;
-          margin: 20px 0px;
+          margin: 20px 0;
           text-align: center;
           font-size: 24px;
           font-family: "Quicksand", "sans-serif";

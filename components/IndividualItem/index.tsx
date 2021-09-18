@@ -14,15 +14,7 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
   //Handles the quantity state.
   const handleChange = (e: React.SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
-    if (isNaN(parseInt(input.value))) {
-      setQuantity(1);
-      return;
-    }
-    if (input.value === "") {
-      setQuantity(1);
-      return;
-    }
-    if (quantity <= 0) {
+    if (quantity < 0) {
       setQuantity(1);
       return;
     }
@@ -30,6 +22,7 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
   };
   const addToCart = async (e: React.SyntheticEvent): Promise<void> => {
     e.preventDefault();
+    if(quantity <= 0) setQuantity(1);
     const body = { quantity: quantity, id: item.id, variation: displayedVariation };
 
     const response = await fetch("/api/cart", {
@@ -93,23 +86,23 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
         <div className={styles.title}>
           <h1>{item && item.name}</h1>
         </div>
-        <h3>{displayedVariation && displayedVariation.name}</h3>
         <div className={styles.content}>
-          <h2>${item && displayedVariation.price}</h2>
+          <p className={styles.price}>${item && displayedVariation.price}</p>
           {displayedVariation && displayedVariation.stockStatus === "IN_STOCK" && (
-              <h3>In Stock</h3>
+              <p className={`${styles.stock} ${styles.inStock}`}>In Stock</p>
           )}
           {displayedVariation && displayedVariation.stockStatus === "LOW_STOCK" && (
-            <h3>Low Stock</h3>
+            <p className={`${styles.stock} ${styles.lowStock}`}>Low Stock</p>
           )}
           {displayedVariation && displayedVariation.stockStatus === "OUT_OF_STOCK" && (
-            <h3>Out of Stock</h3>
+            <p className={`${styles.stock} ${styles.noStock}`}>Out of Stock</p>
+            
           )}
           <div className={styles.quantity}>
             <h4>Quantity</h4>
             <input
-              type="number"
-              value={quantity || 1}
+              type="text"
+              value={quantity ? quantity : 0}
               onChange={handleChange}
             />
           </div>
@@ -119,8 +112,8 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
               const optionValueIndex = optionValues.findIndex(os => os.itemOptionId === option.id); //Used to set the default value in the select.
               return (
                 <>
-                  <h3>{option.name}</h3>
-                  <select name={option.name} onChange={handleOptionInfo} defaultValue={JSON.stringify(optionValues[optionValueIndex])}>
+                  <h3 className={styles.variationName}>{option.name}</h3>
+                  <select  className={styles.variation} key={option.id} name={option.name} onChange={handleOptionInfo} defaultValue={JSON.stringify(optionValues[optionValueIndex])}>
                     {option.values?.map(value => {
                       return (
                         <option

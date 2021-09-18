@@ -3,6 +3,7 @@ import { Item, CartAPIResponse } from "utils/types";
 import styles from "./cartitem.module.scss";
 import { mutate } from "swr";
 import Spinner from "components/Loading/Spinner";
+import urls from "utils/urls";
 
 interface Props {
   item: Item;
@@ -18,14 +19,6 @@ const CartItem: React.FC<Props> = ({ item }) => {
   //Update the item's quantity if the value is entered manually.
   const handleChange = (e: React.SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
-    if (isNaN(parseInt(input.value))) {
-      setQuantity(1);
-      return;
-    }
-    if (input.value === "") {
-      setQuantity(1);
-      return;
-    }
     if (quantity <= 0) {
       setQuantity(1);
       return;
@@ -39,7 +32,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
     e.preventDefault();
     const response = await fetch("/api/cart", {
       method: "DELETE",
-      body: JSON.stringify({ id: item.id, quantity: item.quantity }),
+      body: JSON.stringify({ id: item.id, quantity: item.quantity, variation: item.selectedVariationFromCart }),
     });
 
     const data = (await response.json()) as CartAPIResponse;
@@ -66,27 +59,27 @@ const CartItem: React.FC<Props> = ({ item }) => {
             </button>
             {loading ? <div className={styles.spinner}><Spinner/></div> : <></>}
           </div>
-            <h3>{item.selectedVariationFromCart?.name}</h3>
-          <h3>${item.variations[0].price}</h3>
-          <h4>Quantity</h4>
+            <p>{item.selectedVariationFromCart?.name}</p>
+          <h3>${item.variations && item.variations[0].price}</h3>
+          <p>Quantity</p>
           <div className={styles.quantity}>
             <input
-              type="number"
+              type="text"
               className={styles.quantityInput}
               placeholder="0"
               onChange={handleChange}
               value={quantity || 0}
               onBlur={async () => {
                 //When the user removes focus from the quantity input, this will make a call to update the item's quantity in the cart cookie, then update the page to display the new quantity.
-                if (quantity != item.quantity) {
+                if (quantity != item.quantity && quantity != 0) {
                   const response = await fetch("/api/cart", {
                     method: "PATCH",
-                    body: JSON.stringify({ id: item.id, quantity: quantity }),
+                    body: JSON.stringify({ id: item.id, quantity: quantity, variation: item.selectedVariationFromCart }),
                   });
 
                   const data = (await response.json()) as CartAPIResponse;
-                  if (data.success) {
-                    void mutate("/api/cart", null, true);
+                  if(data.success) {
+                    void mutate(`${urls.baseUrl}${urls.api.cart}`, null, true);
                   }
                 }
               }}

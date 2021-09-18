@@ -1,13 +1,28 @@
 //Import fonts from Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&display=swap");
 // Colors
-$muse-blue: #0E55A6;
-$muse-light-blue: #73CCD8;
-$muse-orange: #F99E26;
-$muse-green: #9CC03C;
-$muse-link: #0855A6;
+@font-face {
+  font-family: "Gothic";
+  src: url("../public/fonts/Gothic/GOTHIC.TTF");
+}
+
+@font-face {
+  font-family: "BurbankBigRegular";
+  src: url("../public/fonts/BurbankBigRegular-Black.otf");
+}
+@font-face {
+  font-family: "BurbankBigCondensed";
+  src: url("../public/fonts/BurbankBigCondensed-Black.otf");
+}
+$muse-blue: #0e55a6;
+$muse-light-blue: #73ccd8;
+$muse-orange: #f99e26;
+$muse-green: #9cc03c;
+$muse-link: #0855a6;
 // Fonts
 $font-primary: #{"Quicksand", sans-serif};
 $font-secondary: #{"Raleway", sans-serif};
+$font-body: #{"Gothic", sans-serif};
+$font-header: #{"BurbankBigRegular", sans-serif};
+$font-subheader: #{"BurbankBigCondensed", sans-serif};
 // Media Queries
-

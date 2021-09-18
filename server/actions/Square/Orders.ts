@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Client, Environment } from "square";
 import { Item, OLItem } from "utils/types";
 import { getAccessToken } from ".";
+import urls from "utils/urls";
 const client = new Client({
   environment:
     process.env.NODE_ENV === "production"
@@ -37,8 +38,10 @@ export const createCheckout = async (items: Item[]): Promise<string> => {
       },
       merchantSupportEmail: "testing@museknoxville.org",
       askForShippingAddress: true,
+      redirectUrl: `${urls.baseUrl}${urls.api.completeOrder}`
     }
   );
+
   return response.result.checkout?.checkoutPageUrl as string;
 };
 
