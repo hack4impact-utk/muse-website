@@ -39,6 +39,16 @@ const DropdownLinks: React.FC = () => {
               </div>
             );
           })}
+     <div className={styles.navBtn}>
+       <p className={styles.navBtnMain}>
+         Shop
+       </p>
+       <div className={styles.navBtnSub}>
+         <div className={styles.navButtonSubTriangle}></div>
+         <a href="/shop">Online Store</a>
+         <a href="/cart">Cart</a>
+       </div>
+     </div>
     </>
   );
   // <div className={styles.navBtn}>
@@ -134,16 +144,6 @@ const DropdownLinks: React.FC = () => {
   //             </a>
   //           );
   //         })}
-  //   </div>
-  // </div>
-  // <div className={styles.navBtn}>
-  //   <a href="/shop" className={styles.navBtnMain}>
-  //     Shop
-  //   </a>
-  //   <div className={styles.navBtnSub}>
-  //     <div className={styles.navButtonSubTriangle}></div>
-  //     <a href="/shop">Online Store</a>
-  //     <a href="/cart">Cart</a>
   //   </div>
   // </div>
 };

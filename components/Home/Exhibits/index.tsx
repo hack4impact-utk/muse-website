@@ -4,13 +4,11 @@ import { useQuery } from "@apollo/client";
 import { client, GET_ALL_EXHIBITS } from "server/actions/Contentful";
 import { Exhibit } from "utils/types";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi";
-
 const Exhibits: React.FC = () => {
   const { data, loading, error } = useQuery(GET_ALL_EXHIBITS, {
     client: client,
   });
 
-  const windowSize = useWindowSize();
   const [exhibitIndexToDisplay, setExhibitIndexToDisplay] = React.useState(0);
   //If there are exhibits to display, break them down in to groups.
   let groupedExhibits = [] as Exhibit[][];

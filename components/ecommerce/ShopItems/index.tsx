@@ -5,46 +5,23 @@ import { Item } from "utils/types";
 interface Props {
   items: Item[];
 }
-//TODO: redo this to dynamically load categories
 const ShopItems: React.FC<Props> = ({ items }) => {
+  //Items & categories are dynamically displayed based on what is added in Square
+  const categories = items && items.map(item => item.category);
+
   return (
     <div className={styles.items}>
-      <div className={styles.category}>
-        <h1 className={styles.header}>Apparel</h1>
-        {items &&
-          items
-            .filter(item => item.category === "Apparel")
-            .map(item => {
-              return <ItemCard key={item.id} item={item} />;
+        {categories &&
+            categories.map(category => {
+              return (
+              <div className={styles.category}>
+                <h1 className={styles.header}>{category}</h1>
+                {items && items.filter(item => item.category === category).map(item => {
+                  return <ItemCard key={item.id} item={item}/>
+                })}
+              </div>
+              )
             })}
-      </div>
-      <div className={styles.category}>
-        <h1 className={styles.header}>Amusement Kits</h1>
-        {items &&
-          items
-            .filter(item => item.category === "Amusement Kits")
-            .map(item => {
-              return <ItemCard key={item.id} item={item} />;
-            })}
-      </div>
-      <div className={styles.category}>
-        <h1 className={styles.header}>Learning Kits</h1>
-        {items &&
-          items
-            .filter(item => item.category === "Learning Kits")
-            .map(item => {
-              return <ItemCard key={item.id} item={item} />;
-            })}
-      </div>
-      <div className={styles.category}>
-        <h1 className={styles.header}>Toys</h1>
-        {items &&
-          items
-            .filter(item => item.category === "Toys")
-            .map(item => {
-              return <ItemCard key={item.id} item={item} />;
-            })}
-      </div>
     </div>
   );
 };
