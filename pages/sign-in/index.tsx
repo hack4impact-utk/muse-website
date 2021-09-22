@@ -1,5 +1,5 @@
-import Layout from "components/Layout";
-import SignIn from "components/SignIn";
+import Layout from "components/shared/Layout";
+import SignIn from "components/deprecated/SignIn";
 import Head from "next/head";
 import React from "react";
 

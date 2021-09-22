@@ -1,7 +1,7 @@
-import Layout from "components/Layout";
+import Layout from "components/shared/Layout";
 import Head from "next/head";
-import Calendar from "components/Calendar/index";
-import CartComponent from "components/CartComponent/index";
+import Calendar from "components/deprecated/Calendar/index";
+import CartComponent from "components/deprecated/CartComponent/index";
 import React from "react";
 const Cart: React.FC = () => {
   const options = {

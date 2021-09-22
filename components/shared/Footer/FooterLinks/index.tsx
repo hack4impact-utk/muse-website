@@ -1,7 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import urls from "utils/urls";
-import styles from "components/Footer/footer.module.scss";
+import styles from "components/shared/Footer/footer.module.scss";
 const FooterLinks: React.FC =  () => {
     const fetcher = (url:string): Promise<unknown> => fetch(url).then(r => r.json());
     const {data, error} = useSWR(`${urls.baseUrl}${urls.api.dropdowns}`, fetcher);

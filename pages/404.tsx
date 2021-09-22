@@ -1,6 +1,6 @@
 import { NextPage } from "next";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import Header from "components/shared/Header";
+import Footer from "components/shared/Footer";
 
 const FourOhFour: NextPage = () => {
   return (

@@ -4,13 +4,11 @@ import { useQuery } from "@apollo/client";
 import { client, GET_ALL_EXHIBITS } from "server/actions/Contentful";
 import { Exhibit } from "utils/types";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi";
-
 const Exhibits: React.FC = () => {
   const { data, loading, error } = useQuery(GET_ALL_EXHIBITS, {
     client: client,
   });
 
-  const windowSize = useWindowSize();
   const [exhibitIndexToDisplay, setExhibitIndexToDisplay] = React.useState(0);
   //If there are exhibits to display, break them down in to groups.
   let groupedExhibits = [] as Exhibit[][];
@@ -19,7 +17,7 @@ const Exhibits: React.FC = () => {
       (groups: Exhibit[][], curr) => {
         const arr = groups[groups.length - 1];
         arr.push(curr);
-        if (arr.length === (windowSize.width <= 1000 ? 1 : 3)) groups.push([]);
+        if (arr.length === 3) groups.push([]);
         return groups;
       },
       [[]]
@@ -76,6 +74,7 @@ const Exhibits: React.FC = () => {
 
   return (
     <section className={styles.exhibitsContainer}>
+      <h2>Our Exhibits</h2>
       {data && !loading && !error && groupedExhibits.length > 0 && (
         <div className={styles.exhibitsWrapper}>
           <button onClick={goPrevious}>

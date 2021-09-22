@@ -3,12 +3,11 @@ import styles from "./header.module.scss";
 import { CartItem, Item } from "utils/types";
 import useSWR from "swr";
 import urls from "utils/urls";
-import StoreOpenStatus from "components/StoreOpenStatus";
-import DropdownLinks from "components/DropdownLinks";
+import StoreOpenStatus from "components/shared/Header/StoreOpenStatus";
+import DropdownLinks from "components/shared/Header/DropdownLinks";
 const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   //storeOpen, closingSoon, and storeStatus could probably all be refactored into one state.
-  const [cartQuantity, setCartQuantity] = useState(0);
 
   const fetcher = (url: string): Promise<unknown> =>
     fetch(url).then(r => r.json());

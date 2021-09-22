@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import "styles/globals.scss";
 import { useRouter } from 'next/router';
 import { useState, useEffect, Fragment } from 'react';
-import LoadingOverlay from "../components/Loading/LoadingOverlay";
+import LoadingOverlay from "../components/shared/Loading/LoadingOverlay";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 

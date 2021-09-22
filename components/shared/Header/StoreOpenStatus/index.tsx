@@ -12,7 +12,7 @@ import {
   isOpen,
   isWeekend,
 } from "utils/helpers/hours";
-import styles from "../Header/header.module.scss";
+import styles from "components/shared/Header/header.module.scss";
 const StoreOpenStatus: React.FC = () => {
   const [storeOpen, setStoreOpen] = useState(false);
   const [closingSoon, setClosingSoon] = useState(false);

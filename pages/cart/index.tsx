@@ -1,10 +1,10 @@
-import Layout from "components/Layout";
+import Layout from "components/shared/Layout";
 import Head from "next/head";
 import { Item, CartAPIResponse } from "utils/types";
 import useSWR from "swr";
-import CartItem from "components/Cart/CartItem";
-import CartLoader from "components/Cart/CartLoader";
-import Spinner from "components/Loading/Spinner";
+import CartItem from "components/ecommerce/Cart/CartItem";
+import CartLoader from "components/ecommerce/Cart/CartLoader";
+import Spinner from "components/shared/Loading/Spinner";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import urls from "utils/urls";
