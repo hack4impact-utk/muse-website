@@ -9,8 +9,8 @@ interface Props {
 const IndividualItem: React.FC<Props> = ({ item }) => {
   const [quantity, setQuantity] = React.useState(1);
   const [success, setSuccess] = React.useState(false);
-  const [displayedVariation, setDisplayedVariation] = React.useState(item.variations[0])
-  const [optionValues, setOptionValues] = React.useState(item.variations[0].itemOptionValues);
+  const [displayedVariation, setDisplayedVariation] = React.useState(item && item.variations && item.variations[0])
+  const [optionValues, setOptionValues] = React.useState(item && item.variations && item.variations[0].itemOptionValues);
   //Handles the quantity state.
   const handleChange = (e: React.SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
@@ -106,7 +106,7 @@ const IndividualItem: React.FC<Props> = ({ item }) => {
               onChange={handleChange}
             />
           </div>
-          {item.variations.length > 1 &&
+          {item && item.variations && item.variations.length > 1 &&
             (item.options as ItemOption[]) &&
             (item.options as ItemOption[]).map((option: ItemOption) => {
               const optionValueIndex = optionValues.findIndex(os => os.itemOptionId === option.id); //Used to set the default value in the select.

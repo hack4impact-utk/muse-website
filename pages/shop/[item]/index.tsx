@@ -11,11 +11,10 @@ interface Props {
 }
 
 const IndividualItemPage: NextPage<Props> = ({ item }) => {
-  console.log(item);
   return (
     <Layout options={{ initialView: false, wrapperDisabled: false }}>
       <Head>
-        <title>{item.name} | Muse Knoxville</title>
+        <title>{item && item.name} | Muse Knoxville</title>
       </Head>
       <IndividualItem item={item} />
     </Layout>
@@ -51,5 +50,5 @@ export async function getStaticPaths(): Promise<{
     params: { item: item.id },
   }));
 
-  return { paths, fallback: true };
+  return { paths: paths, fallback: true };
 }
