@@ -1,10 +1,7 @@
 import { getAccessToken } from ".";
 import { Client, Environment, InventoryCount } from "square";
 const client = new Client({
-  environment:
-    process.env.NODE_ENV === "production"
-      ? Environment.Production
-      : Environment.Sandbox,
+  environment: Environment.Sandbox,
 });
 
 export const getStockStatus = async (

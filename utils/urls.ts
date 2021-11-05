@@ -1,7 +1,7 @@
 export default {
   baseUrl:
     process.env.NODE_ENV === "production"
-      ? "https://museknoxville.org"
+      ? "https://museknox.vercel.app"
       : "http://localhost:3000",
   api: {
     booking: "/api/booking",
