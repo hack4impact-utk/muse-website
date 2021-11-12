@@ -4,10 +4,7 @@ import { Item, OLItem } from "utils/types";
 import { getAccessToken } from ".";
 import urls from "utils/urls";
 const client = new Client({
-  environment:
-    process.env.NODE_ENV === "production"
-      ? Environment.Production
-      : Environment.Sandbox, // ! This will have to be changed in production.
+  environment: Environment.Sandbox, // ! This will have to be changed in production.
 });
 
 /**

@@ -52,8 +52,9 @@ const Shop: NextPage<Props> = ({ items }) => {
       </div>
 
       <div className="shopContainer">
-        {items && items.length > 0 && console.log(items)}
+      { items && 
         <ShopItems items={items} />
+      }
       </div>
 
       <Footer />
@@ -130,7 +131,8 @@ const Shop: NextPage<Props> = ({ items }) => {
 
 export default Shop;
 
-export async function getStaticProps(): Promise<{
+//! This may have to be changed later.
+export async function getServerSideProps(): Promise<{
   props: { items: Item[] };
   revalidate?: number | boolean;
 }> {
@@ -145,23 +147,6 @@ export async function getStaticProps(): Promise<{
     props: {
       items: items,
     },
-    revalidate: 3600,
   };
 }
 
-export async function getStaticPaths(): Promise<{
-  paths: { params: { id: string } }[];
-  fallback: boolean;
-}> {
-  const items = await getItemsByCategory([
-    "Apparel",
-    "Amusement Kits",
-    "Learning Kits",
-    "Toys",
-  ]);
-  const paths = items.map(item => ({
-    params: { id: item.id },
-  }));
-
-  return { paths, fallback: true };
-}
