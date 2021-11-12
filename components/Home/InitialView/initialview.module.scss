@@ -7,10 +7,20 @@
     background-color: #F99E26;
 }
 
+.videoOverlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(249, 158, 38, 0.50);
+}
+
 .gearGreen{
     height: auto;
     position: absolute;
     animation: greenRotate 50s infinite linear;
+    z-index: 500;
     @media screen and (min-width: 980px){
         width: 400px;
         top: 50px;
@@ -30,6 +40,7 @@
     position: absolute;
     display: inline-block;
     animation: yellowRotate 40s infinite linear;
+    z-index: 500;
     @media screen and (min-width: 980px){
         width: 300px;
         right: 250px;
@@ -65,6 +76,7 @@
     display: inline-block;
     height: auto;
     width: auto;
+    z-index: 500;
     @media screen and (min-width: 540px){
         padding-left: 100px;
         top: 50%;
