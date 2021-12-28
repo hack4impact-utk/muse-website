@@ -24,6 +24,10 @@ const InitialView: React.FC = () => {
         src="gear-yellow.png"
         alt="Yellow gear for the Muse Knoxville."
       ></img>
+      <div className={style.videoWrapper}>
+        <div className={style.videoOverlay}></div>
+        <video src="opener.mp4" autoPlay muted loop></video>
+      </div>
     </div>
   );
 };
