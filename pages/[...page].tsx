@@ -6,11 +6,7 @@ import {
 } from "@builder.io/react";
 import { GetStaticPropsContext } from "next";
 import Layout from "components/shared/Layout";
-<<<<<<< HEAD
-import "components/builder/Button";
-=======
 import "components/Builder/Button";
->>>>>>> 7aeb484a18a23ab2b3a57305124e1fe21b2a9367
 //All of this code below comes from the Builder.io GitHub
 //https://github.com/BuilderIO/builder/blob/master/examples/next-js-builder-site/src/pages/%5B...page%5D.tsx
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY as string);
@@ -23,12 +19,15 @@ const MyComponent: React.FC<Props> = ({ builderPage }) => {
   const heroText = builderPage
     ? `${builderPage.data.pageTitle || builderPage.data.title}`
     : "Muse Knoxville";
+    const imageFile = builderPage.data.heroImage;
+    console.log(imageFile);
   return (
     <Layout
       options={{
         hero: true,
         heroSize: "md",
         heroText: heroText,
+        heroImage: imageFile,
         initialView: false,
         wrapperDisabled: false,
       }}
