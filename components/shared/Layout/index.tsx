@@ -2,10 +2,11 @@ import React from "react";
 import Header from "components/shared/Header";
 import Footer from "components/shared/Footer";
 import styles from "./layout.module.scss";
-import InitialView from "components/Home/InitialView";
+import InitialView from "components/home/InitialView";
 interface Options {
   hero?: boolean;
   heroSize?: string;
+  heroImage?: string; //Contains hero image url.
   heroText?: string;
   wrapperDisabled: boolean;
   initialView: boolean;
@@ -26,7 +27,7 @@ const Layout: React.FC<Props> = ({ options, children }) => {
       )}
       {/* If the hero is needed and it needs to be medium */}
       {options && options?.hero && options?.heroSize == "md" && (
-        <div className={`${styles["hero"]} ${styles["hero-md"]}`}>
+        <div className={`${styles["hero"]} ${styles["hero-md"]}`} style={options.heroImage ? {background: `url(${options.heroImage})`} : {background: "#f99e26"}}>
           <h1>{options?.heroText}</h1>
         </div>
       )}
