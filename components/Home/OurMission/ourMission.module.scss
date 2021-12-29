@@ -4,83 +4,38 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin: 0 auto;
     font-family: vars.$font-body;
-    overflow: hidden;
-    position: relative;
-    display: block;
     h1 {
-        margin-left: 15%;
         font-size: 40px;
     }
 }
-.missionText {
-    margin-left: 15%;
-    margin-right: 15%;
-    bottom: 200px;
-}
 
 .wrap {
-    width: 80%;
-    margin-left: 10%;
+    padding: 0px 5%;
+}
+
+.slideShow { 
+    display: flex;
+    flex-direction:column;
+    & > img {
+        max-width: 1200px;
+        height: 600px;
+        margin: 40px 0;
+        border: 3px solid vars.$muse-orange;
+        width: 100%;
+        align-self:center;
+        @media only screen and (max-width: 1000px) {
+            //TODO: Not exactly sure how mobile styling should be done. 
+            width: 80%;
+            height: 80%;
+        }
+    }
 }
 
 .coreValues{
     padding-top: 40px;
 }
 
-.leftValue {
-    display: flex;
-    flex-direction: column;
-    float: left;
-    max-width: 900px;
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 5%;
-    padding: 40px;
-    @media (max-width: 860px){    
-        margin-left: 25%;
-    }
-    img{
-        align-self: center;
-        @media (min-width: 860px){    
-            width: 250px;
-            height: 250px;
-        }
-        @media (max-width: 860px){    
-            width: 250px;
-            height: 250px;
-        }
-    }
-}
-
-.rightValue {
-    display: flex;
-    flex-direction: column;
-    float: right;
-    max-width: 900px;
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 5%;
-    padding: 40px;
-    @media (max-width: 860px){    
-        margin-right: 25%;
-    }
-    img{
-        align-self: center;
-        align-self: center;
-        @media (min-width: 860px){    
-            width: 250px;
-            height: 250px;
-        }
-        @media (max-width: 860px){    
-            width: 250px;
-            height: 250px;
-        }
-    }
-}
 
 .saturn{
     height: auto;

@@ -20,7 +20,6 @@ const MyComponent: React.FC<Props> = ({ builderPage }) => {
     ? `${builderPage.data.pageTitle || builderPage.data.title}`
     : "Muse Knoxville";
     const imageFile = builderPage && builderPage.data.heroImage;
-    console.log(imageFile);
   return (
     <Layout
       options={{

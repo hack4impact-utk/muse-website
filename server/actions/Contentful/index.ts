@@ -110,3 +110,17 @@ export const GET_PARTNER = gql`
     }
   }
 `;
+/**
+ * Get slideshow images for homepage slideshow
+ */
+export const GET_SLIDESHOW_IMAGES = gql`
+  query getSlideshowImages {
+    slideshowImagesCollection {
+      items {
+        image {
+          url
+        }
+      }
+    }
+  }
+`
