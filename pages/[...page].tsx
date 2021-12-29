@@ -19,12 +19,15 @@ const MyComponent: React.FC<Props> = ({ builderPage }) => {
   const heroText = builderPage
     ? `${builderPage.data.pageTitle || builderPage.data.title}`
     : "Muse Knoxville";
+    const imageFile = builderPage.data.heroImage;
+    console.log(imageFile);
   return (
     <Layout
       options={{
         hero: true,
         heroSize: "md",
         heroText: heroText,
+        heroImage: imageFile,
         initialView: false,
         wrapperDisabled: false,
       }}
