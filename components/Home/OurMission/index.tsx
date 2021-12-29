@@ -40,7 +40,10 @@ const OurMission: React.FC = () => {
 
         <div className={styles.slideShow}>
           {data && data.slideshowImagesCollection.items && (
-            <img src={data.slideshowImagesCollection.items[imageNum].image.url} alt="Slideshow image"/>
+            data.slideshowImagesCollection.items.map((item: {image: {url: string}}, idx: number)=> {
+               
+              return <img src={item.image.url} className={imageNum == idx ? styles.hidden : ""} alt="Slideshow image"/>
+            })
           )}
         </div>
          {/*         <img
