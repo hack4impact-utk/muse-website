@@ -26,7 +26,7 @@ const InitialView: React.FC = () => {
       ></img>
       <div className={style.videoWrapper}>
         <div className={style.videoOverlay}></div>
-        <video src="opener.mp4" autoPlay muted loop></video>
+        <video className={style.video} src="opener.mp4" autoPlay muted loop></video>
       </div>
     </div>
   );
