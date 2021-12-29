@@ -28,7 +28,9 @@ const Layout: React.FC<Props> = ({ options, children }) => {
       {/* If the hero is needed and it needs to be medium */}
       {options && options?.hero && options?.heroSize == "md" && (
         <div className={`${styles["hero"]} ${styles["hero-md"]}`} style={options.heroImage ? {background: `url(${options.heroImage})`} : {background: "#f99e26"}}>
-          <h1>{options?.heroText}</h1>
+          <div className={styles["imageOverlay"]}>
+            <h1>{options?.heroText}</h1>
+          </div>
         </div>
       )}
       {/* If the hero is needed and it needs to be large */}

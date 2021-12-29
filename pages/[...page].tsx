@@ -19,7 +19,7 @@ const MyComponent: React.FC<Props> = ({ builderPage }) => {
   const heroText = builderPage
     ? `${builderPage.data.pageTitle || builderPage.data.title}`
     : "Muse Knoxville";
-    const imageFile = builderPage.data.heroImage;
+    const imageFile = builderPage && builderPage.data.heroImage;
     console.log(imageFile);
   return (
     <Layout
