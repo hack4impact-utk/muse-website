@@ -17,13 +17,31 @@
         background: vars.$muse-orange;
     }
     &-md{
-        min-height: 300px;
-        background: vars.$muse-orange;
+        min-height: 350px;
+        position: relative;
+        background-position: center !important;
+        background-size: cover !important;
+        background-attachment: fixed !important;
+        text-align: center;
     }
     &-lg{
         min-height: 450px;
         background: vars.$muse-orange;
     }
+    h1{
+        position: relative;
+        display: inline-block;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+.imageOverlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(249, 158, 38, 0.50);
 }
 .wrapper {
     width: 90%;
